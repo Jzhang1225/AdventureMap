@@ -1,29 +1,30 @@
-const Sequelize = require('sequelize')
-const db = require('../db')
+const Sequelize = require("sequelize");
+const { STRING, INTEGER, DATE } = Sequelize;
+const db = require("../db");
 
-const Challenge = db.define('challenge', {
+const Challenge = db.define("challenge", {
   name: {
-    type: Sequelize.STRING
+    type: STRING,
   },
   points: {
-    type: Sequelize.INTEGER
+    type: INTEGER,
   },
   address: {
-    type: Sequelize.STRING,
+    type: STRING,
     allowNull: false,
   },
   startDate: {
-    type: Sequelize.DATE,
+    type: DATE,
     allowNull: false,
   },
   endDate: {
-    type: Sequelize.DATE,
+    type: DATE,
     allowNull: false,
   },
   difficulty: {
-    type: Sequelize.INTEGER,
+    type: INTEGER,
     allowNull: false,
-  }
-})
+  },
+});
 
-module.exports = Challenge
+module.exports = Challenge;
