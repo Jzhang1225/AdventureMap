@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import { logout } from "../store";
+import { logout, resetFriends } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
@@ -13,6 +13,7 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/explore">Explore</Link>
           <Link to="/leaderboard">Leaderboard</Link>
           <Link to="/profile">Profile</Link>
+          <Link to="/friends">Friends</Link>
           <a href="#" onClick={handleClick}>
             Logout
           </a>
@@ -38,6 +39,7 @@ const mapDispatch = (dispatch) => {
   return {
     handleClick() {
       dispatch(logout());
+      dispatch(resetFriends());
     },
   };
 };

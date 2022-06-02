@@ -1,63 +1,105 @@
 const {
   db,
-  models: { User },
+  models: { User, Challenge, FriendRequest },
 } = require("../server/db");
 
 async function seed() {
   await db.sync({ force: true });
   console.log("db synced!");
 
-  const users = await Promise.all([
-    User.create({
-      username: "cody",
-      password: "123",
-      points: 400,
-      streetAddress: "123 Fake Street",
-      city: "Springfield",
-      state: "Oregon",
-      zip: 94461,
-      email: "fake-email@gmail.com",
+  const [cody, murphy, susan, stanley, Jianing, Cathy, Stephan, Evelyn] =
+    await Promise.all([
+      User.create({
+        username: "cody",
+        password: "123",
+        points: 400,
+        streetAddress: "123 Fake Street",
+        city: "Springfield",
+        state: "Oregon",
+        zip: 94461,
+        email: "fake-email@gmail.com",
+      }),
+      User.create({
+        username: "murphy",
+        password: "123",
+        points: 650,
+        streetAddress: "456 Real Drive",
+        city: "Ordinary City",
+        state: "Utah",
+        zip: 65416,
+        email: "real-email@gmail.com",
+      }),
+      User.create({
+        username: "susan",
+        password: "123",
+        points: 240,
+        streetAddress: "789 Real Street",
+        city: "Strange City",
+        state: "Ohio",
+        zip: 51655,
+        email: "real-email43@gmail.com",
+      }),
+      User.create({
+        username: "stanley",
+        password: "123",
+        points: 10,
+        streetAddress: "345 Text Street",
+        city: "Ohoy",
+        state: "Maine",
+        zip: 12346,
+        email: "remasdasdail@gmail.com",
+      }),
+      User.create({
+        username: "Jianing",
+        password: "123",
+      }),
+      User.create({
+        username: "Cathy",
+        password: "123",
+      }),
+      User.create({
+        username: "Stephan",
+        password: "123",
+      }),
+      User.create({
+        username: "Evelyn",
+        password: "123",
+      }),
+    ]);
+
+  const friendrequests = await Promise.all([
+    FriendRequest.create({
+      userId: cody.id,
+      friendId: Jianing.id,
     }),
-    User.create({
-      username: "murphy",
-      password: "123",
-      points: 650,
-      streetAddress: "456 Real Drive",
-      city: "Ordinary City",
-      state: "Utah",
-      zip: 65416,
-      email: "real-email@gmail.com",
+    FriendRequest.create({
+      userId: murphy.id,
+      friendId: stanley.id,
     }),
-    User.create({
-      username: "susan",
-      password: "123",
-      points: 240,
-      streetAddress: "789 Real Street",
-      city: "Strange City",
-      state: "Ohio",
-      zip: 51655,
-      email: "real-email43@gmail.com",
+    FriendRequest.create({
+      userId: cody.id,
+      friendId: susan.id,
+      status: "accepted",
     }),
-    User.create({
-      username: "stanley",
-      password: "123",
-      points: 10,
-      streetAddress: "345 Text Street",
-      city: "Ohoy",
-      state: "Maine",
-      zip: 12346,
-      email: "remasdasdail@gmail.com",
+    FriendRequest.create({
+      userId: cody.id,
+      friendId: Cathy.id,
+      status: "accepted",
+    }),
+    FriendRequest.create({
+      userId: murphy.id,
+      friendId: Stephan.id,
+      status: "accepted",
+    }),
+    FriendRequest.create({
+      userId: murphy.id,
+      friendId: Evelyn.id,
+      status: "accepted",
     }),
   ]);
 
-  console.log(`seeded ${users.length} users`);
   console.log(`seeded successfully`);
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1],
-    },
-  };
+  return [cody, murphy, susan, stanley, Jianing, Cathy, Stephan, Evelyn];
 }
 
 async function runSeed() {

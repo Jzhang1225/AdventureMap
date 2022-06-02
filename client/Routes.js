@@ -5,11 +5,18 @@ import { Login, Signup } from "./components/AuthForm";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
-import { me, setUsers } from "./store";
+import FriendList from "./components/FriendList";
+import { me, setUsers, setFriends } from "./store";
 
 class Routes extends Component {
   componentDidMount() {
     this.props.loadInitialData();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (!prevProps.isLoggedIn && this.props.isLoggedIn) {
+      this.props.loadLoggedInData();
+    }
   }
 
   render() {
@@ -22,6 +29,7 @@ class Routes extends Component {
             <Route path="/home" component={Home} />
             <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/profile" component={Profile} />
+            <Route path="/friends" component={FriendList} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -47,6 +55,9 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me());
       dispatch(setUsers());
+    },
+    loadLoggedInData() {
+      dispatch(setFriends());
     },
   };
 };
