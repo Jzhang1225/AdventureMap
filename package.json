@@ -33,7 +33,6 @@
   "devDependencies": {
     "@babel/core": "^7.14.6",
     "@babel/preset-react": "^7.14.5",
-    "axios": "^0.21.4",
     "babel-loader": "^8.2.2",
     "nodemon": "^2.0.9",
     "react": "^17.0.2",
