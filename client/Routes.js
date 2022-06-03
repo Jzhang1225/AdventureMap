@@ -7,6 +7,7 @@ import Profile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import FriendList from "./components/FriendList";
 import { me, setUsers, setFriends } from "./store";
+import ExploreMap from "./components/ExploreMap";
 
 class Routes extends Component {
   componentDidMount() {
@@ -27,6 +28,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
+            <Route path="/explore" component={ExploreMap} />
             <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/profile" component={Profile} />
             <Route path="/friends" component={FriendList} />
