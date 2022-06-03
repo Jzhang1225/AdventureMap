@@ -6,7 +6,7 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import FriendList from "./components/FriendList";
-import { me, setUsers, setFriends } from "./store";
+import { me, setUsers, setFriendRequests } from "./store";
 
 class Routes extends Component {
   componentDidMount() {
@@ -57,7 +57,7 @@ const mapDispatch = (dispatch) => {
       dispatch(setUsers());
     },
     loadLoggedInData() {
-      dispatch(setFriends());
+      dispatch(setFriendRequests());
     },
   };
 };
