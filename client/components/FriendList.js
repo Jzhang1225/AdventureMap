@@ -59,7 +59,7 @@ const mapState = ({ friendRequests, users, auth }) => {
     (friend) => friend.status === "accepted"
   );
   const pendingFriendRequest = friendRequests.filter(
-    (friend) => friend.status === "pending"
+    (friend) => friend.status === "pending" && friend.userId === auth.id
   );
 
   return {
