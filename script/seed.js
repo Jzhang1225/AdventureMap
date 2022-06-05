@@ -7,7 +7,7 @@ async function seed() {
   await db.sync({ force: true });
   console.log("db synced!");
 
-  const [cody, murphy, susan, stanley, Jianing, Cathy, Stephan, Evelyn] =
+  const [cody, murphy, susan, stanley, Jianing, Cathy, Stefan, Evelyn] =
     await Promise.all([
       User.create({
         username: "cody",
@@ -58,7 +58,7 @@ async function seed() {
         password: "123",
       }),
       User.create({
-        username: "Stephan",
+        username: "Stefan",
         password: "123",
       }),
       User.create({
@@ -88,7 +88,7 @@ async function seed() {
     }),
     FriendRequest.create({
       userId: murphy.id,
-      friendId: Stephan.id,
+      friendId: Stefan.id,
       status: "accepted",
     }),
     FriendRequest.create({
@@ -98,8 +98,19 @@ async function seed() {
     }),
   ]);
 
+  const challenges = await Promise.all([
+    Challenge.create({
+      name: 'Take a hike',
+      points: 10,
+      address: 'fake street NW',
+      startDate: '2022/06/05',
+      endDate: '2022/06/10',
+      difficulty: 5
+    })
+  ])
+
   console.log(`seeded successfully`);
-  return [cody, murphy, susan, stanley, Jianing, Cathy, Stephan, Evelyn];
+  return [cody, murphy, susan, stanley, Jianing, Cathy, Stefan, Evelyn, challenges];
 }
 
 async function runSeed() {
