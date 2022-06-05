@@ -30,6 +30,18 @@ router.get("/", isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.post("/", isLoggedIn, async (req, res, next) => {
+  try {
+    const friendsRequest = await FriendRequest.create({
+      userId: req.user.id,
+      friendId: req.body.id,
+    });
+    res.json(friendsRequest);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.put("/:id", isLoggedIn, async (req, res, next) => {
   try {
     const friendsRequest = await FriendRequest.findByPk(req.params.id);
