@@ -6,8 +6,8 @@ import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import FriendList from "./components/FriendList";
-import { me, setUsers, setFriends } from "./store";
-import ExploreMap from "./components/ExploreMap";
+import Explore from "./components/Explore";
+import { me, setUsers, setFriendRequests } from "./store";
 
 class Routes extends Component {
   componentDidMount() {
@@ -28,7 +28,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
-            <Route path="/explore" component={ExploreMap} />
+            <Route path="/explore" component={Explore} />
             <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/profile" component={Profile} />
             <Route path="/friends" component={FriendList} />
@@ -59,7 +59,7 @@ const mapDispatch = (dispatch) => {
       dispatch(setUsers());
     },
     loadLoggedInData() {
-      dispatch(setFriends());
+      dispatch(setFriendRequests());
     },
   };
 };

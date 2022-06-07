@@ -18,6 +18,8 @@ const Leaderboard = ({ users }) => {
 };
 
 const mapState = ({ users }) => {
+  users.sort((a, b) => b.points - a.points);
+
   return {
     users,
   };

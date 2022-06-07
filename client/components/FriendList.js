@@ -1,60 +1,81 @@
 import React from "react";
 import { connect } from "react-redux";
+import { acceptRequest } from "../store";
 
-const FriendsList = ({ acceptedFriends, pendingFriends }) => {
+const FriendsList = ({
+  acceptedFriendRequest,
+  pendingFriendRequest,
+  users,
+  auth,
+  acceptRequest,
+}) => {
   return (
     <div>
       <h2>Friends</h2>
+
       <ul>
-        {acceptedFriends.length ? (
-          acceptedFriends.map((acceptedFriend) => {
-            return <li key={acceptedFriend.id}>{acceptedFriend.username}</li>;
-          })
-        ) : (
-          <li>Go find some friends!</li>
-        )}
+        {acceptedFriendRequest.length
+          ? acceptedFriendRequest.map((friendRequest) => {
+              const friend = users
+                .filter((user) => user.id !== auth.id)
+                .find(
+                  (user) =>
+                    user.id === friendRequest.userId ||
+                    user.id === friendRequest.friendId
+                );
+              return <li key={friend.id}>{friend.username}</li>;
+            })
+          : "No Friends, go find some!"}
       </ul>
 
       <h2>Pending request</h2>
       <ul>
-        {pendingFriends.length ? (
-          pendingFriends.map((pendingFriend) => {
-            return <li key={pendingFriend.id}>{pendingFriend.username}</li>;
-          })
-        ) : (
-          <li>No pending requests!</li>
-        )}
+        {pendingFriendRequest.length
+          ? pendingFriendRequest.map((friendRequest) => {
+              const friend = users
+                .filter((user) => user.id !== auth.id)
+                .find(
+                  (user) =>
+                    user.id === friendRequest.userId ||
+                    user.id === friendRequest.friendId
+                );
+              return (
+                <li key={friend.id}>
+                  {friend.username}
+                  <button onClick={() => acceptRequest(friendRequest)}>
+                    Accept request
+                  </button>
+                </li>
+              );
+            })
+          : "No pending requests"}
       </ul>
     </div>
   );
 };
 
-const mapState = ({ friends, users, auth }) => {
-  const acceptedFriends = [];
-  const pendingFriends = [];
-  friends.forEach((friend) => {
-    if (friend.status === "accepted") {
-      acceptedFriends.push(
-        users.find(
-          (user) =>
-            user.id !== auth.id &&
-            (user.id === friend.userId || user.id === friend.friendId)
-        )
-      );
-    } else {
-      pendingFriends.push(
-        users.find(
-          (user) =>
-            user.id !== auth.id &&
-            (user.id === friend.userId || user.id === friend.friendId)
-        )
-      );
-    }
-  });
+const mapState = ({ friendRequests, users, auth }) => {
+  const acceptedFriendRequest = friendRequests.filter(
+    (friend) => friend.status === "accepted"
+  );
+  const pendingFriendRequest = friendRequests.filter(
+    (friend) => friend.status === "pending" && friend.userId === auth.id
+  );
+
   return {
-    acceptedFriends,
-    pendingFriends,
+    acceptedFriendRequest,
+    pendingFriendRequest,
+    users,
+    auth,
   };
 };
 
-export default connect(mapState)(FriendsList);
+const mapDispatch = (dispatch) => {
+  return {
+    acceptRequest: (request) => {
+      dispatch(acceptRequest(request));
+    },
+  };
+};
+
+export default connect(mapState, mapDispatch)(FriendsList);
