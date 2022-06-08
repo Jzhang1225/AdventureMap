@@ -28,26 +28,38 @@ const FriendsList = ({
           : "No Friends, go find some!"}
       </ul>
 
-      <h2>Pending request</h2>
+      <h2>Pending received requests</h2>
       <ul>
         {pendingFriendRequest.length
-          ? pendingFriendRequest.map((friendRequest) => {
-              const friend = users
-                .filter((user) => user.id !== auth.id)
-                .find(
-                  (user) =>
-                    user.id === friendRequest.userId ||
-                    user.id === friendRequest.friendId
+          ? pendingFriendRequest
+              .filter((request) => request.userId !== auth.id)
+              .map((friendRequest) => {
+                const friend = users.find(
+                  (user) => user.id === friendRequest.userId
                 );
-              return (
-                <li key={friend.id}>
-                  {friend.username}
-                  <button onClick={() => acceptRequest(friendRequest)}>
-                    Accept request
-                  </button>
-                </li>
-              );
-            })
+                return (
+                  <li key={friend.id}>
+                    {friend.username}
+                    <button onClick={() => acceptRequest(friendRequest)}>
+                      Accept request
+                    </button>
+                  </li>
+                );
+              })
+          : "No pending requests"}
+      </ul>
+
+      <h2>Pending Sent requests</h2>
+      <ul>
+        {pendingFriendRequest.length
+          ? pendingFriendRequest
+              .filter((request) => request.userId === auth.id)
+              .map((friendRequest) => {
+                const friend = users.find(
+                  (user) => user.id === friendRequest.friendId
+                );
+                return <li key={friend.id}>{friend.username}</li>;
+              })
           : "No pending requests"}
       </ul>
     </div>
@@ -56,10 +68,10 @@ const FriendsList = ({
 
 const mapState = ({ friendRequests, users, auth }) => {
   const acceptedFriendRequest = friendRequests.filter(
-    (friend) => friend.status === "accepted"
+    (request) => request.status === "accepted"
   );
   const pendingFriendRequest = friendRequests.filter(
-    (friend) => friend.status === "pending" && friend.userId === auth.id
+    (request) => request.status === "pending"
   );
 
   return {
