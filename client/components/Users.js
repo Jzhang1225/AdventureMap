@@ -25,7 +25,8 @@ class Users extends React.Component {
     const { filterValue } = this.state;
     const { FilterChange, FilterUsers } = this;
     let { users } = this.props;
-    users = FilterUsers(filterValue, users);
+    const randomNum = Math.floor(Math.random() * users.length - 5);
+    users = FilterUsers(filterValue, users).slice(randomNum, randomNum + 5);
 
     return (
       <div>

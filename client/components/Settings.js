@@ -55,10 +55,10 @@ class Settings extends React.Component {
           }}
         >
           <MenuItem onClick={handleClose}>
-            <Link to="/Profile">Profile </Link>
+            <Link to="/profile">Profile </Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link to="/friends">Orders </Link>
+            <Link to="/friends">Friends </Link>
           </MenuItem>
         </Menu>
       </>
