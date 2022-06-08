@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import Chat from './Chat';
 
 class Home extends Component {
   constructor() {
@@ -42,7 +41,6 @@ class Home extends Component {
         </button>
 
         <div>
-        <Chat users={users} message={message} setMessage={setMessage}/>
         </div>
       </div>
     );

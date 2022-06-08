@@ -1,6 +1,6 @@
 const {
   db,
-  models: { User, Challenge, FriendRequest },
+  models: { User, Challenge, FriendRequest, Conversation, Message },
 } = require("../server/db");
 
 async function seed() {
@@ -97,6 +97,39 @@ async function seed() {
       status: "accepted",
     }),
   ]);
+
+  const conversations = await Promise.all([
+    Conversation.create({
+      senderId: 8,
+      receiverId: 6
+    }),
+    Conversation.create({
+      senderId: 8,
+      receiverId: 3
+    }),
+    Conversation.create({
+      senderId: 5,
+      receiverId: 6
+    }),
+  ]);
+
+  const messages = await Promise.all([
+    Message.create({
+      sender: 8,
+      text: "Yo yo yo",
+      conversationId: 2
+    }),
+    Message.create({
+      sender: 6,
+      text: "Greetings",
+      conversationId: 2
+    }),
+    Message.create({
+      sender: 5,
+      text: "What it do",
+      conversationId: 3
+    }),
+  ])
 
   console.log(`seeded successfully`);
   return [cody, murphy, susan, stanley, Jianing, Cathy, Stephan, Evelyn];
