@@ -16,7 +16,7 @@ router.post("/", async (req, res, next) => {
 router.get('/', async(req, res, next) => {
   try{
     const conversations = await Conversation.findAll();
-    res.send(conversations)
+    res.json(conversations)
   }
   catch(err) {
     next(err)
@@ -30,7 +30,7 @@ router.get('/:id', async(req, res, next) => {
         senderId: req.params.id
       },
   })
-  res.send(conversation)
+  res.json(conversation)
   }
   catch(err) {
     next(err)

@@ -31,7 +31,7 @@ router.get('/:conversationId', async(req, res, next) => {
         conversationId: req.params.conversationId
       }
     })
-    res.send(messages)
+    res.json(messages)
   }
   catch(err){
     next(err)
