@@ -1,11 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import Settings from "./Settings";
 import { logout, resetFriends } from "../store";
 
 const Navbar = ({ handleClick, isLoggedIn }) => (
   <div>
-    <h1>FS-App-Template</h1>
+    <h1>Pending Project Name</h1>
     <nav>
       {isLoggedIn ? (
         <div>
@@ -13,8 +14,8 @@ const Navbar = ({ handleClick, isLoggedIn }) => (
           <Link to="/explore">Explore</Link>
           <Link to="/challenges">Challenges</Link>
           <Link to="/leaderboard">Leaderboard</Link>
-          <Link to="/profile">Profile</Link>
-          <Link to="/friends">Friends</Link>
+          <Link to="/users">Users</Link>
+          <Settings />
           <a href="#" onClick={handleClick}>
             Logout
           </a>

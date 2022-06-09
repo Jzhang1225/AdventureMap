@@ -7,8 +7,10 @@ import Profile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import FriendList from "./components/FriendList";
 import Explore from "./components/Explore";
-import Challenges from "./components/Challenges";
+import Users from "./components/Users";
+import SelectedUser from "./components/SelectedUser";
 import { me, setUsers, setFriendRequests } from "./store";
+import Challenges from "./components/Challenges";
 
 class Routes extends Component {
   componentDidMount() {
@@ -32,6 +34,8 @@ class Routes extends Component {
             <Route path="/explore" component={Explore} />
             <Route path="/challenges" component={Challenges} />
             <Route path="/leaderboard" component={Leaderboard} />
+            <Route path="/users" exact component={Users} />
+            <Route path="/users/:id" component={SelectedUser} />
             <Route path="/profile" component={Profile} />
             <Route path="/friends" component={FriendList} />
             <Redirect to="/home" />
