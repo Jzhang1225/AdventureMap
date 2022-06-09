@@ -18,7 +18,7 @@ const Messenger = (props) => {
     const getConversations = async() => {
       try {
         const response = await axios.get(`/conversations/${user.id}`)
-        setConversations(response.data);
+        console.log("RESPONSE", response)
       }
       catch(err) {
         console.log(err);
