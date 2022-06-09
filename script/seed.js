@@ -106,7 +106,31 @@ async function seed() {
       startDate: '2022/06/05',
       endDate: '2022/06/10',
       difficulty: 5
-    })
+    }),
+    Challenge.create({
+      name: 'Take a hike again',
+      points: 10,
+      address: 'fake street NW',
+      startDate: '2022/06/05',
+      endDate: '2022/06/10',
+      difficulty: 5
+    }),
+    Challenge.create({
+      name: 'Look at art',
+      points: 10,
+      address: 'fake street NW',
+      startDate: '2022/06/05',
+      endDate: '2022/06/10',
+      difficulty: 5
+    }),
+    Challenge.create({
+      name: 'Go ride a bike',
+      points: 10,
+      address: 'fake street NW',
+      startDate: '2022/06/05',
+      endDate: '2022/06/10',
+      difficulty: 5
+    }),
   ])
 
   console.log(`seeded successfully`);

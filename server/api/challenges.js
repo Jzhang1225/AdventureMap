@@ -4,7 +4,7 @@ const {
 } = require("../db");
 module.exports = router;
 
-//const Op = require("sequelize").Op;
+// const Op = require("sequelize").Op;
 
 // const isLoggedIn = async (req, res, next) => {
 //   try {

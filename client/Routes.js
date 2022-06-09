@@ -7,6 +7,7 @@ import Profile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import FriendList from "./components/FriendList";
 import Explore from "./components/Explore";
+import Challenges from "./components/Challenges";
 import { me, setUsers, setFriendRequests } from "./store";
 
 class Routes extends Component {
@@ -29,6 +30,7 @@ class Routes extends Component {
           <Switch>
             <Route path="/home" component={Home} />
             <Route path="/explore" component={Explore} />
+            <Route path="/challenges" component={Challenges} />
             <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/profile" component={Profile} />
             <Route path="/friends" component={FriendList} />
