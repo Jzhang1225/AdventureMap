@@ -25,6 +25,9 @@ const AuthForm = (props) => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
       </form>
+      <button onClick={() => (window.location = "/api/googleOauth")}>
+        Login with Google
+      </button>
     </div>
   );
 };

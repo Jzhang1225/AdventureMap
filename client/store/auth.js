@@ -31,6 +31,16 @@ export const authenticate =
     }
   };
 
+export const loginWithGoogle = () => async (dispatch) => {
+  try {
+    const res = await axios.get(`/api/googleOauth`);
+    // window.localStorage.setItem(TOKEN, res.data.token);
+    // dispatch(me());
+  } catch (authError) {
+    return dispatch(setAuth({ error: authError }));
+  }
+};
+
 export const updateProfile = (user) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem(TOKEN);
