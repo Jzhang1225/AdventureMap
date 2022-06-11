@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const {
-  models: { Challenge, User },
+  models: { ChallengeLine, User },
 } = require("../db");
 module.exports = router;
 
@@ -19,19 +19,9 @@ const isLoggedIn = async (req, res, next) => {
 
 router.get("/", isLoggedIn, async(req, res, next) => {
     try{
-        const challenges = await Challenge.findAll()
-        res.json(challenges);
+        const challengeLines = await ChallengeLine.findAll()
+        res.json(challengeLines);
     } catch(e){
         next(e);
     }   
-})
-
-router.get("/:id", isLoggedIn, async(req, res, next) => {
-    try{
-        const challenge = await (Challenge.findById(req.params.id*1))
-        res.json(challenge);
-    }
-    catch(e){
-        next(e);
-    }
 })

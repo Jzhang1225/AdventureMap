@@ -1,6 +1,6 @@
 const {
   db,
-  models: { User, Challenge, FriendRequest },
+  models: { User, Challenge, FriendRequest, ChallengeLine},
 } = require("../server/db");
 
 async function seed() {
@@ -131,10 +131,17 @@ async function seed() {
       endDate: '2022/06/10',
       difficulty: 5
     }),
+  ]);
+  
+  const challengeLine = await Promise.all([
+    ChallengeLine.create({
+      userId: 1,
+      challengeId: 1
+    })
   ])
 
   console.log(`seeded successfully`);
-  return [cody, murphy, susan, stanley, Jianing, Cathy, Stefan, Evelyn, challenges];
+  return [cody, murphy, susan, stanley, Jianing, Cathy, Stefan, Evelyn, challenges, challengeLine];
 }
 
 async function runSeed() {

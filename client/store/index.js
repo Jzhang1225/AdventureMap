@@ -5,8 +5,9 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import auth from "./auth";
 import users from "./users";
 import friendRequests from "./friendRequests";
+import challenges from "./challenges";
 
-const reducer = combineReducers({ auth, users, friendRequests });
+const reducer = combineReducers({ auth, users, friendRequests, challenges });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );
@@ -16,3 +17,4 @@ export default store;
 export * from "./auth";
 export * from "./users";
 export * from "./friendRequests";
+export * from "./challenges";

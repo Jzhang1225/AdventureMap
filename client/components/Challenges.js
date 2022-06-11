@@ -1,24 +1,29 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getChallenges } from '../store/challenges';
+import { Link } from 'react-router-dom';
 
 
 const Challenges = ({
-    getChallenges
+    challenges
 }) => {
     return (
         <div>
             challenges
+            {challenges.map( challenge => {
+                return (
+                    <div>
+                        <Link to={`/challenges/${challenge.id}`}>{challenge.name}</Link>
+                    </div>
+                )
+            })}
         </div>
     )
 }
 
-const mapDispatch = (dispatch) => {
+const mapState = ({challenges, connectors, users}) => {
     return {
-        getChallenges: () => {
-            dispatch(getChallenges)
-        }
+        challenges
     }
 }
 
-export default connect(state => state, mapDispatch)(Challenges);
+export default connect(mapState)(Challenges);
