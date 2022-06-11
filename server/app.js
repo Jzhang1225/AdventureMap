@@ -5,7 +5,7 @@ const app = express();
 try {
   require("dotenv").config();
 } catch (e) {
-  console.log("On Heroku");
+  console.log("On Heroku!");
 }
 module.exports = app;
 
