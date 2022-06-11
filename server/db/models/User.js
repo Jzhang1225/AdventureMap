@@ -76,7 +76,6 @@ User.loginViaGoogle = async function (code) {
     `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${response.data.access_token}`
   );
   const email = response.data.email;
-  console.log(response.data);
 
   let user = await this.findOne({
     where: {

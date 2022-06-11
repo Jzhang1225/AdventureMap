@@ -2,7 +2,11 @@ const path = require("path");
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
-require("dotenv").config();
+try {
+  require("dotenv").config();
+} catch (e) {
+  console.log("On Heroku");
+}
 module.exports = app;
 
 // logging middleware
