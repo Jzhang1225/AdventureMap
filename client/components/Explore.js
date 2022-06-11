@@ -1,7 +1,16 @@
 import React from "react";
 import { GoogleMap, InfoWindow, Marker, useLoadScript, Autocomplete } from "@react-google-maps/api";
 import mapStyles from "../../src/mapStyles";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import usePlacesAutocomplete, {getGeocode, getLatLng} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+  ComboboxOptionText,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
 
 const libraries = ["places"];
 const center = { lat: 40.7616731, lng: -73.8155219 };
@@ -27,12 +36,7 @@ export default function Explore() {
       lng: event.latLng.lng(),
       time: new Date()
     };
-    //console.log(marker);
     setMarkers(current => [...current, marker])
-  }, []);
-
-  const onAddButton = React.useCallback((event) => {
-    
   }, []);
 
   // Storing map reference
@@ -48,14 +52,10 @@ export default function Explore() {
     <div>
       <h1>Explore Map:</h1>
       
+      <Search setMarkers={setMarkers} setSelected={setSelected} />
       {/*<Autocomplete>
         <input type="text" placeholder="Enter Location" />
       </Autocomplete>*/}
-      
-      <GooglePlacesAutocomplete>
-        <input type="text" placeholder="Enter Location" />
-      </GooglePlacesAutocomplete>
-      <button onClick={onAddButton}>Add</button>
 
       <GoogleMap
         zoom={12}
@@ -75,9 +75,11 @@ export default function Explore() {
           />
         ))}
 
+        {selected && <Marker position={selected} />}
+
         {selected ? (
           <InfoWindow 
-            position={{ lat: selected.lat, lng: selected.lng }} 
+            position={selected} 
             onCloseClick={() => {
               setSelected(null);
             }}
@@ -87,7 +89,59 @@ export default function Explore() {
               <p>Here's some information.</p>
             </div>
           </InfoWindow>) : null}
+
+          
       </GoogleMap>
     </div>
   );
+}
+
+const Search = ({ setMarkers, setSelected }) => {
+  const { ready, value, setValue, suggestions: {status, data}, clearSuggestions } = usePlacesAutocomplete(
+    // {
+    // requestOptions: {
+    //   location: { lat: () => center.lat, lng: () => center.lng },
+    //   radius: 200 * 1000,
+    // }
+    // }
+  );
+
+  const handleSelect = async(address) => {
+    setValue(address, false);
+    clearSuggestions();
+
+    const results = await getGeocode({ address });
+    const { lat, lng } = await getLatLng(results[0]);
+    setSelected({lat, lng});
+
+    let marker = {
+      lat,
+      lng,
+      time: new Date()
+    };
+    setMarkers(current => [...current, marker])
+  }
+
+  return (
+    <div className="search">
+      <Combobox onSelect={handleSelect}>
+        <ComboboxInput 
+          className="search-input"
+          value={value} 
+          onChange={(event) => setValue(event.target.value)}
+          disabled={!ready}
+          placeholder="Enter an address"
+        />
+        <ComboboxPopover>
+          <ComboboxList>
+            {
+              status === "OK" && data.map(({place_id, description}) => ( // data is an array of location descriptions
+                <ComboboxOption key={place_id} value={description} />
+              ))
+            }
+          </ComboboxList>
+        </ComboboxPopover>
+      </Combobox>
+    </div>
+  )
 }
