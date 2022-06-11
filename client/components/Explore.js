@@ -36,12 +36,7 @@ export default function Explore() {
       lng: event.latLng.lng(),
       time: new Date()
     };
-    //console.log(marker);
     setMarkers(current => [...current, marker])
-  }, []);
-
-  const onAddButton = React.useCallback((event) => {
-    
   }, []);
 
   // Storing map reference
@@ -57,7 +52,7 @@ export default function Explore() {
     <div>
       <h1>Explore Map:</h1>
       
-      <Search setSelected={setSelected} />
+      <Search setMarkers={setMarkers} setSelected={setSelected} />
       {/*<Autocomplete>
         <input type="text" placeholder="Enter Location" />
       </Autocomplete>*/}
@@ -83,7 +78,6 @@ export default function Explore() {
         {selected && <Marker position={selected} />}
 
         {selected ? (
-          
           <InfoWindow 
             position={selected} 
             onCloseClick={() => {
@@ -102,7 +96,7 @@ export default function Explore() {
   );
 }
 
-const Search = ({ setSelected }) => {
+const Search = ({ setMarkers, setSelected }) => {
   const { ready, value, setValue, suggestions: {status, data}, clearSuggestions } = usePlacesAutocomplete(
     // {
     // requestOptions: {
@@ -119,6 +113,13 @@ const Search = ({ setSelected }) => {
     const results = await getGeocode({ address });
     const { lat, lng } = await getLatLng(results[0]);
     setSelected({lat, lng});
+
+    let marker = {
+      lat,
+      lng,
+      time: new Date()
+    };
+    setMarkers(current => [...current, marker])
   }
 
   return (
