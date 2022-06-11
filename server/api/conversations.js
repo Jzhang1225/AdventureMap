@@ -4,6 +4,9 @@ const {
 } = require("../db");
 module.exports = router;
 
+const Op = require("sequelize").Op;
+
+
 router.post("/", async (req, res, next) => {
   try {
     const newConversation = await Conversation.create(req.body)
@@ -27,7 +30,7 @@ router.get('/:id', async(req, res, next) => {
   try{
     const conversation = await Conversation.findAll({
       where: {
-        senderId: req.params.id
+        [Op.or]: [{senderId: req.params.id}, {receiverId: req.params.id}]
       },
   })
   res.json(conversation)

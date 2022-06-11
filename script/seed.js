@@ -9,7 +9,7 @@ async function seed() {
 
   const [cody, murphy, susan, stanley, Jianing, Cathy, Stephan, Evelyn] =
     await Promise.all([
-      User.create({
+      await User.create({
         username: "cody",
         password: "123",
         points: 400,
@@ -19,7 +19,7 @@ async function seed() {
         zip: 94461,
         email: "fake-email@gmail.com",
       }),
-      User.create({
+      await User.create({
         username: "murphy",
         password: "123",
         points: 650,
@@ -29,7 +29,7 @@ async function seed() {
         zip: 65416,
         email: "real-email@gmail.com",
       }),
-      User.create({
+      await User.create({
         username: "susan",
         password: "123",
         points: 240,
@@ -39,7 +39,7 @@ async function seed() {
         zip: 51655,
         email: "real-email43@gmail.com",
       }),
-      User.create({
+      await User.create({
         username: "stanley",
         password: "123",
         points: 10,
@@ -49,19 +49,19 @@ async function seed() {
         zip: 12346,
         email: "remasdasdail@gmail.com",
       }),
-      User.create({
+      await User.create({
         username: "Jianing",
         password: "123",
       }),
-      User.create({
+      await User.create({
         username: "Cathy",
         password: "123",
       }),
-      User.create({
+      await User.create({
         username: "Stephan",
         password: "123",
       }),
-      User.create({
+      await User.create({
         username: "Evelyn",
         password: "123",
       }),
@@ -108,6 +108,10 @@ async function seed() {
       receiverId: 3
     }),
     Conversation.create({
+      senderId: 4,
+      receiverId: 8
+    }),
+    Conversation.create({
       senderId: 5,
       receiverId: 6
     }),
@@ -125,7 +129,7 @@ async function seed() {
       conversationId: 2
     }),
     Message.create({
-      sender: 5,
+      sender: 8,
       text: "What it do",
       conversationId: 3
     }),

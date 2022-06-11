@@ -18,6 +18,7 @@ const init = async () => {
 
     io.on('connection', (socket) => {
       console.log('a user connected');
+      socket.emit("your id", socket.id);
       socket.on('chat message', (msg) => {
         io.emit('chat message', msg);
   });

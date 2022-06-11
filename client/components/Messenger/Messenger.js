@@ -8,40 +8,34 @@ import axios from 'axios';
 
 const Messenger = (props) => {
   const { users, auth } = props
-  console.log('PROPS', props)
   const user = props.auth
+
+  console.log('PROPS', props)
   console.log("USER", user)
 
   const [conversations, setConversations] = useState([]);
-  console.log("CONVO BEFORE", conversations)
   useEffect(()=> {
     const getConversations = async() => {
       try {
-        const response = await axios.get(`/conversations/${user.id}`)
-        console.log("RESPONSE", response)
+        const response = await axios.get(`api/conversations/${user.id}`)
+        console.log("RESPONSE - CONVERSATIONS", response)
+        setConversations(response.data);
       }
       catch(err) {
         console.log(err);
       }
     };
     getConversations();
-  });
-  console.log("CONVO After", conversations)
+  }, [user.id]);
 
-
-  // const [ user, setUser ] = useState('')
-  // const [ message, setMessage] = useState('');
+  
   const URL = 'http://localhost:8080'
   const socket = io(URL, { autoConnect: false });
   //console.log("SOCKET TO ME", socket)
 
-  socket.onAny((event, ...args) => {
-    console.log("catch listener", event, args);
-  });
-
-  
-
-  
+  // socket.onAny((event, ...args) => {
+  //   console.log("catch listener", event, args);
+  // });
 
   return (
     <div>
@@ -49,10 +43,12 @@ const Messenger = (props) => {
         <div className='chatMenu'>
           <div className='chatMenuWrapper'>
             <input placeholder='Search For Friends' className='chatMenuInput' />
-            <Conversation />
-            <Conversation />
-            <Conversation />
-            <Conversation />
+            {
+              conversations.map((c) => {
+                <Conversation conversation={c} currentUser={user}/>
+              })
+            }
+            
           </div>
         </div>
         <div className='chatBox'>
@@ -96,11 +92,10 @@ const Messenger = (props) => {
     </div>
   )
 }
-const mapStateToProps = (state, { match }) => {
+const mapStateToProps = (state) => {
   return {
     users: state.users,
     auth: state.auth, 
-    conversations: state.conversations,
   };
 };
 
