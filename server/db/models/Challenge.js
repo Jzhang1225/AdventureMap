@@ -9,6 +9,9 @@ const Challenge = db.define("challenge", {
   points: {
     type: INTEGER,
   },
+  creator: {
+    type: INTEGER,
+  },
   address: {
     type: STRING,
     allowNull: false,
