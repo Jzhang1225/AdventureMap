@@ -19,6 +19,7 @@ export default function Explore() {
   });
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
+  const [rows, setRows] = React.useState([]);
 
   // Set marker where user clicks
   const onMapClick = React.useCallback((event) => {
@@ -52,10 +53,27 @@ export default function Explore() {
         <input type="text" placeholder="Enter Location" />
       </Autocomplete>*/}
       
-      <GooglePlacesAutocomplete>
-        <input type="text" placeholder="Enter Location" />
-      </GooglePlacesAutocomplete>
+      <GooglePlacesAutocomplete
+        placeholder="Enter location"
+        onSelect={result => {
+          const { description, place_id } = result;
+          setRows([{ description, place_id }, ...rows]);
+        }}
+      />
       <button onClick={onAddButton}>Add</button>
+
+      <div
+        style={{
+          textAlign: "left"
+        }}
+      >
+        {rows.map(row => (
+          <div class="selected-place">
+            <div>{row.description}</div>
+            <small>Place id: {row.place_id}</small>
+          </div>
+        ))}
+      </div>
 
       <GoogleMap
         zoom={12}
