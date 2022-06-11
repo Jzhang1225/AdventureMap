@@ -19,3 +19,12 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+/* Search */
+.search {
+  width: 300px;
+}
+.search-input {
+  width: 100%;
+  padding: 0.5rem;
+}
