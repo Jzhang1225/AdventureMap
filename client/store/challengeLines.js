@@ -1,27 +1,27 @@
 import axios from "axios";
 
-const GET_CHALLENGES = "GET_CHALLENGES";
+const GET_CHALLENGELINES = "GET_CHALLENGELINES";
 
-export const getChallenges = () => {
+export const getChallengeLines = () => {
   return async (dispatch) => {
     const token = window.localStorage.getItem("token");
     if (token) {
-      const challenges = (
-        await axios.get("/api/challenges/", {
+      const challengeLines = (
+        await axios.get("/api/challengeLine/", {
           headers: {
             authorization: token,
           },
         })
       ).data;
-      dispatch({ type: GET_CHALLENGES, challenges });
+      dispatch({ type: GET_CHALLENGELINES, challengeLines });
     }
   };
 };
 
 export default function (state = [], action) {
   switch (action.type) {
-    case GET_CHALLENGES:
-      return action.challenges;
+    case GET_CHALLENGELINES:
+      return action.challengeLines;
     default:
       return state;
   }

@@ -4,6 +4,7 @@ module.exports = router;
 router.use("/users", require("./users"));
 router.use("/friendrequests", require("./friendrequests"));
 router.use("/challenges", require("./challenges"));
+router.use("/challengeLine", require("./challengeLine"));
 router.use("/googleOauth", require("./googleOauth"));
 
 router.use((req, res, next) => {
