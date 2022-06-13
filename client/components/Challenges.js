@@ -4,17 +4,21 @@ import { Link } from "react-router-dom";
 import CreateChallenge from "./CreateChallenge";
 
 const Challenges = ({ challenges, auth, challengeLines }) => {
-  console.log('user specific challenges:', challengeLines);
+  console.log("user specific challenges:", challengeLines);
   return (
     <div>
-      Your challenges: 
+      Your challenges:
       {challengeLines
         .filter((line) => line.userId == auth.id)
-        .map((line) => {return(
-          <li>
-            <Link to={`/challenges/${line.challenge.id}`}>{line.challenge.name}</Link>
-          </li>
-        )})}
+        .map((line) => {
+          return (
+            <li key={line.id}>
+              <Link to={`/challenges/${line.challenge.id}`}>
+                {line.challenge.name}
+              </Link>
+            </li>
+          );
+        })}
       <br></br>
       Explore other challenges:
       {challenges.map((challenge) => {
@@ -24,9 +28,7 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
           </div>
         );
       })}
-
       {/*limit how much is seen.*/}
-
       Don't like what you see? Create your own challenge below!
       <CreateChallenge />
     </div>
@@ -37,7 +39,7 @@ const mapState = ({ challenges, challengeLines, auth }) => {
   return {
     challenges,
     auth,
-    challengeLines
+    challengeLines,
   };
 };
 

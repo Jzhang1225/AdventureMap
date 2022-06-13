@@ -34,47 +34,33 @@ router.get("/", isLoggedIn, async (req, res, next) => {
 });
 
 router.post("/", isLoggedIn, async (req, res, next) => {
-  try{
+  try {
     await ChallengeLine.create({
       userId: req.user.id,
-      challengeId: req.body[0].id
+      challengeId: req.body.id,
     });
     const newLines = await ChallengeLine.findAll({
-    include: [
-    {
-      model: Challenge,
-    },
-    {
-      model: User,
-    },
-  ],
-  });
+      include: [
+        {
+          model: Challenge,
+        },
+        {
+          model: User,
+        },
+      ],
+    });
     res.status(201).json(newLines);
+  } catch (e) {
+    next(e);
   }
-  catch(e){
-    next(e)
-  }
-})
+});
 
-router.delete("/", isLoggedIn, async (req, res, next) => {
-  try{
-    console.log('req.body', req.body);
-    const line = await ChallengeLine.findByPk(req.body.id)
+router.delete("/:id", isLoggedIn, async (req, res, next) => {
+  try {
+    const line = await ChallengeLine.findByPk(req.params.id);
     await line.destroy();
-    const newSet = await ChallengeLine.findAll({
-    include: [
-    {
-      model: Challenge,
-    },
-    {
-      model: User,
-    },
-  ],
-  });
-    res.status(204).json(newSet);
+    res.sendStatus(204);
+  } catch (e) {
+    next(e);
   }
-  catch(e){
-    next(e)
-  }
-})
-
+});
