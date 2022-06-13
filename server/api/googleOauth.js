@@ -15,7 +15,9 @@ const GOOGLE_AUTH_URI = `https://accounts.google.com/o/oauth2/v2/auth?redirect_u
   process.env.GOOGLE_CLIENT_ID
 }&scope=${scopes.join(" ")}&access_type=offline`;
 
-router.get("/", (req, res) => res.redirect(GOOGLE_AUTH_URI));
+router.get("/", (req, res) => {
+  res.redirect(GOOGLE_AUTH_URI);
+});
 
 router.get("/login", async (req, res, next) => {
   try {
