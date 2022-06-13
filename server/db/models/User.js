@@ -48,6 +48,10 @@ const User = db.define("user", {
   avatar: {
     type: STRING,
     defaultValue: "/public/no-user-image.gif",
+  },  
+  admin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
 });
 
