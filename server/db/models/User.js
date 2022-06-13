@@ -40,6 +40,10 @@ const User = db.define("user", {
   },
   avatar: {
     type: STRING,
+  },  
+  admin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
 });
 

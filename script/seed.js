@@ -52,18 +52,22 @@ async function seed() {
       User.create({
         username: "Jianing",
         password: "123",
+        admin: true,
       }),
       User.create({
         username: "Cathy",
         password: "123",
+        admin: true,
       }),
       User.create({
         username: "Stefan",
         password: "123",
+        admin: true,
       }),
       User.create({
         username: "Evelyn",
         password: "123",
+        admin: true,
       }),
     ]);
 
@@ -135,8 +139,20 @@ async function seed() {
 
   const challengeLine = await Promise.all([
     ChallengeLine.create({
-      userId: 1,
+      userId: Stefan.id,
       challengeId: 1,
+    }),
+    ChallengeLine.create({
+      userId: Jianing.id,
+      challengeId: 3
+    }),
+    ChallengeLine.create({
+      userId: stanley.id,
+      challengeId: 2
+    }),
+    ChallengeLine.create({
+      userId: Evelyn.id,
+      challengeId: 2
     }),
   ]);
 

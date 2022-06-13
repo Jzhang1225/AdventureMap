@@ -1,27 +1,60 @@
 import React from "react";
 import { connect } from "react-redux";
+import { addChallengeLine, removeChallengeLine } from "../store/challengeLines";
 
-const Challenge = ({ challengeLines }) => {
+const Challenge = ({
+  specificChallenge,
+  challenge,
+  addChallengeLine,
+  auth,
+  removeChallengeLine,
+}) => {
+  let existingLine = specificChallenge.find((line) => line.user.id == auth.id);
+
   return (
     <div>
-      {challengeLines.map((line) => {
+      {challenge?.name}
+      <br></br>
+      challenge participants
+      {specificChallenge.map((line) => {
         return (
-          <div key={line.id}>
-            user: {line.user.username}
-            <br></br>
-            challenge: {line.challenge.name}
-          </div>
+          <li key={line.id}>
+            {line.user.username} {line.user.points}
+          </li>
         );
       })}
+      <button onClick={() => addChallengeLine(challenge)}>
+        Join Challenge!
+      </button>
+      <button onClick={() => removeChallengeLine(existingLine)}>
+        Unfollow Challenge!
+      </button>
     </div>
   );
 };
 
 //add information regarding users taking the challenge
-const mapState = ({ challengeLines }) => {
+const mapState = ({ challengeLines, challenges, auth }, { match }) => {
+  const specificChallenge = challengeLines?.filter(
+    (challengeLine) => challengeLine.challengeId == match.params.id
+  );
+  const challenge = challenges.find(
+    (challenge) => challenge.id == match.params.id
+  );
   return {
-    challengeLines,
+    specificChallenge,
+    challenge,
+    match,
+    auth,
   };
 };
 
-export default connect(mapState)(Challenge);
+const mapDispatch = (dispatch) => {
+  return {
+    addChallengeLine: (newLine) => dispatch(addChallengeLine(newLine)),
+    removeChallengeLine: (challengeLine) =>
+      dispatch(removeChallengeLine(challengeLine)),
+  };
+};
+
+export default connect(mapState, mapDispatch)(Challenge);

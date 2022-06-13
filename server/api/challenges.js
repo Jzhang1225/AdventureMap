@@ -35,3 +35,13 @@ router.get("/:id", isLoggedIn, async(req, res, next) => {
         next(e);
     }
 })
+
+router.post("/", isLoggedIn, async(req, res, next) => {
+    try{
+        const newChallenge = await Challenge.create(req.body);
+        res.status(201).json(newChallenge);
+    }
+    catch(e){
+        next(e)
+    }
+})
