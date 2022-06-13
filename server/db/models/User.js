@@ -4,6 +4,7 @@ const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
+const { faker } = require("@faker-js/faker");
 
 const SALT_ROUNDS = 5;
 
@@ -12,6 +13,12 @@ const User = db.define("user", {
     type: STRING,
     unique: true,
     allowNull: false,
+  },
+  firstName: {
+    type: STRING,
+  },
+  lastName: {
+    type: STRING,
   },
   password: {
     type: STRING,
@@ -40,6 +47,7 @@ const User = db.define("user", {
   },
   avatar: {
     type: STRING,
+    defaultValue: "/public/no-user-image.gif",
   },
 });
 
@@ -89,6 +97,22 @@ User.loginViaGoogle = async function (code) {
     });
   }
   return user.generateToken();
+};
+
+User.createRandom = async () => {
+  await User.create({
+    username: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    password: "123",
+    points: Math.ceil(Math.random() * 100) * 10,
+    streetAddress: faker.address.streetAddress(),
+    city: faker.address.city(),
+    state: faker.address.state(),
+    zip: faker.address.zipCode("#####") * 1,
+    email: faker.internet.email(),
+    avatar: faker.image.avatar(),
+  });
 };
 
 User.authenticate = async function ({ username, password }) {

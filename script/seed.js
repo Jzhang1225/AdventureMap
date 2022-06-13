@@ -67,6 +67,12 @@ async function seed() {
       }),
     ]);
 
+  const newUsers = await Promise.all(
+    Array(50)
+      .fill("")
+      .map((__) => User.createRandom())
+  );
+
   const friendrequests = await Promise.all([
     FriendRequest.create({
       userId: cody.id,
