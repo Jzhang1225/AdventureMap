@@ -2,6 +2,7 @@ import axios from "axios";
 
 const GET_CHALLENGES = "GET_CHALLENGES";
 const CREATE_CHALLENGE = "CREATE_CHALLENGE";
+const DELETE_CHALLENGE = "DELETE_CHALLENGE";
 
 export const getChallenges = () => {
   return async (dispatch) => {
@@ -35,13 +36,29 @@ export const createChallenge = (newChallenge) => {
   };
 };
 
+export const deleteChallenge = (challenge) => {
+  console.log("checker", challenge);
+  return async (dispatch) => {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      await axios.delete(`/api/challenges/${challenge.id}`, challenge, {
+        headers: {
+          authorization: token,
+        },
+      })
+      dispatch({ type: DELETE_CHALLENGE, challenge });
+    }
+  };
+}
 
 export default function (state = [], action) {
   switch (action.type) {
     case GET_CHALLENGES:
       return action.challenges;
     case CREATE_CHALLENGE:
-      return [...state, action.challenge]
+      return [...state, action.challenge];
+    case DELETE_CHALLENGE:
+      return state.filter((challenge)=> challenge.id !== action.challenge.id)
     default:
       return state;
   }

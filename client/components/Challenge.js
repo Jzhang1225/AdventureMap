@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addChallengeLine, removeChallengeLine } from "../store/challengeLines";
+import { deleteChallenge } from "../store/challenges";
 
 const Challenge = ({
   specificChallenge,
@@ -8,9 +9,10 @@ const Challenge = ({
   addChallengeLine,
   auth,
   removeChallengeLine,
+  deleteChallenge
 }) => {
   let existingLine = specificChallenge.find((line) => line.user.id == auth.id);
-
+  console.log('specific challenge log', specificChallenge)
   return (
     <div>
       {challenge?.name}
@@ -29,6 +31,14 @@ const Challenge = ({
       <button onClick={() => removeChallengeLine(existingLine)}>
         Unfollow Challenge!
       </button>
+      <button onClick={() => deleteChallenge(challenge)}>
+          Delete Challenge
+        </button>
+      
+      {/*auth.admin ? (
+        <button onClick={() => {specificChallenge.map((line) => removeChallengeLine(line)); (() => deleteChallenge(challenge))}}>
+          Delete Challenge
+      </button>) : ("")*/}
     </div>
   );
 };
@@ -51,9 +61,13 @@ const mapState = ({ challengeLines, challenges, auth }, { match }) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    addChallengeLine: (newLine) => dispatch(addChallengeLine(newLine)),
+    addChallengeLine: (newLine) => 
+      dispatch(addChallengeLine(newLine)),
     removeChallengeLine: (challengeLine) =>
       dispatch(removeChallengeLine(challengeLine)),
+    deleteChallenge: (challenge) => {
+      dispatch(deleteChallenge(challenge))
+    }
   };
 };
 
