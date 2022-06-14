@@ -45,3 +45,13 @@ router.post("/", isLoggedIn, async(req, res, next) => {
         next(e)
     }
 })
+
+router.delete("/:id", isLoggedIn, async (req, res, next) => {
+  try{
+    const challenge = await Challenge.findByPk(req.params.id);
+    await challenge.destroy();
+    res.sendStatus(204);
+  } catch (e) {
+    next(e)
+  }
+});

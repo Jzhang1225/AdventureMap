@@ -37,6 +37,10 @@ const Challenge = db.define("challenge", {
     type: INTEGER,
     //allowNull: false,
   },
+  completed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
 });
 
 module.exports = Challenge;
