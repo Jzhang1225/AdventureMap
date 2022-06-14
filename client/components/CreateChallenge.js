@@ -3,13 +3,19 @@ import { connect } from 'react-redux';
 import { createChallenge } from '../store/challenges';
 
 class CreateChallenge extends React.Component{
-  constructor(props) {
+  constructor(props, auth) {
     super(props);
     this.state = {
       name: '',
       points: '',
+      creator: auth.id,
       streetAddress: '',
       city: '',
+      state: '',
+      zip: '',
+      //startDate: '',
+      //endDate: '',
+      //difficulty: ''
     }
     this.submitForm = this.submitForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -20,15 +26,21 @@ class CreateChallenge extends React.Component{
     this.state = {
       name: '',
       points: '',
-      creator: '',
+      //creator: auth.id,
       streetAddress: '',
+      city: '',
+      state: '',
+      zip: '',
+      //startDate: '',
+      //endDate: '',
+      //difficulty: ''
     }
   }
   handleChange(ev) {
     this.setState({[ev.target.name] : ev.target.value})
   }
   render() {
-    const {name, points, streetAddress, city} = this.state;
+    const {name, points, streetAddress, city, state, zip, startDate, endDate, difficulty} = this.state;
     const {handleChange} = this;
     return (
       <form onSubmit = {this.submitForm}>
@@ -58,6 +70,24 @@ class CreateChallenge extends React.Component{
             placeholder = "City"
             onChange={handleChange}>
           </input>
+          {/*
+          <input
+            name= 'startDate'
+            value= {startDate}
+            type= 'date'
+            min='2022-06-01'
+            max='2022-08-01'
+            placeholder = 'Start Date'
+            onChange={ev => this.setState({startDate: ev.target.valueAsDate})}>
+          </input>
+  */}
+          <input
+            name = 'zip'
+            value = {zip}
+            type= 'number'
+            placeholder = "Zipcode"
+            onChange={ev=> this.setState({zip: ev.target.valueAsNumber})}>
+          </input>
           
           <button disabled={
             !name || !points || !streetAddress || !city
@@ -69,19 +99,6 @@ class CreateChallenge extends React.Component{
 }
 
 /*
-
-this.state = {
-      name: '',
-      points: '',
-      creator: '',
-      streetAddress: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      startDate: '',
-      endDate: '',
-      difficulty: ''
-    }
 
 const {name, points, creator, streetAddress, city, state, zipCode, startDate, endDate, difficulty} = this.state;
 
@@ -104,4 +121,11 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(state => state, mapDispatch)(CreateChallenge)
+const mapState = ({ auth }, props) => {
+  return {
+    auth,
+    props
+  }
+}
+
+export default connect(mapState, mapDispatch)(CreateChallenge)

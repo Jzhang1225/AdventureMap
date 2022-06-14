@@ -21,7 +21,7 @@ const Challenge = db.define("challenge", {
   state: {
     type: STRING
   },
-  zipCode: {
+  zip: {
     type: INTEGER
   },
   startDate: {

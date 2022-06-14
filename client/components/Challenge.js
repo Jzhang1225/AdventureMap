@@ -10,10 +10,12 @@ const Challenge = ({
   removeChallengeLine,
 }) => {
   let existingLine = specificChallenge.find((line) => line.user.id == auth.id);
-
+  console.log('chal', challenge)
   return (
     <div>
       {challenge?.name}
+      <br></br>
+      {challenge?.creator}
       <br></br>
       challenge participants
       {specificChallenge.map((line) => {
