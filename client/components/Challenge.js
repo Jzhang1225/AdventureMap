@@ -12,7 +12,6 @@ const Challenge = ({
   deleteChallenge
 }) => {
   let existingLine = specificChallenge.find((line) => line.user.id == auth.id);
-  console.log('specific challenge log', specificChallenge)
   return (
     <div>
       {challenge?.name}
@@ -31,14 +30,10 @@ const Challenge = ({
       <button onClick={() => removeChallengeLine(existingLine)}>
         Unfollow Challenge!
       </button>
-      <button onClick={() => deleteChallenge(challenge)}>
+      {auth.admin ? (
+        <button onClick={() => {specificChallenge.map((line) => removeChallengeLine(line)); deleteChallenge(challenge)}}>
           Delete Challenge
-        </button>
-      
-      {/*auth.admin ? (
-        <button onClick={() => {specificChallenge.map((line) => removeChallengeLine(line)); (() => deleteChallenge(challenge))}}>
-          Delete Challenge
-      </button>) : ("")*/}
+      </button>) : ("")}
     </div>
   );
 };
@@ -59,14 +54,14 @@ const mapState = ({ challengeLines, challenges, auth }, { match }) => {
   };
 };
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, { history }) => {
   return {
     addChallengeLine: (newLine) => 
       dispatch(addChallengeLine(newLine)),
     removeChallengeLine: (challengeLine) =>
       dispatch(removeChallengeLine(challengeLine)),
     deleteChallenge: (challenge) => {
-      dispatch(deleteChallenge(challenge))
+      dispatch(deleteChallenge(challenge, history))
     }
   };
 };

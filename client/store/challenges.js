@@ -36,17 +36,18 @@ export const createChallenge = (newChallenge) => {
   };
 };
 
-export const deleteChallenge = (challenge) => {
+export const deleteChallenge = (challenge, history) => {
   console.log("checker", challenge);
   return async (dispatch) => {
     const token = window.localStorage.getItem("token");
     if (token) {
-      await axios.delete(`/api/challenges/${challenge.id}`, challenge, {
+      await axios.delete(`/api/challenges/${challenge.id}`, {
         headers: {
           authorization: token,
         },
       })
       dispatch({ type: DELETE_CHALLENGE, challenge });
+      history.push('/challenges/')
     }
   };
 }
