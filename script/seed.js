@@ -1,6 +1,6 @@
 const {
   db,
-  models: { User, Challenge, FriendRequest, ChallengeLine },
+  models: { User, Challenge, FriendRequest, Conversation, Message, ChallengeLine },
 } = require("../server/db");
 
 async function seed() {
@@ -9,7 +9,7 @@ async function seed() {
 
   const [cody, murphy, susan, stanley, Jianing, Cathy, Stefan, Evelyn] =
     await Promise.all([
-      User.create({
+      await User.create({
         username: "cody",
         password: "123",
         points: 400,
@@ -19,7 +19,7 @@ async function seed() {
         zip: 94461,
         email: "fake-email@gmail.com",
       }),
-      User.create({
+      await User.create({
         username: "murphy",
         password: "123",
         points: 650,
@@ -29,7 +29,7 @@ async function seed() {
         zip: 65416,
         email: "real-email@gmail.com",
       }),
-      User.create({
+      await User.create({
         username: "susan",
         password: "123",
         points: 240,
@@ -39,7 +39,7 @@ async function seed() {
         zip: 51655,
         email: "real-email43@gmail.com",
       }),
-      User.create({
+      await User.create({
         username: "stanley",
         password: "123",
         points: 10,
@@ -49,12 +49,12 @@ async function seed() {
         zip: 12346,
         email: "remasdasdail@gmail.com",
       }),
-      User.create({
+      await User.create({
         username: "Jianing",
         password: "123",
         admin: true,
       }),
-      User.create({
+      await User.create({
         username: "Cathy",
         password: "123",
         admin: true,
@@ -64,7 +64,7 @@ async function seed() {
         password: "123",
         admin: true,
       }),
-      User.create({
+      await User.create({
         username: "Evelyn",
         password: "123",
         admin: true,
@@ -108,6 +108,42 @@ async function seed() {
     }),
   ]);
 
+  const conversations = await Promise.all([
+    Conversation.create({
+      senderId: 8,
+      receiverId: 6
+    }),
+    Conversation.create({
+      senderId: 8,
+      receiverId: 3
+    }),
+    Conversation.create({
+      senderId: 4,
+      receiverId: 8
+    }),
+    Conversation.create({
+      senderId: 5,
+      receiverId: 6
+    }),
+  ]);
+
+  const messages = await Promise.all([
+    Message.create({
+      sender: 8,
+      text: "Yo yo yo",
+      conversationId: 2
+    }),
+    Message.create({
+      sender: 6,
+      text: "Greetings",
+      conversationId: 2
+    }),
+    Message.create({
+      sender: 8,
+      text: "What it do",
+      conversationId: 3
+    }),
+  ])
   const challenges = await Promise.all([
     Challenge.create({
       name: "Take a hike",

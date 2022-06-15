@@ -39,6 +39,9 @@ class Home extends Component {
         >
           Get current location
         </button>
+
+        <div>
+        </div>
       </div>
     );
   }

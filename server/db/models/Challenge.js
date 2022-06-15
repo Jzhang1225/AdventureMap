@@ -37,6 +37,10 @@ const Challenge = db.define("challenge", {
     type: ENUM('Easy', 'Medium', 'Hard'),
     //allowNull: false,
   },
+  completed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
 });
 
 module.exports = Challenge;
