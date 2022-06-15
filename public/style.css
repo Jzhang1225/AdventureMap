@@ -20,7 +20,6 @@ form div {
   display: inline-block;
 }
 
-<<<<<<< HEAD
 input {
   margin: 2rem;
 }
@@ -167,7 +166,7 @@ input {
   background-color: rgb(108, 37, 159);
   color: white;
   max-width: 300px;
-=======
+}
 /* Search */
 .search {
   width: 300px;
@@ -175,5 +174,5 @@ input {
 .search-input {
   width: 100%;
   padding: 0.5rem;
->>>>>>> main
+
 }

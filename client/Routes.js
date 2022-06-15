@@ -7,7 +7,6 @@ import Profile from "./components/Profile";
 import Leaderboard from "./components/Leaderboard";
 import FriendList from "./components/FriendList";
 import Messenger from "./components/Messenger/Messenger";
-import { me, setUsers, setFriends } from "./store";
 import Explore from "./components/Explore";
 import Users from "./components/Users";
 import SelectedUser from "./components/SelectedUser";
@@ -17,6 +16,7 @@ import {
   setFriendRequests,
   getChallenges,
   getChallengeLines,
+  setFriends
 } from "./store";
 import Challenges from "./components/Challenges";
 import Challenge from "./components/Challenge";
