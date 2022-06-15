@@ -19,12 +19,34 @@ const isLoggedIn = async (req, res, next) => {
 
 router.get("/", isLoggedIn, async (req, res, next) => {
   try {
-    const friendsList = await FriendRequest.findAll({
+    const friendsRequests = await FriendRequest.findAll({
       where: {
         [Op.or]: [{ userId: req.user.id }, { friendId: req.user.id }],
       },
     });
-    res.json(friendsList);
+    res.json(friendsRequests);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.post("/", isLoggedIn, async (req, res, next) => {
+  try {
+    const friendsRequest = await FriendRequest.create({
+      userId: req.user.id,
+      friendId: req.body.id,
+    });
+    res.json(friendsRequest);
+  } catch (err) {
+    next(err);
+  }
+});
+
+router.put("/:id", isLoggedIn, async (req, res, next) => {
+  try {
+    const friendsRequest = await FriendRequest.findByPk(req.params.id);
+    friendsRequest.update({ status: "accepted" });
+    res.json(friendsRequest);
   } catch (err) {
     next(err);
   }

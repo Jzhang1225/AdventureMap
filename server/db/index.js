@@ -5,8 +5,12 @@ const Challenge = require("./models/Challenge");
 const FriendRequest = require("./models/FriendRequest");
 const Conversation = require("./models/Conversation");
 const Message = require("./models/Message");
+const ChallengeLine = require("./models/ChallengeLine");
 
-User.hasMany(Challenge);
+User.hasMany(ChallengeLine);
+ChallengeLine.belongsTo(User);
+Challenge.hasMany(ChallengeLine);
+ChallengeLine.belongsTo(Challenge);
 User.hasMany(FriendRequest);
 FriendRequest.belongsTo(User, { as: "friend" });
 Message.belongsTo(Conversation);
@@ -18,6 +22,7 @@ module.exports = {
     Challenge,
     FriendRequest,
     Conversation,
-    Message
+    Message,
+    ChallengeLine,
   },
 };

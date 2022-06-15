@@ -9,22 +9,38 @@ const Challenge = db.define("challenge", {
   points: {
     type: INTEGER,
   },
-  address: {
-    type: STRING,
-    allowNull: false,
+  creator: {
+    type: INTEGER,
+  },
+  streetAddress: {
+    type: STRING
+  },
+  city: {
+    type: STRING
+  },
+  state: {
+    type: STRING
+  },
+  zipCode: {
+    type: INTEGER
   },
   startDate: {
     type: DATE,
-    allowNull: false,
+    //allowNull: false,
+    //set boundary date needing to be in the future
   },
   endDate: {
     type: DATE,
-    allowNull: false,
+    //allowNull: false,
   },
   difficulty: {
     type: INTEGER,
-    allowNull: false,
+    //allowNull: false,
   },
+  completed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
+  }
 });
 
 module.exports = Challenge;

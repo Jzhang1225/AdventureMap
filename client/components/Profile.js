@@ -7,6 +7,8 @@ class Profile extends Component {
     super(props);
     this.state = {
       username: this.props.auth.username ? this.props.auth.username : "",
+      firstName: this.props.auth.firstName ? this.props.auth.firstName : "",
+      lastName: this.props.auth.lastName ? this.props.auth.lastName : "",
       streetAddress: this.props.auth.streetAddress
         ? this.props.auth.streetAddress
         : "",
@@ -29,7 +31,16 @@ class Profile extends Component {
   };
 
   render() {
-    const { username, streetAddress, email, city, state, zip } = this.state;
+    const {
+      username,
+      firstName,
+      lastName,
+      streetAddress,
+      email,
+      city,
+      state,
+      zip,
+    } = this.state;
     const { updateProfile, onChange } = this;
     const { auth } = this.props;
 
@@ -38,6 +49,8 @@ class Profile extends Component {
         <h3>Update User Profile</h3>
         <form>
           <input name="username" value={username} onChange={onChange} />
+          <input name="firstName" value={firstName} onChange={onChange} />
+          <input name="lastName" value={lastName} onChange={onChange} />
           <input
             name="streetAddress"
             value={streetAddress}
@@ -53,6 +66,8 @@ class Profile extends Component {
           style={{ padding: "5px", margin: "10px" }}
           disabled={
             username === auth.username &&
+            firstName === (auth.firstName || "") &&
+            lastName === (auth.lastName || "") &&
             streetAddress === (auth.streetAddress || "") &&
             email === (auth.email || "") &&
             city === (auth.city || "") &&

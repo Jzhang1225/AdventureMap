@@ -6,11 +6,10 @@ const { Server } = require("socket.io");
 
 const init = async () => {
   try {
-    if(process.env.SEED === 'true'){
+    if (process.env.SEED === "true") {
       await seed();
-    }
-    else {
-      await db.sync()
+    } else {
+      await db.sync();
     }
     // start listening (and create a 'server' object representing our server)
     const server = app.listen(PORT, () => console.log(`Mixing it up on port ${PORT}`))
@@ -25,8 +24,8 @@ const init = async () => {
     });
 
   } catch (ex) {
-    console.log(ex)
+    console.log(ex);
   }
-}
+};
 
-init()
+init();

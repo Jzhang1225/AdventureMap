@@ -1,13 +1,13 @@
 const {
   db,
-  models: { User, Challenge, FriendRequest, Conversation, Message },
+  models: { User, Challenge, FriendRequest, Conversation, Message, ChallengeLine },
 } = require("../server/db");
 
 async function seed() {
   await db.sync({ force: true });
   console.log("db synced!");
 
-  const [cody, murphy, susan, stanley, Jianing, Cathy, Stephan, Evelyn] =
+  const [cody, murphy, susan, stanley, Jianing, Cathy, Stefan, Evelyn] =
     await Promise.all([
       await User.create({
         username: "cody",
@@ -52,20 +52,30 @@ async function seed() {
       await User.create({
         username: "Jianing",
         password: "123",
+        admin: true,
       }),
       await User.create({
         username: "Cathy",
         password: "123",
+        admin: true,
       }),
-      await User.create({
-        username: "Stephan",
+      User.create({
+        username: "Stefan",
         password: "123",
+        admin: true,
       }),
       await User.create({
         username: "Evelyn",
         password: "123",
+        admin: true,
       }),
     ]);
+
+  const newUsers = await Promise.all(
+    Array(50)
+      .fill("")
+      .map((__) => User.createRandom())
+  );
 
   const friendrequests = await Promise.all([
     FriendRequest.create({
@@ -88,7 +98,7 @@ async function seed() {
     }),
     FriendRequest.create({
       userId: murphy.id,
-      friendId: Stephan.id,
+      friendId: Stefan.id,
       status: "accepted",
     }),
     FriendRequest.create({
@@ -134,9 +144,73 @@ async function seed() {
       conversationId: 3
     }),
   ])
+  const challenges = await Promise.all([
+    Challenge.create({
+      name: "Take a hike",
+      points: 10,
+      address: "fake street NW",
+      startDate: "2022/06/05",
+      endDate: "2022/06/10",
+      difficulty: 5,
+    }),
+    Challenge.create({
+      name: "Take a hike again",
+      points: 10,
+      address: "fake street NW",
+      startDate: "2022/06/05",
+      endDate: "2022/06/10",
+      difficulty: 5,
+    }),
+    Challenge.create({
+      name: "Look at art",
+      points: 10,
+      address: "fake street NW",
+      startDate: "2022/06/05",
+      endDate: "2022/06/10",
+      difficulty: 5,
+    }),
+    Challenge.create({
+      name: "Go ride a bike",
+      points: 10,
+      address: "fake street NW",
+      startDate: "2022/06/05",
+      endDate: "2022/06/10",
+      difficulty: 5,
+    }),
+  ]);
+
+  const challengeLine = await Promise.all([
+    ChallengeLine.create({
+      userId: Stefan.id,
+      challengeId: 1,
+    }),
+    ChallengeLine.create({
+      userId: Jianing.id,
+      challengeId: 3
+    }),
+    ChallengeLine.create({
+      userId: stanley.id,
+      challengeId: 2
+    }),
+    ChallengeLine.create({
+      userId: Evelyn.id,
+      challengeId: 2
+    }),
+  ]);
 
   console.log(`seeded successfully`);
-  return [cody, murphy, susan, stanley, Jianing, Cathy, Stephan, Evelyn];
+  return [
+    cody,
+    murphy,
+    susan,
+    stanley,
+    Jianing,
+    Cathy,
+    Stefan,
+    Evelyn,
+    challenges,
+    challengeLine,
+  ];
 }
 
 async function runSeed() {

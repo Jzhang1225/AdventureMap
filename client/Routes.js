@@ -8,6 +8,18 @@ import Leaderboard from "./components/Leaderboard";
 import FriendList from "./components/FriendList";
 import Messenger from "./components/Messenger/Messenger";
 import { me, setUsers, setFriends } from "./store";
+import Explore from "./components/Explore";
+import Users from "./components/Users";
+import SelectedUser from "./components/SelectedUser";
+import {
+  me,
+  setUsers,
+  setFriendRequests,
+  getChallenges,
+  getChallengeLines,
+} from "./store";
+import Challenges from "./components/Challenges";
+import Challenge from "./components/Challenge";
 
 class Routes extends Component {
   componentDidMount() {
@@ -28,7 +40,12 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={Home} />
+            <Route path="/explore" component={Explore} />
+            <Route path="/challenges" exact component={Challenges} />
+            <Route path="/challenges/:id" exact component={Challenge} />
             <Route path="/leaderboard" component={Leaderboard} />
+            <Route path="/users" exact component={Users} />
+            <Route path="/users/:id" component={SelectedUser} />
             <Route path="/profile" component={Profile} />
             <Route path="/friends" component={FriendList} />
             <Route path="/messenger" component={Messenger} />
@@ -59,7 +76,9 @@ const mapDispatch = (dispatch) => {
       dispatch(setUsers());
     },
     loadLoggedInData() {
-      dispatch(setFriends());
+      dispatch(setFriendRequests());
+      dispatch(getChallenges());
+      dispatch(getChallengeLines());
     },
   };
 };

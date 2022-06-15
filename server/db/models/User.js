@@ -4,6 +4,7 @@ const db = require("../db");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
+const { faker } = require("@faker-js/faker");
 
 const SALT_ROUNDS = 5;
 
@@ -12,6 +13,12 @@ const User = db.define("user", {
     type: STRING,
     unique: true,
     allowNull: false,
+  },
+  firstName: {
+    type: STRING,
+  },
+  lastName: {
+    type: STRING,
   },
   password: {
     type: STRING,
@@ -40,6 +47,11 @@ const User = db.define("user", {
   },
   avatar: {
     type: STRING,
+    defaultValue: "/public/no-user-image.gif",
+  },  
+  admin: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
 });
 
@@ -60,6 +72,53 @@ User.prototype.generateToken = function () {
 /**
  * classMethods
  */
+User.loginViaGoogle = async function (code) {
+  const config = {
+    client_id: process.env.GOOGLE_CLIENT_ID,
+    grant_type: "authorization_code",
+    code,
+    client_secret: process.env.GOOGLE_SECRET,
+    redirect_uri: process.env.GOOGLE_CALLBACK_URI,
+  };
+  let response = await axios.post(
+    "https://oauth2.googleapis.com/token",
+    config
+  );
+  response = await axios.get(
+    `https://www.googleapis.com/oauth2/v2/userinfo?access_token=${response.data.access_token}`
+  );
+  const email = response.data.email;
+
+  let user = await this.findOne({
+    where: {
+      email: email,
+    },
+  });
+  if (!user) {
+    user = await this.create({
+      email,
+      username: response.data.name,
+    });
+  }
+  return user.generateToken();
+};
+
+User.createRandom = async () => {
+  await User.create({
+    username: faker.internet.userName(),
+    firstName: faker.name.firstName(),
+    lastName: faker.name.lastName(),
+    password: "123",
+    points: Math.ceil(Math.random() * 100) * 10,
+    streetAddress: faker.address.streetAddress(),
+    city: faker.address.city(),
+    state: faker.address.state(),
+    zip: faker.address.zipCode("#####") * 1,
+    email: faker.internet.email(),
+    avatar: faker.image.avatar(),
+  });
+};
+
 User.authenticate = async function ({ username, password }) {
   const user = await this.findOne({ where: { username } });
   if (!user || !(await user.correctPassword(password))) {
