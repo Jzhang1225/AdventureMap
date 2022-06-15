@@ -10,6 +10,11 @@ class CreateChallenge extends React.Component{
       points: '',
       streetAddress: '',
       city: '',
+      state: '',
+      zip: '',
+      startDate: '',
+      endDate: '',
+      difficulty: ''
     }
     this.submitForm = this.submitForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -20,16 +25,22 @@ class CreateChallenge extends React.Component{
     this.state = {
       name: '',
       points: '',
-      creator: '',
       streetAddress: '',
+      city: '',
+      state: '',
+      zip: '',
+      startDate: '',
+      endDate: '',
+      difficulty: ''
     }
   }
   handleChange(ev) {
     this.setState({[ev.target.name] : ev.target.value})
   }
   render() {
-    const {name, points, streetAddress, city} = this.state;
+    const {name, points, streetAddress, city, state, zip, startDate, endDate, difficulty} = this.state;
     const {handleChange} = this;
+    const range = ['Easy', 'Medium', 'Hard'];
     return (
       <form onSubmit = {this.submitForm}>
         <div>
@@ -58,9 +69,49 @@ class CreateChallenge extends React.Component{
             placeholder = "City"
             onChange={handleChange}>
           </input>
+          <input
+            name = 'state'
+            value = {state}
+            placeholder = "State"
+            onChange={handleChange}>
+          </input>
+          <input
+            name= 'startDate'
+            value= {startDate}
+            type= 'date'
+            placeholder = 'Start Date'
+            onChange={ev => this.setState({startDate: ev.target.value})}>
+          </input>
+          <input
+            name= 'endDate'
+            value= {endDate}
+            type= 'date'
+            placeholder = 'End Date'
+            onChange={ev => this.setState({endDate: ev.target.value})}>
+          </input>
+          <input
+            name = 'zip'
+            value = {zip}
+            type= 'number'
+            placeholder = "Zipcode"
+            onChange={ev=> this.setState({zip: ev.target.valueAsNumber})}>
+          </input>
+          <select
+            name = 'difficulty'
+            value = {difficulty}
+            onChange = {handleChange}>
+              <option value=''>Difficulty</option>
+              {
+                range.map( (level) => (
+                  <option value={level}
+                    
+                  >{level}</option>
+                ))
+              }
+          </select>
           
           <button disabled={
-            !name || !points || !streetAddress || !city
+            !name || !points || !streetAddress || !city || !state
           }>Create New Challenge!</button>
         </div>
       </form>
@@ -68,35 +119,6 @@ class CreateChallenge extends React.Component{
   }
 }
 
-/*
-
-this.state = {
-      name: '',
-      points: '',
-      creator: '',
-      streetAddress: '',
-      city: '',
-      state: '',
-      zipCode: '',
-      startDate: '',
-      endDate: '',
-      difficulty: ''
-    }
-
-const {name, points, creator, streetAddress, city, state, zipCode, startDate, endDate, difficulty} = this.state;
-
-<select
-            name = 'difficulty'
-            value = {difficulty}
-            onChange = {handleChange}>
-            <option value=''>Difficulty</option>
-            {
-              Array(5).map( level => (
-                <option value={level}>{level}</option>
-              ))
-            }
-          </select>
-*/
 
 const mapDispatch = (dispatch) => {
   return {
@@ -104,4 +126,11 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(state => state, mapDispatch)(CreateChallenge)
+const mapState = ({ auth }, props) => {
+  return {
+    auth,
+    props
+  }
+}
+
+export default connect(mapState, mapDispatch)(CreateChallenge)
