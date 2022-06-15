@@ -9,7 +9,7 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
     <div>
       Your challenges:
       {challengeLines
-        .filter((line) => line.userId == auth.id)
+        .filter((line) => (line.userId == auth.id && line.completed == true))
         .map((line) => {
           return (
             <li key={line.id}>
