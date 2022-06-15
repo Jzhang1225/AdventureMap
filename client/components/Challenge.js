@@ -15,8 +15,11 @@ const Challenge = ({
     <div>
       {challenge?.name}
       <br></br>
-      {challenge?.creator}
+      Start Date: {challenge?.startDate}
       <br></br>
+      End Date: {challenge?.endDate}
+      <br></br>
+      Difficulty: {challenge?.difficulty}
       challenge participants
       {specificChallenge.map((line) => {
         return (

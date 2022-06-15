@@ -115,7 +115,7 @@ async function seed() {
       address: "fake street NW",
       startDate: "2022/06/05",
       endDate: "2022/06/10",
-      difficulty: 5,
+      difficulty: 'Hard',
     }),
     Challenge.create({
       name: "Take a hike again",
@@ -123,7 +123,7 @@ async function seed() {
       address: "fake street NW",
       startDate: "2022/06/05",
       endDate: "2022/06/10",
-      difficulty: 5,
+      difficulty: 'Hard',
     }),
     Challenge.create({
       name: "Look at art",
@@ -131,7 +131,7 @@ async function seed() {
       address: "fake street NW",
       startDate: "2022/06/05",
       endDate: "2022/06/10",
-      difficulty: 5,
+      difficulty: 'Easy',
     }),
     Challenge.create({
       name: "Go ride a bike",
@@ -139,7 +139,7 @@ async function seed() {
       address: "fake street NW",
       startDate: "2022/06/05",
       endDate: "2022/06/10",
-      difficulty: 5,
+      difficulty: 'Medium',
     }),
   ]);
 

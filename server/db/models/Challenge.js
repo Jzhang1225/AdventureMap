@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const { STRING, INTEGER, DATE } = Sequelize;
+const { STRING, INTEGER, DATE, ENUM } = Sequelize;
 const db = require("../db");
 
 const Challenge = db.define("challenge", {
@@ -34,7 +34,7 @@ const Challenge = db.define("challenge", {
     //allowNull: false,
   },
   difficulty: {
-    type: INTEGER,
+    type: ENUM('Easy', 'Medium', 'Hard'),
     //allowNull: false,
   },
 });
