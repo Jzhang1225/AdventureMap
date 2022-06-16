@@ -11,15 +11,16 @@ const Messenger = (props) => {
   const { users, auth } = props
   const user = props.auth
 
-  console.log('PROPS', props)
   console.log("USER", user)
 
   const [conversations, setConversations] = useState([]);
+  const [currentChat, setCurrentChat] = useState(null)
+  const [messages, setMessages] = useState([])
+
   useEffect(()=> {
     const getConversations = async() => {
       try {
         const response = await axios.get(`api/conversations/${user.id}`)
-        console.log("RESPONSE - CONVERSATIONS", response)
         setConversations(response.data);
       }
       catch(err) {
@@ -29,7 +30,21 @@ const Messenger = (props) => {
     getConversations();
   }, [user.id]);
 
-  
+  useEffect(() => {
+    const getMessages = async() => {
+      try{
+      const response = await axios.get(`api/messages/${currentChat.id}`);
+      setMessages(response.data);
+      }
+      catch(err) {
+        console.log(err)
+      }
+    }
+    getMessages();
+  }, [currentChat])
+
+  console.log("MESSAGES", messages)
+
   const URL = 'http://localhost:8080'
   const socket = io(URL, { autoConnect: false });
   //console.log("SOCKET TO ME", socket)
@@ -37,6 +52,7 @@ const Messenger = (props) => {
   // socket.onAny((event, ...args) => {
   //   console.log("catch listener", event, args);
   // });
+  console.log("CURRENT CHAT", currentChat)
 
   return (
     <div>
@@ -46,7 +62,11 @@ const Messenger = (props) => {
             <input placeholder='Search For Friends' className='chatMenuInput' />
             {
               conversations.map((c) => {
-                <Conversation conversation={c} currentUser={user}/>
+                return (
+                  <div onClick={() => setCurrentChat(c)}>
+                    <Conversation conversation={c} currentUser={user}/>
+                  </div>
+                )
               })
             }
             
@@ -54,23 +74,26 @@ const Messenger = (props) => {
         </div>
         <div className='chatBox'>
           <div className='chatBoxWrapper'>
-            <div className='chatBoxTop'>
-              <Message />
-              <Message own={true}/>
-              <Message />
-              <Message own={true}/>
-              <Message />
-              <Message own={true}/>
-              <Message />
-              <Message own={true}/>
-              <Message />
-              <Message own={true}/>
-              <Message />
-            </div> 
-            <div className='chatBoxBottom'>
-              <textarea className='chatMessageInput' placeholder='write something...'> </textarea>
-              <button className='chatSubmitButton'> Send </button>
-            </div>
+            {
+              currentChat ?
+              (<>
+                <div className='chatBoxTop'>
+                  {
+                    messages.map((m) => {
+                      return (
+                        <Message message={m} own={ m.sender === user.id }/>
+                      )
+                    })
+                  }
+                  
+                </div> 
+                <div className='chatBoxBottom'>
+                  <textarea className='chatMessageInput' placeholder='write something...'> </textarea>
+                  <button className='chatSubmitButton'> Send </button>
+                </div>
+              </>) : (
+                <span className='noConversationText'> Open A Conversation </span>
+              )}
           </div>
         </div>
         <div className='chatOnline'>

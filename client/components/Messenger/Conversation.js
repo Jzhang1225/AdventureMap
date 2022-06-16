@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 export default function Conversation ({ conversation, currentUser }) {
   console.log("CURRENT USER", currentUser)
   const [user, setUser] = useState(null)
+
  
   useEffect(() => {
-    const friendId = 
+    const friendId = conversation.senderId !== currentUser.id
+    ? conversation.senderId
+    : conversation.receiverId;
     console.log("FRIEND ID", friendId)
     
     const getUser = async() => {
@@ -26,8 +30,9 @@ export default function Conversation ({ conversation, currentUser }) {
     <div className='conversation'>
       <img 
         className='conversationImg' 
-        src='https://www.w3schools.com/howto/img_avatar2.png' alt='' />
-      <span className='conversationName'>{user.username}</span>
+        src={user?.avatar} 
+        alt='' />
+      <span className='conversationName'>{user?.username}</span>
     </div>
   )
 }

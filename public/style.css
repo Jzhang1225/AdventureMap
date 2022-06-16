@@ -20,7 +20,6 @@ form div {
   display: inline-block;
 }
 
-<<<<<<< HEAD
 input {
   margin: 2rem;
 }
@@ -47,6 +46,7 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 .chatBoxTop{
   height: 100%;
@@ -134,6 +134,14 @@ input {
 .conversationName{
   font-weight: bold;
 }
+.noConversationText{
+  position: absolute;
+  top: 10%;
+  font-size: 50px;
+  color: gray;
+  text-align: center;
+  cursor: default;
+}
 
 
 .message{
@@ -167,7 +175,6 @@ input {
   background-color: rgb(108, 37, 159);
   color: white;
   max-width: 300px;
-=======
 /* Search */
 .search {
   width: 300px;
@@ -175,5 +182,4 @@ input {
 .search-input {
   width: 100%;
   padding: 0.5rem;
->>>>>>> main
 }
