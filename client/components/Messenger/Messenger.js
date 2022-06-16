@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import Conversation from './Conversation';
 import Message from './Message';
@@ -16,6 +16,8 @@ const Messenger = (props) => {
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null)
   const [messages, setMessages] = useState([])
+  const [newMessage, setNewMessage] = useState("")
+  const scrollRef = useRef();
 
   useEffect(()=> {
     const getConversations = async() => {
@@ -43,6 +45,29 @@ const Messenger = (props) => {
     getMessages();
   }, [currentChat])
 
+  useEffect(() => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages])
+
+  const handleSubmit = async (ev) =>  {
+    ev.preventDefault();
+    const message = {
+      sender: user.id,
+      text: newMessage,
+      conversationId: currentChat.id
+    }
+
+    try {
+      const response = await axios.post('api/messages', message);
+      console.log("MESSAGES RESPONSE", response)
+      setMessages([...messages, response.data]);
+      setNewMessage("");
+    }
+    catch(err) {
+      console.log(err)
+    }
+  }
+
   console.log("MESSAGES", messages)
 
   const URL = 'http://localhost:8080'
@@ -64,7 +89,7 @@ const Messenger = (props) => {
               conversations.map((c) => {
                 return (
                   <div onClick={() => setCurrentChat(c)}>
-                    <Conversation conversation={c} currentUser={user}/>
+                    <Conversation conversation = {c} currentUser={user}/>
                   </div>
                 )
               })
@@ -81,15 +106,22 @@ const Messenger = (props) => {
                   {
                     messages.map((m) => {
                       return (
-                        <Message message={m} own={ m.sender === user.id }/>
+                        <div ref={scrollRef}>
+                          <Message message={m} own={ m.sender === user.id }/>
+                        </div>
                       )
                     })
                   }
                   
                 </div> 
                 <div className='chatBoxBottom'>
-                  <textarea className='chatMessageInput' placeholder='write something...'> </textarea>
-                  <button className='chatSubmitButton'> Send </button>
+                  <textarea 
+                  className='chatMessageInput' 
+                  placeholder='write something...'
+                  onChange={(ev) => setNewMessage(ev.target.value)}
+                  value={newMessage} > 
+                  </textarea>
+                  <button className='chatSubmitButton' onClick={ handleSubmit }> Send </button>
                 </div>
               </>) : (
                 <span className='noConversationText'> Open A Conversation </span>
