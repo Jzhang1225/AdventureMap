@@ -1,4 +1,5 @@
 import axios from "axios";
+import history from "../history";
 
 const GET_CHALLENGELINES = "GET_CHALLENGELINES";
 const ADD_CHALLENGELINE = "ADD_CHALLENGELINE";
@@ -53,16 +54,18 @@ export const removeChallengeLine = (line) => {
 
 export const completeChallengeLine = (line) => {
   return async (dispatch) => {
-    console.log('line', line)
+    //console.log('line', line)
     const token = window.localStorage.getItem("token");
     if (token) {
-      await axios.put(`/api/challengeLine/${line.id}`, line, {
-        headers: {
-          authorization: token,
-        },
-      }).data;
-      dispatch({ type: FINISH_CHALLENGELINE, line });
-      history.pushState('/challenges/')
+      const updateLines = (
+        await axios.put(`/api/challengeLine/${line.id}`, line, {
+          headers: {
+            authorization: token,
+          },
+        })).data;
+      //console.log('updated lines', updateLines)
+      dispatch({ type: FINISH_CHALLENGELINE, updateLines });
+      history.push('/challenges/')
     }
   };
 };
@@ -78,7 +81,13 @@ export default function (state = [], action) {
         (challengeLine) => challengeLine.id !== action.line.id
       );
     case FINISH_CHALLENGELINE:
-      return action.line
+      return state.map( line => {
+        if (line.id == action.updateLines.id){
+          return action.updateLines
+        } else {
+          return line
+        }
+      })
     default:
       return state;
   }
