@@ -65,24 +65,12 @@ router.delete("/:id", isLoggedIn, async (req, res, next) => {
   }
 });
 
-router.put("/:id", isLoggedIn, async(req, res, next) => {
-  try{
+router.put("/:id", isLoggedIn, async (req, res, next) => {
+  try {
     const line = await ChallengeLine.findByPk(req.params.id);
-    line.update({ completed: true});
-    // const newLines = await ChallengeLine.findAll({
-    //   include: [
-    //     {
-    //       model: Challenge,
-    //     },
-    //     {
-    //       model: User,
-    //     },
-    //   ],
-    // });
-    res.json(line)
+    line.update({ completed: true });
+    res.json(line);
   } catch (e) {
-    next(e)
+    next(e);
   }
-})
-
-
+});

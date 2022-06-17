@@ -13,31 +13,26 @@ const Challenge = db.define("challenge", {
     type: INTEGER,
   },
   streetAddress: {
-    type: STRING
+    type: STRING,
   },
   city: {
-    type: STRING
+    type: STRING,
   },
   state: {
-    type: STRING
+    type: STRING,
   },
   zip: {
-    type: INTEGER
+    type: INTEGER,
   },
   startDate: {
     type: DATE,
-    //allowNull: false,
-    //set boundary date needing to be in the future
   },
   endDate: {
     type: DATE,
-    //allowNull: false,
   },
   difficulty: {
-    type: ENUM('Easy', 'Medium', 'Hard'),
-    //allowNull: false,
+    type: ENUM("Easy", "Medium", "Hard"),
   },
-
 });
 
 module.exports = Challenge;
