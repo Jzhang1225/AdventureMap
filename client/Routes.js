@@ -16,7 +16,6 @@ import {
   setFriendRequests,
   getChallenges,
   getChallengeLines,
-  setFriends
 } from "./store";
 import Challenges from "./components/Challenges";
 import Challenge from "./components/Challenge";

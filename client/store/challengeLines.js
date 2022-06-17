@@ -54,7 +54,6 @@ export const removeChallengeLine = (line) => {
 
 export const completeChallengeLine = (line) => {
   return async (dispatch) => {
-    //console.log('line', line)
     const token = window.localStorage.getItem("token");
     if (token) {
       const updateLines = (
@@ -62,10 +61,10 @@ export const completeChallengeLine = (line) => {
           headers: {
             authorization: token,
           },
-        })).data;
-      //console.log('updated lines', updateLines)
+        })
+      ).data;
       dispatch({ type: FINISH_CHALLENGELINE, updateLines });
-      history.push('/challenges/')
+      history.push("/challenges/");
     }
   };
 };
@@ -81,13 +80,13 @@ export default function (state = [], action) {
         (challengeLine) => challengeLine.id !== action.line.id
       );
     case FINISH_CHALLENGELINE:
-      return state.map( line => {
-        if (line.id == action.updateLines.id){
-          return action.updateLines
+      return state.map((line) => {
+        if (line.id == action.updateLines.id) {
+          return action.updateLines;
         } else {
-          return line
+          return line;
         }
-      })
+      });
     default:
       return state;
   }

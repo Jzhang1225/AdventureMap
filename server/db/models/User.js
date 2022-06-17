@@ -48,20 +48,16 @@ const User = db.define("user", {
   avatar: {
     type: STRING,
     defaultValue: "/public/no-user-image.gif",
-  },  
+  },
   admin: {
     type: Sequelize.BOOLEAN,
-    defaultValue: false
+    defaultValue: false,
   },
 });
 
 module.exports = User;
 
-/**
- * instanceMethods
- */
 User.prototype.correctPassword = function (candidatePwd) {
-  //we need to compare the plain version to an encrypted version of the password
   return bcrypt.compare(candidatePwd, this.password);
 };
 
@@ -69,9 +65,6 @@ User.prototype.generateToken = function () {
   return jwt.sign({ id: this.id }, process.env.JWT);
 };
 
-/**
- * classMethods
- */
 User.loginViaGoogle = async function (code) {
   const config = {
     client_id: process.env.GOOGLE_CLIENT_ID,
@@ -144,11 +137,7 @@ User.findByToken = async function (token) {
   }
 };
 
-/**
- * hooks
- */
 const hashPassword = async (user) => {
-  //in case the password has been changed, we want to encrypt it with bcrypt
   if (user.changed("password")) {
     user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
   }
