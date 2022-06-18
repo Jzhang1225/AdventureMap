@@ -1,6 +1,13 @@
 const {
   db,
-  models: { User, Challenge, FriendRequest, Conversation, Message, ChallengeLine },
+  models: {
+    User,
+    Challenge,
+    FriendRequest,
+    Conversation,
+    Message,
+    ChallengeLine,
+  },
 } = require("../server/db");
 
 async function seed() {
@@ -18,6 +25,7 @@ async function seed() {
         state: "Oregon",
         zip: 94461,
         email: "fake-email@gmail.com",
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "murphy",
@@ -28,6 +36,7 @@ async function seed() {
         state: "Utah",
         zip: 65416,
         email: "real-email@gmail.com",
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "susan",
@@ -38,6 +47,7 @@ async function seed() {
         state: "Ohio",
         zip: 51655,
         email: "real-email43@gmail.com",
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "stanley",
@@ -48,26 +58,31 @@ async function seed() {
         state: "Maine",
         zip: 12346,
         email: "remasdasdail@gmail.com",
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "Jianing",
         password: "123",
         admin: true,
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "Cathy",
         password: "123",
         admin: true,
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       User.create({
         username: "Stefan",
         password: "123",
         admin: true,
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "Evelyn",
         password: "123",
         admin: true,
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
     ]);
 
@@ -108,22 +123,28 @@ async function seed() {
     }),
   ]);
 
+  const newFriendRequests = await Promise.all(
+    Array(100)
+      .fill("")
+      .map((__) => FriendRequest.createRandom(User))
+  );
+
   const conversations = await Promise.all([
     Conversation.create({
       senderId: 8,
-      receiverId: 6
+      receiverId: 6,
     }),
     Conversation.create({
       senderId: 8,
-      receiverId: 3
+      receiverId: 3,
     }),
     Conversation.create({
       senderId: 4,
-      receiverId: 8
+      receiverId: 8,
     }),
     Conversation.create({
       senderId: 5,
-      receiverId: 6
+      receiverId: 6,
     }),
   ]);
 
@@ -131,19 +152,19 @@ async function seed() {
     Message.create({
       sender: 8,
       text: "Yo yo yo",
-      conversationId: 2
+      conversationId: 2,
     }),
     Message.create({
       sender: 6,
       text: "Greetings",
-      conversationId: 2
+      conversationId: 2,
     }),
     Message.create({
       sender: 8,
       text: "What it do",
-      conversationId: 3
+      conversationId: 3,
     }),
-  ])
+  ]);
   const challenges = await Promise.all([
     Challenge.create({
       name: "Take a hike",
@@ -151,7 +172,7 @@ async function seed() {
       address: "fake street NW",
       startDate: "2022/06/05",
       endDate: "2022/06/10",
-      difficulty: 'Hard',
+      difficulty: "Hard",
     }),
     Challenge.create({
       name: "Take a hike again",
@@ -159,7 +180,7 @@ async function seed() {
       address: "fake street NW",
       startDate: "2022/06/05",
       endDate: "2022/06/10",
-      difficulty: 'Hard',
+      difficulty: "Hard",
     }),
     Challenge.create({
       name: "Look at art",
@@ -167,7 +188,7 @@ async function seed() {
       address: "fake street NW",
       startDate: "2022/06/05",
       endDate: "2022/06/10",
-      difficulty: 'Easy',
+      difficulty: "Easy",
     }),
     Challenge.create({
       name: "Go ride a bike",
@@ -175,7 +196,7 @@ async function seed() {
       address: "fake street NW",
       startDate: "2022/06/05",
       endDate: "2022/06/10",
-      difficulty: 'Medium',
+      difficulty: "Medium",
     }),
   ]);
 
@@ -186,15 +207,15 @@ async function seed() {
     }),
     ChallengeLine.create({
       userId: Jianing.id,
-      challengeId: 3
+      challengeId: 3,
     }),
     ChallengeLine.create({
       userId: stanley.id,
-      challengeId: 2
+      challengeId: 2,
     }),
     ChallengeLine.create({
       userId: Evelyn.id,
-      challengeId: 2
+      challengeId: 2,
     }),
   ]);
 

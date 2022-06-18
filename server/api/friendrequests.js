@@ -42,11 +42,21 @@ router.post("/", isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.delete("/:id", isLoggedIn, async (req, res, next) => {
+  try {
+    const friendRequest = await FriendRequest.findByPk(req.params.id);
+    await friendRequest.destroy();
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+});
+
 router.put("/:id", isLoggedIn, async (req, res, next) => {
   try {
-    const friendsRequest = await FriendRequest.findByPk(req.params.id);
-    friendsRequest.update({ status: "accepted" });
-    res.json(friendsRequest);
+    const friendRequest = await FriendRequest.findByPk(req.params.id);
+    await friendRequest.update({ status: "accepted" });
+    res.json(friendRequest);
   } catch (err) {
     next(err);
   }

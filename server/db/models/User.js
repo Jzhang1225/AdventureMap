@@ -108,7 +108,7 @@ User.createRandom = async () => {
     state: faker.address.state(),
     zip: faker.address.zipCode("#####") * 1,
     email: faker.internet.email(),
-    avatar: faker.image.avatar(),
+    avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
   });
 };
 
