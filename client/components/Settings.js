@@ -60,6 +60,9 @@ class Settings extends React.Component {
           <MenuItem onClick={handleClose}>
             <Link to="/friends">Friends </Link>
           </MenuItem>
+          <MenuItem onClick={handleClose}>
+            <Link to="/pendingFriendRequests">Pending Invitations </Link>
+          </MenuItem>
         </Menu>
       </>
     );
