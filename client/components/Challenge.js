@@ -34,19 +34,24 @@ const Challenge = ({
           </li>
         );
       })}
-      <button onClick={() => addChallengeLine(challenge)}>
+      { existingLine ? (
+        <div>
+            <button onClick={() => removeChallengeLine(existingLine)}>
+            Unfollow Challenge!
+            </button>
+            <button
+            onClick={() => {
+              completeChallengeLine(existingLine);
+            }}
+          >
+            Mark Challenge as Complete!
+          </button>
+        </div>
+      ) : (
+        <button onClick={() => addChallengeLine(challenge)}>
         Join Challenge!
-      </button>
-      <button onClick={() => removeChallengeLine(existingLine)}>
-        Unfollow Challenge!
-      </button>
-      <button
-        onClick={() => {
-          completeChallengeLine(existingLine);
-        }}
-      >
-        Mark Challenge as Complete!
-      </button>
+        </button>
+      )}
       {auth.admin ? (
         <button
           onClick={() => {
