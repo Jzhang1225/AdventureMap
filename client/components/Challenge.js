@@ -6,6 +6,7 @@ import {
   completeChallengeLine,
 } from "../store/challengeLines";
 import { deleteChallenge } from "../store/challenges";
+import { updatePoints } from "../store/points";
 
 const Challenge = ({
   specificChallenge,
@@ -15,6 +16,7 @@ const Challenge = ({
   removeChallengeLine,
   deleteChallenge,
   completeChallengeLine,
+  updatePoints
 }) => {
   let existingLine = specificChallenge.find((line) => line.user.id == auth.id);
   return (
@@ -41,6 +43,7 @@ const Challenge = ({
             </button>
             <button
             onClick={() => {
+              updatePoints(auth.id, challenge.points);
               completeChallengeLine(existingLine);
             }}
           >
@@ -96,6 +99,7 @@ const mapDispatch = (dispatch, { history }) => {
     completeChallengeLine: (challengeLine) => {
       dispatch(completeChallengeLine(challengeLine, history));
     },
+    updatePoints: (user, points) => dispatch(updatePoints(user, points))
   };
 };
 
