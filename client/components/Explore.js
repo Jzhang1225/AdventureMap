@@ -57,11 +57,6 @@ function Explore({ challenges, auth, createChallenge }) {
 
       const { lat, lng } = getLatLng(place[0]);
 
-      // const result = await axios.get(
-      //   `https://maps.googleapis.com/maps/api/place/search/json?location=40.7616731,-73.8155219&radius=5000&types=museum&key=${process.env.GOOGLE_MAPS_API_KEY}`
-      // );
-      // console.log(result);
-
       let marker = {
         lat,
         lng,
