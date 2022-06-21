@@ -91,48 +91,52 @@ function Explore({ challenges }) {
   if (!isLoaded) return "loading maps";
 
   return (
-    <div>
-      <h1>Explore Map:</h1>
-
-      <Search setMarkers={setMarkers} setSelected={setSelected} />
-      {/*<Autocomplete>
-        <input type="text" placeholder="Enter Location" />
-      </Autocomplete>*/}
-
-      <GoogleMap
-        zoom={12}
-        mapContainerStyle={mapContainerStyle}
-        center={center}
-        options={options}
-        onClick={onMapClick}
-        onLoad={onMapLoad}
-      >
-        {markers.map((marker, idx) => (
-          <Marker
-            key={idx}
-            position={{ lat: marker.lat, lng: marker.lng }}
-            onClick={() => {
-              setSelected(marker);
-            }}
-          />
-        ))}
-
-        {selected && <Marker position={selected} />}
-
-        {selected ? (
-          <InfoWindow
-            position={selected}
-            onCloseClick={() => {
-              setSelected(null);
-            }}
+    <div className="explore">
+      <div className="content flex-container">
+        <div className="column-left">
+          <h1>Explore Map:</h1>
+          <Search setMarkers={setMarkers} setSelected={setSelected} />
+          {/*<Autocomplete>
+            <input type="text" placeholder="Enter Location" />
+          </Autocomplete>*/}
+        </div>
+        <div className="column-right">
+          <GoogleMap
+            zoom={12}
+            mapContainerStyle={mapContainerStyle}
+            center={center}
+            options={options}
+            onClick={onMapClick}
+            onLoad={onMapLoad}
           >
-            <div>
-              <h2>Explore Event!</h2>
-              <p>Here's some information.</p>
-            </div>
-          </InfoWindow>
-        ) : null}
-      </GoogleMap>
+            {markers.map((marker, idx) => (
+              <Marker
+                key={idx}
+                position={{ lat: marker.lat, lng: marker.lng }}
+                onClick={() => {
+                  setSelected(marker);
+                }}
+              />
+            ))}
+
+            {selected && <Marker position={selected} />}
+
+            {selected ? (
+              <InfoWindow
+                position={selected}
+                onCloseClick={() => {
+                  setSelected(null);
+                }}
+              >
+                <div>
+                  <h2>Explore Event!</h2>
+                  <p>Here's some information.</p>
+                </div>
+              </InfoWindow>
+            ) : null}
+          </GoogleMap>
+        </div>
+      </div>
     </div>
   );
 }
