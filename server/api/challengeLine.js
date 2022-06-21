@@ -68,8 +68,22 @@ router.delete("/:id", isLoggedIn, async (req, res, next) => {
 router.put("/:id", isLoggedIn, async (req, res, next) => {
   try {
     const line = await ChallengeLine.findByPk(req.params.id);
-    line.update({ completed: true });
-    res.json(line);
+    await line.update({ completed: true });
+    res.json(
+      await ChallengeLine.findOne({
+        where: {
+          id: line.id,
+        },
+        include: [
+          {
+            model: Challenge,
+          },
+          {
+            model: User,
+          },
+        ],
+      })
+    );
   } catch (e) {
     next(e);
   }

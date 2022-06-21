@@ -56,14 +56,14 @@ export const completeChallengeLine = (line) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem("token");
     if (token) {
-      const updateLines = (
+      const updatedLine = (
         await axios.put(`/api/challengeLine/${line.id}`, line, {
           headers: {
             authorization: token,
           },
         })
       ).data;
-      dispatch({ type: FINISH_CHALLENGELINE, updateLines });
+      dispatch({ type: FINISH_CHALLENGELINE, updatedLine });
       history.push("/challenges/");
     }
   };
@@ -81,8 +81,8 @@ export default function (state = [], action) {
       );
     case FINISH_CHALLENGELINE:
       return state.map((line) => {
-        if (line.id == action.updateLines.id) {
-          return action.updateLines;
+        if (line.id == action.updatedLine.id) {
+          return action.updatedLine;
         } else {
           return line;
         }

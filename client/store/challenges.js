@@ -45,12 +45,12 @@ export const deleteChallenge = (challenge, history) => {
         headers: {
           authorization: token,
         },
-      })
+      });
       dispatch({ type: DELETE_CHALLENGE, challenge });
-      history.push('/challenges/')
+      history.push("/challenges/");
     }
   };
-}
+};
 
 export default function (state = [], action) {
   switch (action.type) {
@@ -59,7 +59,7 @@ export default function (state = [], action) {
     case CREATE_CHALLENGE:
       return [...state, action.challenge];
     case DELETE_CHALLENGE:
-      return state.filter((challenge)=> challenge.id !== action.challenge.id)
+      return state.filter((challenge) => challenge.id !== action.challenge.id);
     default:
       return state;
   }
