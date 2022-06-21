@@ -70,6 +70,7 @@ class Leaderboard extends React.Component {
                 <TableHead>
                   <TableRow>
                     <TableCell>Rank</TableCell>
+                    <TableCell></TableCell>
                     <TableCell>Username</TableCell>
                     <TableCell>Total points</TableCell>
                   </TableRow>

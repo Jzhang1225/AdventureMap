@@ -9,7 +9,7 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
     <div>
       Your challenges:
       {challengeLines
-        .filter((line) => line.userId == auth.id)
+        .filter((line) => line.userId == auth.id && line.completed == false)
         .map((line) => {
           return (
             <li key={line.id}>
@@ -28,7 +28,6 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
           </div>
         );
       })}
-      {/*limit how much is seen.*/}
       Don't like what you see? Create your own challenge below!
       <CreateChallenge />
     </div>
