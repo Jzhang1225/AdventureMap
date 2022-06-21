@@ -12,10 +12,16 @@ const Challenge = ({
   deleteChallenge
 }) => {
   let existingLine = specificChallenge.find((line) => line.user.id == auth.id);
+
   return (
     <div>
       {challenge?.name}
       <br></br>
+      Start Date: {challenge?.startDate}
+      <br></br>
+      End Date: {challenge?.endDate}
+      <br></br>
+      Difficulty: {challenge?.difficulty}
       challenge participants
       {specificChallenge.map((line) => {
         return (
