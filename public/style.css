@@ -20,10 +20,6 @@ form div {
   display: inline-block;
 }
 
-input {
-  margin: 2rem;
-}
-
 .messenger{
   height: calc(100vh - 70px);
   display: flex;
