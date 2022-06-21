@@ -10,14 +10,41 @@ const Messenger = (props) => {
   
   const { users, auth } = props
   const user = props.auth
+  const URL = 'http://localhost:8080'
+
 
   console.log("USER", user)
 
   const [conversations, setConversations] = useState([]);
-  const [currentChat, setCurrentChat] = useState(null)
-  const [messages, setMessages] = useState([])
-  const [newMessage, setNewMessage] = useState("")
+  const [currentChat, setCurrentChat] = useState(null);
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const [arrivalMessage, setArrivalMessage] = useState(null);
+  const [onlineUsers, setOnlineUsers] = useState([]);
+  const socket = useRef();
   const scrollRef = useRef();
+
+  useEffect(() => {
+    socket.current = io(URL);
+    socket.current.on("getMessage", (data) => {
+      setArrivalMessage({
+        sender: data.senderId,
+        text: data.text,
+        createdAt: Date.now(),
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    arrivalMessage && (currentChat?.receiverId === arrivalMessage.sender || currentChat?.senderId === arrivalMessage.sender) && setMessages((prev) => [...prev, arrivalMessage])
+  }, [arrivalMessage, currentChat]);
+
+  useEffect(() => {
+    socket.current.emit("addUser", user.id);
+    socket.current.on("getUsers", users => {
+      setOnlineUsers(users);
+    })
+  }, [user]);
 
   useEffect(()=> {
     const getConversations = async() => {
@@ -43,11 +70,11 @@ const Messenger = (props) => {
       }
     }
     getMessages();
-  }, [currentChat])
+  }, [currentChat]);
 
   useEffect(() => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages])
+  }, [messages]);
 
   const handleSubmit = async (ev) =>  {
     ev.preventDefault();
@@ -55,28 +82,24 @@ const Messenger = (props) => {
       sender: user.id,
       text: newMessage,
       conversationId: currentChat.id
-    }
+    };
+
+    socket.current.emit("sendMessage", {
+      senderId: user.id,
+      receiverId: currentChat.receiverId,
+      text: newMessage,
+    });
 
     try {
       const response = await axios.post('api/messages', message);
-      console.log("MESSAGES RESPONSE", response)
       setMessages([...messages, response.data]);
       setNewMessage("");
     }
     catch(err) {
-      console.log(err)
+      console.log(err);
     }
-  }
+  };
 
-  console.log("MESSAGES", messages)
-
-  const URL = 'http://localhost:8080'
-  const socket = io(URL, { autoConnect: false });
-  //console.log("SOCKET TO ME", socket)
-
-  // socket.onAny((event, ...args) => {
-  //   console.log("catch listener", event, args);
-  // });
   console.log("CURRENT CHAT", currentChat)
 
   return (
@@ -89,7 +112,7 @@ const Messenger = (props) => {
               conversations.map((c) => {
                 return (
                   <div onClick={() => setCurrentChat(c)}>
-                    <Conversation conversation = {c} currentUser={user}/>
+                    <Conversation conversation = { c } currentUser={ user }/>
                   </div>
                 )
               })
@@ -107,7 +130,7 @@ const Messenger = (props) => {
                     messages.map((m) => {
                       return (
                         <div ref={scrollRef}>
-                          <Message message={m} own={ m.sender === user.id }/>
+                          <Message message={ m } own={ m.sender === user.id }/>
                         </div>
                       )
                     })
@@ -130,21 +153,14 @@ const Messenger = (props) => {
         </div>
         <div className='chatOnline'>
           <div className='chatOnlineWrapper'>
-            <ChatOnline /> 
+            <ChatOnline 
+              onlineUsers={ onlineUsers } 
+              currentId={ user.id } 
+              setCurrentChat={ setCurrentChat }
+            /> 
           </div>
         </div>
       </div>
-        
-      {/* <form className='messengerBar' >
-        <input 
-        type='text' 
-        name='message' 
-        value='' 
-        placeholder='Message'
-        onChange={ (ev) => setMessage(ev.target.value) }
-        />
-        <button> SEND </button>
-      </form> */}
     </div>
   )
 }

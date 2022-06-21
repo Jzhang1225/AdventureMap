@@ -5,18 +5,15 @@ export default function Conversation ({ conversation, currentUser }) {
   console.log("CURRENT USER", currentUser)
   const [user, setUser] = useState(null)
 
- 
   useEffect(() => {
     const friendId = conversation.senderId !== currentUser.id
     ? conversation.senderId
     : conversation.receiverId;
-    console.log("FRIEND ID", friendId)
     
     const getUser = async() => {
       
       try{
         const response = await axios(`/api/users/${friendId}`)
-        console.log("RES IN CONVO", response)
         setUser(response.data)
       }
       catch(err) {
