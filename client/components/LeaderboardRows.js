@@ -16,6 +16,9 @@ class Row extends Component {
           <TableCell component="th" scope="row">
             {rank}
           </TableCell>
+          <TableCell>
+            <img src={`/public/profile-pics/${user.avatar}`} height="50px" />
+          </TableCell>
           <TableCell>{user.username}</TableCell>
           <TableCell>{user.points}</TableCell>
         </TableRow>

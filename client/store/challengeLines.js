@@ -1,8 +1,10 @@
 import axios from "axios";
+import history from "../history";
 
 const GET_CHALLENGELINES = "GET_CHALLENGELINES";
 const ADD_CHALLENGELINE = "ADD_CHALLENGELINE";
 const REMOVE_CHALLENGELINE = "REMOVE_CHALLENGELINE";
+const FINISH_CHALLENGELINE = "FINISH_CHALLENGELINE";
 
 export const getChallengeLines = () => {
   return async (dispatch) => {
@@ -50,6 +52,23 @@ export const removeChallengeLine = (line) => {
   };
 };
 
+export const completeChallengeLine = (line) => {
+  return async (dispatch) => {
+    const token = window.localStorage.getItem("token");
+    if (token) {
+      const updateLines = (
+        await axios.put(`/api/challengeLine/${line.id}`, line, {
+          headers: {
+            authorization: token,
+          },
+        })
+      ).data;
+      dispatch({ type: FINISH_CHALLENGELINE, updateLines });
+      history.push("/challenges/");
+    }
+  };
+};
+
 export default function (state = [], action) {
   switch (action.type) {
     case GET_CHALLENGELINES:
@@ -60,6 +79,14 @@ export default function (state = [], action) {
       return state.filter(
         (challengeLine) => challengeLine.id !== action.line.id
       );
+    case FINISH_CHALLENGELINE:
+      return state.map((line) => {
+        if (line.id == action.updateLines.id) {
+          return action.updateLines;
+        } else {
+          return line;
+        }
+      });
     default:
       return state;
   }

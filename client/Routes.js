@@ -16,10 +16,10 @@ import {
   setFriendRequests,
   getChallenges,
   getChallengeLines,
-  setFriends
 } from "./store";
 import Challenges from "./components/Challenges";
 import Challenge from "./components/Challenge";
+import PendingFriendRequests from "./components/PendingFriendRequests";
 
 class Routes extends Component {
   componentDidMount() {
@@ -49,6 +49,10 @@ class Routes extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/friends" component={FriendList} />
             <Route path="/messenger" component={Messenger} />
+            <Route
+              path="/pendingFriendRequests"
+              component={PendingFriendRequests}
+            />
             <Redirect to="/home" />
           </Switch>
         ) : (

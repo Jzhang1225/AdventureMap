@@ -43,7 +43,6 @@ class Users extends React.Component {
       const randomNum = Math.floor(Math.random() * (users.length - 6));
       users = users.slice(randomNum, randomNum + 6);
     }
-
     return (
       <Container>
         <Grid>
@@ -57,11 +56,12 @@ class Users extends React.Component {
         </Grid>
         <Grid container spacing={4}>
           {users.map((user) => {
-            const pending = !!friendRequests.find(
+            const pending = friendRequests.find(
               (request) =>
                 (request.userId === auth.id && request.friendId === user.id) ||
                 (request.friendId === auth.id && request.userId === user.id)
             );
+            const accepted = pending?.status === "accepted";
             return (
               <Grid
                 key={user.id}
@@ -78,7 +78,7 @@ class Users extends React.Component {
                     component="img"
                     alt="No profile pic"
                     height="140"
-                    image={user.avatar}
+                    image={`/public/profile-pics/${user.avatar}`}
                   />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
@@ -95,7 +95,11 @@ class Users extends React.Component {
                       onClick={() => addFriendRequest(user)}
                       size="small"
                     >
-                      Add Friend
+                      {pending
+                        ? accepted
+                          ? `Already Friends`
+                          : `Awaiting Response`
+                        : `Add Friend`}
                     </Button>
                   </CardActions>
                 </Card>

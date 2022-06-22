@@ -1,5 +1,5 @@
 const Sequelize = require("sequelize");
-const { STRING, INTEGER } = Sequelize;
+const { INTEGER } = Sequelize;
 const db = require("../db");
 
 const Conversation = db.define("conversation", {

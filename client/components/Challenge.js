@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addChallengeLine, removeChallengeLine } from "../store/challengeLines";
+import {
+  addChallengeLine,
+  removeChallengeLine,
+  completeChallengeLine,
+} from "../store/challengeLines";
 import { deleteChallenge } from "../store/challenges";
 
 const Challenge = ({
@@ -9,10 +13,10 @@ const Challenge = ({
   addChallengeLine,
   auth,
   removeChallengeLine,
-  deleteChallenge
+  deleteChallenge,
+  completeChallengeLine,
 }) => {
   let existingLine = specificChallenge.find((line) => line.user.id == auth.id);
-
   return (
     <div>
       {challenge?.name}
@@ -30,24 +34,45 @@ const Challenge = ({
           </li>
         );
       })}
-      <button onClick={() => addChallengeLine(challenge)}>
+      { existingLine ? (
+        <div>
+            <button onClick={() => removeChallengeLine(existingLine)}>
+            Unfollow Challenge!
+            </button>
+            <button
+            onClick={() => {
+              completeChallengeLine(existingLine);
+            }}
+          >
+            Mark Challenge as Complete!
+          </button>
+        </div>
+      ) : (
+        <button onClick={() => addChallengeLine(challenge)}>
         Join Challenge!
-      </button>
-      <button onClick={() => removeChallengeLine(existingLine)}>
-        Unfollow Challenge!
-      </button>
+        </button>
+      )}
       {auth.admin ? (
-        <button onClick={() => {specificChallenge.map((line) => removeChallengeLine(line)); deleteChallenge(challenge)}}>
+        <button
+          onClick={() => {
+            specificChallenge.map((line) => removeChallengeLine(line));
+            deleteChallenge(challenge);
+          }}
+        >
           Delete Challenge
-      </button>) : ("")}
+        </button>
+      ) : (
+        ""
+      )}
     </div>
   );
 };
 
-//add information regarding users taking the challenge
 const mapState = ({ challengeLines, challenges, auth }, { match }) => {
   const specificChallenge = challengeLines?.filter(
-    (challengeLine) => challengeLine.challengeId == match.params.id
+    (challengeLine) =>
+      challengeLine.challengeId == match.params.id &&
+      challengeLine.completed == false
   );
   const challenge = challenges.find(
     (challenge) => challenge.id == match.params.id
@@ -62,13 +87,15 @@ const mapState = ({ challengeLines, challenges, auth }, { match }) => {
 
 const mapDispatch = (dispatch, { history }) => {
   return {
-    addChallengeLine: (newLine) => 
-      dispatch(addChallengeLine(newLine)),
+    addChallengeLine: (newLine) => dispatch(addChallengeLine(newLine)),
     removeChallengeLine: (challengeLine) =>
-      dispatch(removeChallengeLine(challengeLine)),
+      dispatch(removeChallengeLine(challengeLine, history)),
     deleteChallenge: (challenge) => {
-      dispatch(deleteChallenge(challenge, history))
-    }
+      dispatch(deleteChallenge(challenge, history));
+    },
+    completeChallengeLine: (challengeLine) => {
+      dispatch(completeChallengeLine(challengeLine, history));
+    },
   };
 };
 

@@ -34,8 +34,8 @@ export const authenticate =
 export const loginWithGoogle = () => async (dispatch) => {
   try {
     const res = await axios.get(`/api/googleOauth`);
-    // window.localStorage.setItem(TOKEN, res.data.token);
-    // dispatch(me());
+    window.localStorage.setItem(TOKEN, res.data.token);
+    dispatch(me());
   } catch (authError) {
     return dispatch(setAuth({ error: authError }));
   }
