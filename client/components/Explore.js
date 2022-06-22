@@ -38,6 +38,7 @@ function Explore({ challenges, auth, createChallenge }) {
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
     libraries,
   });
+
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   const [name, setName] = useState("");
