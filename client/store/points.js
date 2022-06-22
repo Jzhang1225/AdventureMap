@@ -7,7 +7,7 @@ export const updatePoints = (points) => {
     const token = window.localStorage.getItem("token");
     if (token) {
       const updatedUser = (
-        await axios.get(`/api/points/`, points, {
+        await axios.put(`/api/points/`, points, {
           headers: {
             authorization: token,
           },

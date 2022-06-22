@@ -19,8 +19,9 @@ router.put("/", isLoggedIn, async (req, res, next) => {
   try {
     const user = await User.findByPk(req.user.id);
     let existingPoints = user.points;
-    console.log(existingPoints)
-    await user.update({points: existingPoints + req.body})
+    console.log(existingPoints);
+    console.log('sent points', req.body)
+    await user.update({points: existingPoints + req.body.points*1})
     res.status(201).json(user);
   } catch (e) {
     next(e);

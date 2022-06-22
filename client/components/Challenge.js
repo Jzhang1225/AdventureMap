@@ -7,6 +7,7 @@ import {
 } from "../store/challengeLines";
 import { deleteChallenge } from "../store/challenges";
 import { updatePoints } from "../store/points";
+import { Link } from "react-router-dom";
 
 const Challenge = ({
   specificChallenge,
@@ -32,7 +33,7 @@ const Challenge = ({
       {specificChallenge.map((line) => {
         return (
           <li key={line.id}>
-            {line.user.username} {line.user.points}
+            <Link to={`/users/${line.user.id}`}>{line.user.username} {line.user.points}</Link>
           </li>
         );
       })}
@@ -43,7 +44,7 @@ const Challenge = ({
             </button>
             <button
             onClick={() => {
-              updatePoints(challenge.points);
+              updatePoints(challenge);
               completeChallengeLine(existingLine);
             }}
           >
