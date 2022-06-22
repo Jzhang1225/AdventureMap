@@ -15,9 +15,9 @@ const isLoggedIn = async (req, res, next) => {
   }
 };
 
-router.put("/:id", isLoggedIn, async (req, res, next) => {
+router.put("/", isLoggedIn, async (req, res, next) => {
   try {
-    const user = await User.findByPk(req.params.id);
+    const user = await User.findByPk(req.user.id);
     let existingPoints = user.points;
     console.log(existingPoints)
     await user.update({points: existingPoints + req.body})

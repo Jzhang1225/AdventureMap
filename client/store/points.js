@@ -2,12 +2,12 @@ import axios from "axios";
 
 const UPDATE_POINTS = 'UPDATE_POINTS';
 
-export const updatePoints = (id, points) => {
+export const updatePoints = (points) => {
   return async (dispatch) => {
     const token = window.localStorage.getItem("token");
     if (token) {
       const updatedUser = (
-        await axios.get(`/api/users/${id}`, points, {
+        await axios.get(`/api/points/`, points, {
           headers: {
             authorization: token,
           },
