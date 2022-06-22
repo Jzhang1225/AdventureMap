@@ -17,7 +17,7 @@ async function seed() {
     username: "Stefan",
     password: "123",
     admin: true,
-    avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
+    avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
   });
   const [cody, murphy, susan, stanley, Jianing, Cathy, Evelyn] =
     await Promise.all([
@@ -30,7 +30,7 @@ async function seed() {
         state: "Oregon",
         zip: 94461,
         email: "fake-email@gmail.com",
-        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
       }),
       await User.create({
         username: "murphy",
@@ -41,7 +41,7 @@ async function seed() {
         state: "Utah",
         zip: 65416,
         email: "real-email@gmail.com",
-        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
       }),
       await User.create({
         username: "susan",
@@ -52,7 +52,7 @@ async function seed() {
         state: "Ohio",
         zip: 51655,
         email: "real-email43@gmail.com",
-        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
       }),
       await User.create({
         username: "stanley",
@@ -63,31 +63,31 @@ async function seed() {
         state: "Maine",
         zip: 12346,
         email: "remasdasdail@gmail.com",
-        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
       }),
       await User.create({
         username: "Jianing",
         password: "123",
         admin: true,
-        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
       }),
       await User.create({
         username: "Cathy",
         password: "123",
         admin: true,
-        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
       }),
       // User.create({
       //   username: "Stefan",
       //   password: "123",
       //   admin: true,
-      //   avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
+      //   avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
       // }),
       await User.create({
         username: "Evelyn",
         password: "123",
         admin: true,
-        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
       }),
     ]);
 
