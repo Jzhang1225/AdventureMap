@@ -31,8 +31,8 @@ class Home extends Component {
 
     return (
       <div className="homepage">
-        <div class="hero">
-          <div class="hero-text">
+        <div className="hero">
+          <div className="hero-text">
             <h1>Challenge Yourself to Explore Your World</h1>
             <Link to="/Explore">
               <button className="button-start">Start Exploring</button>
@@ -62,16 +62,16 @@ class Home extends Component {
         </div>
         <div className="row-color">
           <div className="flex-container">
-            <div class="column-4">
+            <div className="column-4">
               <img src="/images/home1.png"></img>
             </div>
-            <div class="column-4">
+            <div className="column-4">
               <img src="/images/home2.png"></img>
             </div>
-            <div class="column-4">
+            <div className="column-4">
               <img src="/images/home3.png"></img>
             </div>
-            <div class="column-4">
+            <div className="column-4">
               <img src="/images/home4.png"></img>
             </div>
           </div>

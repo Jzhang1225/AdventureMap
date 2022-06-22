@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
+import { Link } from '@mui/material';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -76,15 +77,15 @@ const NavbarResponsive = ({ handleClick, isLoggedIn }) => {
               {
                 <div className='menu-links'>
                   {
-                    // pages.map((page) => (
-                    //   <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    //     <Typography textAlign="center">{page}</Typography>
-                    //   </MenuItem>
-                    // ))
+                    pages.map((page) => (
+                      <MenuItem key={page} onClick={handleCloseNavMenu}>
+                        <Typography textAlign="center">{page}</Typography>
+                      </MenuItem>
+                    ))
                   }
-                      <Link to="/explore">Explore</Link>
-                      <Link to="/challenges">Challenges</Link>
-                      <Link to="/leaderboard">Leaderboard</Link>
+                  {/* <Link to="/explore"><div class="nav-link">Explore</div></Link>
+                  <Link to="/challenges"><div class="nav-link">Challenges</div></Link>
+                  <Link to="/leaderboard"><div class="nav-link">Leaderboard</div></Link> */}
                   {isLoggedIn ? (
                     <hr />
                   ) : (
@@ -97,34 +98,19 @@ const NavbarResponsive = ({ handleClick, isLoggedIn }) => {
             </Menu>
           </Box>
           <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: 'flex', md: 'none' },
-              flexGrow: 1,
-              fontFamily: 'monospace',
-              fontWeight: 700,
-              letterSpacing: '.3rem',
-              color: 'inherit',
-              textDecoration: 'none',
-            }}
-          >
-            LOGO
-          </Typography>
+          
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: 'white', display: 'block' }}
-              >
-                {page}
-              </Button>
-            ))}
+            <div className='menu-links'>
+              {pages.map((page) => (
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{ my: 2, color: 'white', display: 'block' }}
+                >
+                  {page}
+                </Button>
+              ))}
+            </div>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>

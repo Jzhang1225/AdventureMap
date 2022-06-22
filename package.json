@@ -41,6 +41,7 @@
     "sequelize": "^6.3.5",
     "socket.io": "^4.5.1",
     "socket.io-client": "^4.5.1",
+    "timeago.js": "^4.0.2",
     "use-places-autocomplete": "^3.0.0"
   },
   "devDependencies": {

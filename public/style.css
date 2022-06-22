@@ -27,10 +27,6 @@ form div {
   display: inline-block;
 }
 
-input {
-  margin: 2rem;
-}
-
 .messenger{
   height: calc(100vh - 70px);
   display: flex;
@@ -53,6 +49,7 @@ input {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  position: relative;
 }
 .chatBoxTop{
   height: 100%;
@@ -140,6 +137,14 @@ input {
 .conversationName{
   font-weight: bold;
 }
+.noConversationText{
+  position: absolute;
+  top: 10%;
+  font-size: 50px;
+  color: gray;
+  text-align: center;
+  cursor: default;
+}
 
 
 .message{
@@ -193,6 +198,9 @@ input {
   align-items: center;
 }
 .menu-links .menu-item {
+  color: #5e387c;
+}
+.nav-link {
   color: #5e387c;
 }
 h1 {
