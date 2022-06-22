@@ -9,7 +9,7 @@ import axios from "axios";
 const Messenger = (props) => {
   const { users, auth } = props;
   const user = props.auth;
-  const URL = process.env.SOCKET_IO_URL || "http://localhost:8080";
+  const URL = process.env.SOCKET_IO_URL;
 
   console.log("USER", user);
 
