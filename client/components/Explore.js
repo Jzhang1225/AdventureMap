@@ -5,7 +5,6 @@ import {
   InfoWindow,
   Marker,
   useLoadScript,
-  Autocomplete,
 } from "@react-google-maps/api";
 import mapStyles from "../../src/mapStyles";
 import usePlacesAutocomplete, {
@@ -18,7 +17,6 @@ import {
   ComboboxPopover,
   ComboboxList,
   ComboboxOption,
-  ComboboxOptionText,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
 import { createChallenge } from "../store";
@@ -78,7 +76,7 @@ function Explore({ challenges, auth, createChallenge }) {
           });
         }
       }
-    } else return;
+    }
   }, [searchMap, challenges.length]);
 
   useEffect(() => {
@@ -327,7 +325,6 @@ function Explore({ challenges, auth, createChallenge }) {
                     setCenter({ lat: selected.lat, lng: selected.lng });
                     setMarkers(markers.filter((markers) => !markers.search));
                     setSelected("");
-                    // setSearch("");
                   }}
                 >
                   Set as Center
