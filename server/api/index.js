@@ -8,6 +8,7 @@ router.use("/messages", require("./messages"));
 router.use("/challenges", require("./challenges"));
 router.use("/challengeLine", require("./challengeLine"));
 router.use("/googleOauth", require("./googleOauth"));
+router.use("/points", require("./points"));
 
 router.use((req, res, next) => {
   const error = new Error("Not Found");

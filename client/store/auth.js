@@ -4,7 +4,6 @@ import history from "../history";
 const TOKEN = "token";
 
 const SET_AUTH = "SET_AUTH";
-const UPDATE_POINTS = "UPDATE_POINTS";
 const UPDATE_AUTH = "UPDATE_AUTH";
 
 const setAuth = (auth) => ({ type: SET_AUTH, auth });
@@ -56,26 +55,6 @@ export const updateProfile = (user) => {
   };
 };
 
-export const updatePoints = (points) => {
-  return async (dispatch) => {
-    const token = window.localStorage.getItem("token");
-    if (token) {
-      const updatedUser = (
-        await axios.put(
-          `/auth/points`,
-          { points },
-          {
-            headers: {
-              authorization: token,
-            },
-          }
-        )
-      ).data;
-      dispatch({ type: UPDATE_POINTS, updatedUser });
-    }
-  };
-};
-
 export const logout = () => {
   window.localStorage.removeItem(TOKEN);
   history.push("/login");
@@ -90,8 +69,6 @@ export default function (state = {}, action) {
     case SET_AUTH:
       return action.auth;
     case UPDATE_AUTH:
-      return action.updatedUser;
-    case UPDATE_POINTS:
       return action.updatedUser;
     default:
       return state;
