@@ -4,17 +4,6 @@ const {
 } = require("../db");
 module.exports = router;
 
-const isLoggedIn = async (req, res, next) => {
-  try {
-    req.user = await User.findByToken(req.headers.authorization);
-    if (req.user) {
-      next();
-    } else throw new Error();
-  } catch (err) {
-    next(err);
-  }
-};
-
 router.post("/login", async (req, res, next) => {
   try {
     res.send({ token: await User.authenticate(req.body) });
@@ -59,17 +48,5 @@ router.put("/me", async (req, res, next) => {
     res.send(updatedUser);
   } catch (ex) {
     next(ex);
-  }
-});
-
-router.put("/points", isLoggedIn, async (req, res, next) => {
-  try {
-    console.log(req.body);
-    const user = await User.findByPk(req.user.id);
-    await user.update({ points: user.points + req.body.points * 1 });
-
-    res.status(201).json(user);
-  } catch (e) {
-    next(e);
   }
 });
