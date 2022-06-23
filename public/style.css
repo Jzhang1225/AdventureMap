@@ -6,11 +6,12 @@
 
 body {
   color: #606060;
-  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
-  font-size: 1rem;
-  line-height: 1.5em;
+  font-family: "Open Sans", "Tahoma", sans-serif;
 }
-
+p {
+  font-size: 0.875rem;
+  line-height: 1.6em;
+}
 a {
   text-decoration: none;
   transition: 0.4s ease;
@@ -46,6 +47,7 @@ nav a {
 }
 h1 {
   color: #5e387c;
+  font-family: "Gill Sans", "Gill Sans MT", "Lato", "Tahoma", sans-serif;
   font-size: 3rem;
   line-height: 1.5;
 }
@@ -57,7 +59,7 @@ h2 {
 .hero {
   background: url("/images/hero-background.png");
   background-size: cover;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", "Lato", "Tahoma", sans-serif;
   font-weight: 700;
   height: 80vh;
   position: relative;
@@ -90,7 +92,7 @@ h2 {
   margin-bottom: 1rem;
 }
 .button-start {
-  font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+  font-family: "Open Sans", "Tahoma", sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 0.75em 2em;
@@ -354,7 +356,7 @@ h2 {
   color: #ffffff;
   cursor: pointer;
   display: block;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Lato', 'Tahoma', sans-serif;
   font-size: 1rem;
   font-weight: 10;
   justify-content: center;
@@ -385,7 +387,7 @@ input,
 select,
 textarea {
 	color: #606060;
-	font-family: 'Segoe UI', 'Open Sans', Tahoma, sans-serif;
+	font-family: 'Open Sans', Tahoma, sans-serif;
 	font-size: .875em;
 	border: 1px solid #8d8d8d;
 	border-radius: 4px;

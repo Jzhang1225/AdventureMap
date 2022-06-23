@@ -11,7 +11,8 @@ const theme = createTheme({
     fontFamily: "Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif",
     button: {
       textTransform: "none",
-      fontSize: '1rem'
+      fontSize: '1rem',
+      //padding: '1rem 2rem'
     }
   }
 });
