@@ -61,6 +61,7 @@ class Users extends React.Component {
                 (request.userId === auth.id && request.friendId === user.id) ||
                 (request.friendId === auth.id && request.userId === user.id)
             );
+
             const accepted = pending?.status === "accepted";
             return (
               <Grid
@@ -91,7 +92,7 @@ class Users extends React.Component {
                   </CardContent>
                   <CardActions>
                     <Button
-                      disabled={pending}
+                      disabled={!!pending}
                       onClick={() => addFriendRequest(user)}
                       size="small"
                     >

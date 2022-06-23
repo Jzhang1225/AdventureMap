@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 export default function ChatOnline({ onlineUsers, currentId, setCurrentChat }) {
   const [friends, setFriends] = useState([]);
   const [onlineFriends, setOnlineFriends] = useState([]);
-
   
   return (
     <div className='chatOnline'>

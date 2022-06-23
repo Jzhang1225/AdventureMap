@@ -6,6 +6,8 @@ import {
   completeChallengeLine,
 } from "../store/challengeLines";
 import { deleteChallenge } from "../store/challenges";
+import { updatePoints } from "../store/points";
+import { Link } from "react-router-dom";
 
 const Challenge = ({
   specificChallenge,
@@ -15,6 +17,7 @@ const Challenge = ({
   removeChallengeLine,
   deleteChallenge,
   completeChallengeLine,
+  updatePoints
 }) => {
   let existingLine = specificChallenge.find((line) => line.user.id == auth.id);
   return (
@@ -30,7 +33,7 @@ const Challenge = ({
       {specificChallenge.map((line) => {
         return (
           <li key={line.id}>
-            {line.user.username} {line.user.points}
+            <Link to={`/users/${line.user.id}`}>{line.user.username} {line.user.points}</Link>
           </li>
         );
       })}
@@ -41,6 +44,7 @@ const Challenge = ({
             </button>
             <button
             onClick={() => {
+              updatePoints(challenge);
               completeChallengeLine(existingLine);
             }}
           >
@@ -96,6 +100,7 @@ const mapDispatch = (dispatch, { history }) => {
     completeChallengeLine: (challengeLine) => {
       dispatch(completeChallengeLine(challengeLine, history));
     },
+    updatePoints:(points) => dispatch(updatePoints(points))
   };
 };
 
