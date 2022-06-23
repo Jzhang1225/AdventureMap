@@ -46,7 +46,8 @@ nav a {
 }
 h1 {
   color: #5e387c;
-  line-height: 1.25;
+  font-size: 3rem;
+  line-height: 1.5;
 }
 h2 {
   line-height: 1.25;
@@ -398,6 +399,11 @@ label, input {
 .field-row {
   display: block;
   margin: 1em 0;
+}
+
+/*** Challenges ***/
+.row.top {
+  text-align: center;
 }
 
 /*** Responsive ***/

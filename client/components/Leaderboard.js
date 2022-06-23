@@ -41,7 +41,12 @@ class Leaderboard extends React.Component {
     const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
     return (
-      <>
+      <div className="leaderboard content">
+        <div className="row top">
+          <h1>Leaderboard</h1>
+          <p>Top users from around the world!</p>
+        </div>
+
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <div
             style={{
@@ -89,7 +94,7 @@ class Leaderboard extends React.Component {
             />
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
