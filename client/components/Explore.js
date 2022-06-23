@@ -49,35 +49,37 @@ function Explore({ challenges, auth, createChallenge }) {
   const [center, setCenter] = useState(mapCenter);
 
   useEffect(async () => {
-    for (const challengeLine of challenges) {
-      const challenge = challengeLine.challenge;
+    if (searchMap) {
+      for (const challengeLine of challenges) {
+        const challenge = challengeLine.challenge;
 
-      const place = await getGeocode({
-        address: `${challenge.streetAddress}, ${challenge.city}, ${challenge.state} ${challenge.zip}`,
-      });
-      if (!place) return;
-
-      const { lat, lng } = getLatLng(place[0]);
-
-      let marker = {
-        lat,
-        lng,
-        challenge,
-        completed: challengeLine.completed,
-        time: new Date(),
-      };
-
-      if (
-        !markers.find(
-          (flag) => flag.lat === marker.lat && flag.lng === marker.lng
-        )
-      ) {
-        setMarkers((current) => {
-          return [...current, marker];
+        const place = await getGeocode({
+          address: `${challenge.streetAddress}, ${challenge.city}, ${challenge.state} ${challenge.zip}`,
         });
+        if (!place) return;
+
+        const { lat, lng } = getLatLng(place[0]);
+
+        let marker = {
+          lat,
+          lng,
+          challenge,
+          completed: challengeLine.completed,
+          time: new Date(),
+        };
+
+        if (
+          !markers.find(
+            (flag) => flag.lat === marker.lat && flag.lng === marker.lng
+          )
+        ) {
+          setMarkers((current) => {
+            return [...current, marker];
+          });
+        }
       }
-    }
-  }, [challenges.length]);
+    } else return;
+  }, [searchMap, challenges.length]);
 
   useEffect(() => {
     if (search) {
