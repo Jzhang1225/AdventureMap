@@ -38,7 +38,6 @@ function Explore({ challenges, auth, createChallenge }) {
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
     libraries,
   });
-
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   const [name, setName] = useState("");
@@ -120,126 +119,131 @@ function Explore({ challenges, auth, createChallenge }) {
   if (!isLoaded) return "loading maps";
 
   return (
-    <div>
-      <h1>Explore Map:</h1>
+    <div className="explore">
+      <div className="content flex-container">
+        <div className="column-left">
+          <h1>Explore Map:</h1>
+          <Search setMarkers={setMarkers} setSelected={setSelected} auth={auth} />
+          {/*<Autocomplete>
+            <input type="text" placeholder="Enter Location" />
+          </Autocomplete>*/}
+        </div>
 
-      <Search setMarkers={setMarkers} setSelected={setSelected} auth={auth} />
-      {/*<Autocomplete>
-        <input type="text" placeholder="Enter Location" />
-      </Autocomplete>*/}
-
-      <GoogleMap
-        zoom={12}
-        mapContainerStyle={mapContainerStyle}
-        center={center}
-        options={options}
-        onClick={onMapClick}
-        onLoad={onMapLoad}
-      >
-        {markers.map((marker, idx) =>
-          marker.completed ? (
-            <Marker
-              key={idx}
-              icon={{
-                url: "https://loc8tor.co.uk/wp-content/uploads/2015/08/stencil.png",
-                scaledSize: new google.maps.Size(100, 50),
-              }}
-              position={{ lat: marker.lat, lng: marker.lng }}
-              onClick={() => {
-                setSelected(marker);
-              }}
-            />
-          ) : (
-            <Marker
-              key={idx}
-              position={{ lat: marker.lat, lng: marker.lng }}
-              onClick={() => {
-                setSelected(marker);
-              }}
-            />
-          )
-        )}
-
-        {selected && <Marker position={selected} />}
-
-        {selected ? (
-          <InfoWindow
-            position={selected}
-            onCloseClick={() => {
-              setSelected(null);
-              setName("");
-              setStartDate("");
-              setEndDate("");
-              setDifficulty("");
-            }}
+        <div className="column-right">
+          <GoogleMap
+            zoom={12}
+            mapContainerStyle={mapContainerStyle}
+            center={center}
+            options={options}
+            onClick={onMapClick}
+            onLoad={onMapLoad}
           >
-            {selected.challenge ? (
-              <div>
-                <h2>{selected.challenge.name}</h2>
-                <p>{selected.challenge.difficulty} Difficulty</p>
-                <p>Start: {selected.challenge.startDate.slice(0, 10)}</p>
-                <p>End: {selected.challenge.endDate.slice(0, 10)}</p>
-              </div>
-            ) : (
-              <form
-                style={{ display: "flex", flexDirection: "column" }}
-                onSubmit={(ev) => {
-                  ev.preventDefault();
+            {markers.map((marker, idx) =>
+              marker.completed ? (
+                <Marker
+                  key={idx}
+                  icon={{
+                    url: "https://loc8tor.co.uk/wp-content/uploads/2015/08/stencil.png",
+                    scaledSize: new google.maps.Size(100, 50),
+                  }}
+                  position={{ lat: marker.lat, lng: marker.lng }}
+                  onClick={() => {
+                    setSelected(marker);
+                  }}
+                />
+              ) : (
+                <Marker
+                  key={idx}
+                  position={{ lat: marker.lat, lng: marker.lng }}
+                  onClick={() => {
+                    setSelected(marker);
+                  }}
+                />
+              )
+            )}
 
-                  const { address } = selected;
-                  const challengeAddress = address.split(", ");
+            {selected && <Marker position={selected} />}
 
-                  createChallenge({
-                    name,
-                    startDate,
-                    endDate,
-                    difficulty,
-                    streetAddress: challengeAddress[0],
-                    city: challengeAddress[1],
-                    state: challengeAddress[2].slice(0, 2),
-                  });
-
-                  setSelected("");
+            {selected ? (
+              <InfoWindow
+                position={selected}
+                onCloseClick={() => {
+                  setSelected(null);
+                  setName("");
+                  setStartDate("");
+                  setEndDate("");
+                  setDifficulty("");
                 }}
               >
-                <input
-                  name="name"
-                  value={name}
-                  onChange={(ev) => setName(ev.target.value)}
-                  placeholder="Challenge Name"
-                />
-                <input
-                  name="startDate"
-                  value={startDate}
-                  type="date"
-                  onChange={(ev) => setStartDate(ev.target.value)}
-                />
-                <input
-                  name="endDate"
-                  value={endDate}
-                  type="date"
-                  onChange={(ev) => setEndDate(ev.target.value)}
-                ></input>
-                <select
-                  name="difficulty"
-                  value={difficulty}
-                  onChange={(ev) => setDifficulty(ev.target.value)}
-                >
-                  <option value="">Difficulty</option>
-                  <option value={"Easy"}>Easy</option>
-                  <option value={"Medium"}>Medium</option>
-                  <option value={"Hard"}>Hard</option>
-                </select>
-                <button
-                  disabled={!name || !startDate || !endDate || !difficulty}
-                >
-                  Create Challenge
-                </button>
-              </form>
-            )}
-          </InfoWindow>
-        ) : null}
-      </GoogleMap>
+                {selected.challenge ? (
+                  <div>
+                    <h2>{selected.challenge.name}</h2>
+                    <p>{selected.challenge.difficulty} Difficulty</p>
+                    <p>Start: {selected.challenge.startDate.slice(0, 10)}</p>
+                    <p>End: {selected.challenge.endDate.slice(0, 10)}</p>
+                  </div>
+                ) : (
+                  <form
+                    style={{ display: "flex", flexDirection: "column" }}
+                    onSubmit={(ev) => {
+                      ev.preventDefault();
+
+                      const { address } = selected;
+                      const challengeAddress = address.split(", ");
+
+                      createChallenge({
+                        name,
+                        startDate,
+                        endDate,
+                        difficulty,
+                        streetAddress: challengeAddress[0],
+                        city: challengeAddress[1],
+                        state: challengeAddress[2].slice(0, 2),
+                      });
+
+                      setSelected("");
+                    }}
+                  >
+                    <input
+                      name="name"
+                      value={name}
+                      onChange={(ev) => setName(ev.target.value)}
+                      placeholder="Challenge Name"
+                    />
+                    <input
+                      name="startDate"
+                      value={startDate}
+                      type="date"
+                      onChange={(ev) => setStartDate(ev.target.value)}
+                    />
+                    <input
+                      name="endDate"
+                      value={endDate}
+                      type="date"
+                      onChange={(ev) => setEndDate(ev.target.value)}
+                    ></input>
+                    <select
+                      name="difficulty"
+                      value={difficulty}
+                      onChange={(ev) => setDifficulty(ev.target.value)}
+                    >
+                      <option value="">Difficulty</option>
+                      <option value={"Easy"}>Easy</option>
+                      <option value={"Medium"}>Medium</option>
+                      <option value={"Hard"}>Hard</option>
+                    </select>
+                    <button
+                      disabled={!name || !startDate || !endDate || !difficulty}
+                    >
+                      Create Challenge
+                    </button>
+                  </form>
+                )}
+              </InfoWindow>
+            ) : null}
+          </GoogleMap>
+        </div>
+      </div>
     </div>
   );
 }
