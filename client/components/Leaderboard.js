@@ -54,12 +54,7 @@ class Leaderboard extends React.Component {
               <option value="">All Rankings</option>
               <option value="friend"> Friend Rankings</option>
             </select>
-            <Pagination
-              count={Math.ceil(users.length / usersPerPage)}
-              color="primary"
-              page={currentPage}
-              onChange={(ev, page) => this.setState({ currentPage: page })}
-            />
+            
             {!filterValue ? (
               <div>Global Rankings</div>
             ) : (
@@ -86,6 +81,12 @@ class Leaderboard extends React.Component {
                 </TableBody>
               </Table>
             </TableContainer>
+            <Pagination
+              count={Math.ceil(users.length / usersPerPage)}
+              color="primary"
+              page={currentPage}
+              onChange={(ev, page) => this.setState({ currentPage: page })}
+            />
           </div>
         </div>
       </>

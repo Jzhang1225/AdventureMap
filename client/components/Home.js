@@ -80,27 +80,34 @@ class Home extends Component {
         <div className="row">
           <div className="flex-container">
             <div className="column-3">
-              <img src="" />
+              <img src="/images/placeholder-square.jpg" />
               <h3>Make challenges</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
               </p>
             </div>
             <div className="column-3">
-              <img src="" />
+              <img src="/images/placeholder-square.jpg" />
               <h3>Compete against friends</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
               </p>
             </div>
             <div className="column-3">
-              <img src="" />
+              <img src="/images/placeholder-square.jpg" />
               <h3>Explore your local area</h3>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="row bottom">
+          <h2>Get started with a new adventure</h2>
+          <Link to="/signup">
+            <button className="button-start">Create an Account</button>
+          </Link>
         </div>
       </div>
     );

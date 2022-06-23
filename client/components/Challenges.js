@@ -6,30 +6,33 @@ import CreateChallenge from "./CreateChallenge";
 const Challenges = ({ challenges, auth, challengeLines }) => {
   console.log("user specific challenges:", challengeLines);
   return (
-    <div>
-      Your challenges:
-      {challengeLines
-        .filter((line) => line.userId == auth.id && line.completed == false)
-        .map((line) => {
+    <div className="challenges content">
+      
+      <div className="user-challenges">
+        Your challenges:
+        {challengeLines
+          .filter((line) => line.userId == auth.id && line.completed == false)
+          .map((line) => {
+            return (
+              <li key={line.id}>
+                <Link to={`/challenges/${line.challenge.id}`}>
+                  {line.challenge.name}
+                </Link>
+              </li>
+            );
+          })}
+        <br></br>
+        Explore other challenges:
+        {challenges.map((challenge) => {
           return (
-            <li key={line.id}>
-              <Link to={`/challenges/${line.challenge.id}`}>
-                {line.challenge.name}
-              </Link>
-            </li>
+            <div key={challenge.id}>
+              <Link to={`/challenges/${challenge.id}`}>{challenge.name}</Link>
+            </div>
           );
         })}
-      <br></br>
-      Explore other challenges:
-      {challenges.map((challenge) => {
-        return (
-          <div key={challenge.id}>
-            <Link to={`/challenges/${challenge.id}`}>{challenge.name}</Link>
-          </div>
-        );
-      })}
-      Don't like what you see? Create your own challenge below!
-      <CreateChallenge />
+        Don't like what you see? Create your own challenge below!
+        <CreateChallenge />
+      </div>
     </div>
   );
 };

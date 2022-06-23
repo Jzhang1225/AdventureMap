@@ -1,17 +1,28 @@
 import React from 'react'
-
 //import Navbar from './components/Navbar'
 import NavbarResponsive from './components/NavbarResponsive';
 import Routes from './Routes'
 import Footer from './components/Footer';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+
+const defaultTheme = createTheme();
+const theme = createTheme({
+  typography: {
+    fontFamily: "Gill Sans, Gill Sans MT, Calibri, Trebuchet MS, sans-serif",
+    button: {
+      textTransform: "none",
+      fontSize: '1rem'
+    }
+  }
+});
 
 const App = () => {
   return (
-    <div>
+    <ThemeProvider theme={theme}>
       <NavbarResponsive />
       <Routes />
       <Footer />
-    </div>
+    </ThemeProvider>
   )
 }
 

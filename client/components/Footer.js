@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <div className="footer">
       <div className="footer-content">
-        <img className="logo" src="/images/logo-white.svg" />
+        <div className="logo"><img src="/images/logo-white.svg" /></div>
         <p>A Website by Cathy Lu, Stefan Mitrovic, Evelyn Rodriguez, Jianing Zhang</p>
         <p><small></small></p>
       </div>
