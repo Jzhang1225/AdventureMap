@@ -41,7 +41,12 @@ class Leaderboard extends React.Component {
     const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
 
     return (
-      <>
+      <div className="leaderboard content">
+        <div className="row top">
+          <h1>Leaderboard</h1>
+          <p>Top users from around the world!</p>
+        </div>
+
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <div
             style={{
@@ -54,12 +59,7 @@ class Leaderboard extends React.Component {
               <option value="">All Rankings</option>
               <option value="friend"> Friend Rankings</option>
             </select>
-            <Pagination
-              count={Math.ceil(users.length / usersPerPage)}
-              color="primary"
-              page={currentPage}
-              onChange={(ev, page) => this.setState({ currentPage: page })}
-            />
+            
             {!filterValue ? (
               <div>Global Rankings</div>
             ) : (
@@ -86,9 +86,15 @@ class Leaderboard extends React.Component {
                 </TableBody>
               </Table>
             </TableContainer>
+            <Pagination
+              count={Math.ceil(users.length / usersPerPage)}
+              color="primary"
+              page={currentPage}
+              onChange={(ev, page) => this.setState({ currentPage: page })}
+            />
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

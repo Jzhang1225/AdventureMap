@@ -35,7 +35,6 @@ function Explore({ challenges, auth, createChallenge }) {
     googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
     libraries,
   });
-
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   const [name, setName] = useState("");
@@ -183,7 +182,9 @@ function Explore({ challenges, auth, createChallenge }) {
   if (!isLoaded) return "loading maps";
 
   return (
-    <div>
+        <div className="explore">
+      <div className="content flex-container">
+        <div className="column-left">
       <h1>Explore Map:</h1>
       <select
         name="search"
@@ -251,16 +252,14 @@ function Explore({ challenges, auth, createChallenge }) {
 
         {selected && <Marker position={selected} />}
 
-        {selected ? (
-          <InfoWindow
-            position={selected}
-            onCloseClick={() => {
-              setSelected(null);
-              setName("");
-              setStartDate("");
-              setEndDate("");
-              setDifficulty("");
-            }}
+        <div className="column-right">
+          <GoogleMap
+            zoom={12}
+            mapContainerStyle={mapContainerStyle}
+            center={center}
+            options={options}
+            onClick={onMapClick}
+            onLoad={onMapLoad}
           >
             {selected.search ? (
               <div>
@@ -372,6 +371,8 @@ function Explore({ challenges, auth, createChallenge }) {
           </InfoWindow>
         ) : null}
       </GoogleMap>
+    </div>
+    </div>
     </div>
   );
 }
