@@ -82,7 +82,7 @@ class Profile extends Component {
   }
 }
 
-const mapState = ({ auth }) => {
+const mapState = ({ auth, challengeLines }) => {
   return {
     auth,
   };

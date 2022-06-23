@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import CreateChallenge from "./CreateChallenge";
 
 const Challenges = ({ challenges, auth, challengeLines }) => {
-  console.log("user specific challenges:", challengeLines);
   return (
     <div>
       Your challenges:
@@ -22,6 +21,10 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
       <br></br>
       Explore other challenges:
       {challenges.map((challenge) => {
+        const joined = challengeLines.find(
+          (line) => line.challengeId === challenge.id
+        );
+        if (joined) return null;
         return (
           <div key={challenge.id}>
             <Link to={`/challenges/${challenge.id}`}>{challenge.name}</Link>

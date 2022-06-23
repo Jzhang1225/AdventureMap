@@ -4,9 +4,9 @@ import {
   addChallengeLine,
   removeChallengeLine,
   completeChallengeLine,
-} from "../store/challengeLines";
-import { deleteChallenge } from "../store/challenges";
-import { updatePoints } from "../store/points";
+  deleteChallenge,
+  updatePoints,
+} from "../store";
 import { Link } from "react-router-dom";
 
 const Challenge = ({
@@ -17,9 +17,11 @@ const Challenge = ({
   removeChallengeLine,
   deleteChallenge,
   completeChallengeLine,
-  updatePoints
+  updatePoints,
 }) => {
   let existingLine = specificChallenge.find((line) => line.user.id == auth.id);
+  console.log(auth.points);
+  console.log(challenge?.points);
   return (
     <div>
       {challenge?.name}
@@ -33,18 +35,20 @@ const Challenge = ({
       {specificChallenge.map((line) => {
         return (
           <li key={line.id}>
-            <Link to={`/users/${line.user.id}`}>{line.user.username} {line.user.points}</Link>
+            <Link to={`/users/${line.user.id}`}>
+              {line.user.username} {line.user.points}
+            </Link>
           </li>
         );
       })}
-      { existingLine ? (
+      {existingLine ? (
         <div>
-            <button onClick={() => removeChallengeLine(existingLine)}>
+          <button onClick={() => removeChallengeLine(existingLine)}>
             Unfollow Challenge!
-            </button>
-            <button
+          </button>
+          <button
             onClick={() => {
-              updatePoints(challenge);
+              updatePoints(challenge.points);
               completeChallengeLine(existingLine);
             }}
           >
@@ -53,7 +57,7 @@ const Challenge = ({
         </div>
       ) : (
         <button onClick={() => addChallengeLine(challenge)}>
-        Join Challenge!
+          Join Challenge!
         </button>
       )}
       {auth.admin ? (
@@ -100,7 +104,7 @@ const mapDispatch = (dispatch, { history }) => {
     completeChallengeLine: (challengeLine) => {
       dispatch(completeChallengeLine(challengeLine, history));
     },
-    updatePoints:(points) => dispatch(updatePoints(points))
+    updatePoints: (points) => dispatch(updatePoints(points)),
   };
 };
 
