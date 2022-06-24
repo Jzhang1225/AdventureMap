@@ -335,6 +335,9 @@ function Explore({ challenges, auth, createChallenge }) {
                   <div>
                     <h2>{selected.challenge.name}</h2>
                     <p>{selected.challenge.difficulty} Difficulty</p>
+                    <p>
+                      Status: {selected.completed ? "Completed" : "Ongoing"}
+                    </p>
                     <p>Start: {selected.challenge.startDate.slice(0, 10)}</p>
                     <p>End: {selected.challenge.endDate.slice(0, 10)}</p>
                   </div>
