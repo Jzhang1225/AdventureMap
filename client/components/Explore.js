@@ -149,7 +149,6 @@ function Explore({ challenges, auth, createChallenge }) {
     setEndDate("");
     setDifficulty("");
     setSelected(marker);
-    setMarkers((current) => [...current, marker]);
   }, []);
 
   const mapRef = useRef();
@@ -186,6 +185,7 @@ function Explore({ challenges, auth, createChallenge }) {
       state,
     });
 
+    setMarkers((current) => [...current, selected]);
     setSelected("");
   };
 
@@ -213,7 +213,11 @@ function Explore({ challenges, auth, createChallenge }) {
             <option value="spa"> Spas</option>
             <option value="night_club"> Night Clubs</option>
           </select>
-          <Search setMarkers={setMarkers} setSelected={setSelected} auth={auth} />
+          <Search
+            setMarkers={setMarkers}
+            setSelected={setSelected}
+            auth={auth}
+          />
         </div>
 
         <div className="column-right">
@@ -317,7 +321,9 @@ function Explore({ challenges, auth, createChallenge }) {
                         <option value={"Hard"}>Hard</option>
                       </select>
                       <button
-                        disabled={!name || !startDate || !endDate || !difficulty}
+                        disabled={
+                          !name || !startDate || !endDate || !difficulty
+                        }
                       >
                         Create Challenge
                       </button>
@@ -336,7 +342,9 @@ function Explore({ challenges, auth, createChallenge }) {
                     <button
                       onClick={() => {
                         setCenter({ lat: selected.lat, lng: selected.lng });
-                        setMarkers(markers.filter((markers) => !markers.search));
+                        setMarkers(
+                          markers.filter((markers) => !markers.search)
+                        );
                         setSelected("");
                       }}
                     >
@@ -375,7 +383,9 @@ function Explore({ challenges, auth, createChallenge }) {
                         <option value={"Hard"}>Hard</option>
                       </select>
                       <button
-                        disabled={!name || !startDate || !endDate || !difficulty}
+                        disabled={
+                          !name || !startDate || !endDate || !difficulty
+                        }
                       >
                         Create Challenge
                       </button>
