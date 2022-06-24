@@ -65,8 +65,8 @@ const Messenger = (props) => {
     if (found) {
       setCurrentChat(found);
     }
-  }, [props.match.params.id, conversations]);
-
+  },[props.match.params.id, conversations]);
+  
   useEffect(() => {
     const getMessages = async () => {
       try {
@@ -158,7 +158,7 @@ const Messenger = (props) => {
             )}
           </div>
         </div>
-        <div className="chatOnline">
+        {/* <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <ChatOnline
               onlineUsers={onlineUsers}
@@ -166,7 +166,7 @@ const Messenger = (props) => {
               setCurrentChat={setCurrentChat}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
