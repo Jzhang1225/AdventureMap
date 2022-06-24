@@ -5,11 +5,12 @@ import Message from "./Message";
 import ChatOnline from "./ChatOnline";
 import { io } from "socket.io-client";
 import axios from "axios";
+import { Link } from 'react-router-dom';
 
 const Messenger = (props) => {
   const { users, auth } = props;
   const user = props.auth;
-  const URL = process.env.SOCKET_IO_URL;
+  const URL = typeof process !== 'undefined' ? process.env.SOCKET_IO_URL : null;
 
   console.log("USER", user);
 
@@ -50,7 +51,7 @@ const Messenger = (props) => {
   useEffect(() => {
     const getConversations = async () => {
       try {
-        const response = await axios.get(`api/conversations/${user.id}`);
+        const response = await axios.get(`/api/conversations/${user.id}`);
         setConversations(response.data);
       } catch (err) {
         console.log(err);
@@ -59,10 +60,21 @@ const Messenger = (props) => {
     getConversations();
   }, [user.id]);
 
+  useEffect(()=> {
+    const found = conversations.find(conversation => conversation.id === props.match.params.id * 1);
+    if(found){
+      setCurrentChat(found);
+    }
+
+  },[props.match.params.id, conversations]);
+
   useEffect(() => {
     const getMessages = async () => {
       try {
-        const response = await axios.get(`api/messages/${currentChat.id}`);
+        if(!currentChat){
+          return;
+        }
+        const response = await axios.get(`/api/messages/${currentChat.id}`);
         setMessages(response.data);
       } catch (err) {
         console.log(err);
@@ -85,12 +97,12 @@ const Messenger = (props) => {
 
     socket.current.emit("sendMessage", {
       senderId: user.id,
-      receiverId: currentChat.receiverId,
+      receiverId: user.id !== currentChat.receiverId ? currentChat.receiverId : currentChat.senderId,
       text: newMessage,
     });
 
     try {
-      const response = await axios.post("api/messages", message);
+      const response = await axios.post("/api/messages", message);
       setMessages([...messages, response.data]);
       setNewMessage("");
     } catch (err) {
@@ -108,9 +120,9 @@ const Messenger = (props) => {
             <input placeholder="Search For Friends" className="chatMenuInput" />
             {conversations.map((c) => {
               return (
-                <div onClick={() => setCurrentChat(c)}>
+                <Link to={`/messenger/${c.id}`}>
                   <Conversation conversation={c} currentUser={user} />
-                </div>
+                </Link>
               );
             })}
           </div>

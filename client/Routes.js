@@ -48,7 +48,7 @@ class Routes extends Component {
             <Route path="/users/:id" component={SelectedUser} />
             <Route path="/profile" component={Profile} />
             <Route path="/friends" component={FriendList} />
-            <Route path="/messenger" component={Messenger} />
+            <Route path="/messenger/:id?" component={Messenger} />
             <Route
               path="/pendingFriendRequests"
               component={PendingFriendRequests}
