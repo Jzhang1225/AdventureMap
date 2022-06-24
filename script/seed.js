@@ -225,6 +225,17 @@ async function seed() {
       endDate: "2022/06/10",
       difficulty: "Medium",
     }),
+    Challenge.create({
+      name:"Go to Kissena Park",
+      points:20,
+      sreetAddress:"Booth Memorial Ave",
+      city:"Fresh Meadows",
+      state:"New York",
+      zip:11365,
+      startDate:"2022/06/20",
+      endDate:"2022/07/15",
+      difficulty:"Easy",
+    })
   ]);
 
   const challengeLine = await Promise.all([
