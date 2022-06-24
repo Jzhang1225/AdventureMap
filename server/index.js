@@ -41,6 +41,9 @@ const init = async () => {
       //send and get message
       socket.on("sendMessage", ({ senderId, receiverId, text }) => {
         const user = getUser(receiverId);
+        if (!user) {
+         return 
+        }
         io.to(user.socketId).emit("getMessage", {
           senderId,
           text,

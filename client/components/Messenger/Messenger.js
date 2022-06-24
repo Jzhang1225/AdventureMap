@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 const Messenger = (props) => {
   const { users, auth } = props;
   const user = props.auth;
-  const URL = typeof process !== 'undefined' ? process.env.SOCKET_IO_URL : null;
+  const URL = process.env.SOCKET_IO_URL
 
   console.log("USER", user);
 
@@ -67,7 +67,7 @@ const Messenger = (props) => {
     }
 
   },[props.match.params.id, conversations]);
-
+  
   useEffect(() => {
     const getMessages = async () => {
       try {
@@ -111,6 +111,8 @@ const Messenger = (props) => {
   };
 
   console.log("CURRENT CHAT", currentChat);
+  console.log("USERS", users)
+
 
   return (
     <div>
@@ -158,7 +160,7 @@ const Messenger = (props) => {
             )}
           </div>
         </div>
-        <div className="chatOnline">
+        {/* <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <ChatOnline
               onlineUsers={onlineUsers}
@@ -166,7 +168,7 @@ const Messenger = (props) => {
               setCurrentChat={setCurrentChat}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
