@@ -1,43 +1,69 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import CreateChallenge from "./CreateChallenge";
+import moment from "moment";
 
 const Challenges = ({ challenges, auth, challengeLines }) => {
-  console.log("user specific challenges:", challengeLines);
+  //console.log("user specific challenges:", challengeLines);
+
   return (
     <div className="challenges content">
       <div className="row top">
         <h1>Challenges</h1>
         <p>Checkout these challenges!</p>
       </div>
-      <div className="user-challenges">
-        <div class="row">
-          Your challenges:
-          {challengeLines
-            .filter((line) => line.userId == auth.id && line.completed == false)
-            .map((line) => {
-              return (
-                <li key={line.id}>
-                  <Link to={`/challenges/${line.challenge.id}`}>
-                    {line.challenge.name}
-                  </Link>
-                </li>
-              );
-            })
-          }
-        </div>
-        <div class="row">
-          Explore other challenges:
+      <div className="row">
+        <h2>Explore these challenges:</h2>
+        <div className="flex-grid">
           {challenges.map((challenge) => {
+            const startDateString = moment(new Date(challenge.startDate)).format('MMMM D Y');
+            const endDateString = moment(new Date(challenge.endDate)).format('MMMM D Y');
+
             return (
-              <div key={challenge.id}>
-                <Link to={`/challenges/${challenge.id}`}>{challenge.name}</Link>
-              </div>
+              <Link to={`/challenges/${challenge.id}`} key={challenge.id}>
+                <div className="challenge-card">
+                  <img src="/images/placeholder-square.jpg" />
+                  {/* <img src={query} alt="" /> */}
+                  <div className="card-text">
+                    {challenge.name}
+                    <p>{startDateString} - {endDateString}</p>
+                    <p>{challenge.city}, {challenge.state}</p>
+                  </div>
+                </div>
+              </Link>
             );
           })}
         </div>
-        <div class="row">
+      </div>
+      <div className="user-challenges">
+        <div className="row">
+          <h2>Your challenges:</h2>
+          <div className="flex-grid">
+            {
+              challengeLines
+              .filter((line) => line.userId == auth.id && line.completed == false)
+              .map((line) => {
+                const startDateString = moment(new Date(line.challenge.startDate)).format('MMMM D Y');
+                const endDateString = moment(new Date(line.challenge.endDate)).format('MMMM D Y');
+                return (
+                  <Link to={`/challenges/${line.challenge.id}`} key={line.id}>
+                    <div className="challenge-card">
+                      <img src="/images/placeholder-square.jpg" />
+                      <div className="card-text">
+                        {line.challenge.name}
+                        <p>{startDateString} - {endDateString}</p>
+                        <p>{line.challenge.city}, {line.challenge.state}</p>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })
+            }
+          </div>
+        </div>
+        
+        <div className="row">
           Don't like what you see? Create your own challenge below!
           <CreateChallenge />
         </div>

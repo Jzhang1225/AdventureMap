@@ -225,6 +225,28 @@ async function seed() {
       endDate: "2022/06/10",
       difficulty: "Medium",
     }),
+    Challenge.create({
+      name: "Go to a Park",
+      points: 10,
+      streetAddress: "43-50 Main Street",
+      city: "Flushing",
+      state: "New York",
+      zip: 10019,
+      startDate: "2022/06/05",
+      endDate: "2022/06/10",
+      difficulty: "Easy",
+    }),
+    Challenge.create({
+      name: "Eat 10 Buns",
+      points: 20,
+      streetAddress: "135-45 Roosevelt Ave",
+      city: "Queens",
+      state: "New York",
+      zip: 11354,
+      startDate: "2022/06/05",
+      endDate: "2022/06/10",
+      difficulty: "Medium",
+    }),
   ]);
 
   const challengeLine = await Promise.all([
@@ -235,6 +257,14 @@ async function seed() {
     ChallengeLine.create({
       userId: Stefan.id,
       challengeId: 2,
+    }),
+    ChallengeLine.create({
+      userId: Cathy.id,
+      challengeId: 3,
+    }),
+    ChallengeLine.create({
+      userId: Cathy.id,
+      challengeId: 4,
     }),
     // }),
     // ChallengeLine.create({
