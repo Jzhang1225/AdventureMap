@@ -48,18 +48,31 @@ class Profile extends Component {
       <div>
         <h3>Update User Profile</h3>
         <form>
+          <label htmlFor="username">User Name</label>
           <input name="username" value={username} onChange={onChange} />
+          <label htmlFor="firstName">First Name</label>
           <input name="firstName" value={firstName} onChange={onChange} />
+          <label htmlFor="lastName">Last Name</label>
           <input name="lastName" value={lastName} onChange={onChange} />
+          <label htmlFor="streetAddress">Street Address</label>
           <input
             name="streetAddress"
             value={streetAddress}
             onChange={onChange}
           />
-          <input name="email" value={email} onChange={onChange} />
+          <label htmlFor="city">City</label>
           <input name="city" value={city} onChange={onChange} />
+          <label htmlFor="state">State</label>
           <input name="state" value={state} onChange={onChange} />
-          <input name="zip" value={zip} onChange={onChange} />
+          <label htmlFor="zip">Zip</label>
+          <input name="zip" value={zip} onChange={onChange} placeholder="Zip" />
+          <label htmlFor="email">Email</label>
+          <input
+            name="email"
+            value={email}
+            onChange={onChange}
+            placeholder="Email"
+          />
         </form>
         <button
           onClick={updateProfile}

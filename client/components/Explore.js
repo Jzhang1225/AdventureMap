@@ -210,8 +210,10 @@ function Explore({ challenges, auth, createChallenge }) {
             <option value="park"> Parks</option>
             <option value="museum"> Museums</option>
             <option value="movie_theater"> Movie Theaters</option>
-            <option value="spa"> Spas</option>
+            <option value="tourist_attraction"> Tourist attractions</option>
             <option value="night_club"> Night Clubs</option>
+            <option value="library"> Libraries</option>
+            <option value="restaurant"> Restaurants</option>
           </select>
           <Search
             setMarkers={setMarkers}

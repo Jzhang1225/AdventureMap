@@ -19,18 +19,4 @@ FriendRequest.createRandom = async (User) => {
   });
 };
 
-FriendRequest.beforeCreate(async (friendrequest, options) => {
-  const friendRequests = await FriendRequest.findAll();
-  friendRequests.forEach((request) => {
-    if (
-      (request.friendId === friendrequest.friendId &&
-        request.userId === friendrequest.userId) ||
-      (request.userId === friendrequest.friendId &&
-        request.friendId === friendrequest.userId)
-    ) {
-      friendrequest.destroy();
-    }
-  });
-});
-
 module.exports = FriendRequest;
