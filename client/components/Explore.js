@@ -149,7 +149,6 @@ function Explore({ challenges, auth, createChallenge }) {
     setEndDate("");
     setDifficulty("");
     setSelected(marker);
-    setMarkers((current) => [...current, marker]);
   }, []);
 
   const mapRef = useRef();
@@ -163,7 +162,17 @@ function Explore({ challenges, auth, createChallenge }) {
     ev.preventDefault();
 
     const { address } = selected;
-    const challengeAddress = address.split(", ");
+    let streetAddress, city, state;
+    if (address) {
+      const challengeAddress = address.split(", ");
+      streetAddress = challengeAddress[0];
+      city = challengeAddress[1];
+      state = challengeAddress[2].slice(0, 2);
+    } else {
+      streetAddress = selected.result.vicinity.split(", ")[0];
+      city = selected.result.vicinity.split(", ")[1];
+      state = selected.result.plus_code.compound_code.split(", ")[1];
+    }
 
     createChallenge({
       name,
@@ -171,11 +180,12 @@ function Explore({ challenges, auth, createChallenge }) {
       endDate,
       difficulty,
       points: difficulty === "easy" ? 10 : difficulty === "medium" ? 20 : 30,
-      streetAddress: challengeAddress[0],
-      city: challengeAddress[1],
-      state: challengeAddress[2].slice(0, 2),
+      streetAddress,
+      city,
+      state,
     });
 
+    setMarkers((current) => [...current, selected]);
     setSelected("");
   };
 
@@ -203,7 +213,11 @@ function Explore({ challenges, auth, createChallenge }) {
             <option value="spa"> Spas</option>
             <option value="night_club"> Night Clubs</option>
           </select>
-          <Search setMarkers={setMarkers} setSelected={setSelected} auth={auth} />
+          <Search
+            setMarkers={setMarkers}
+            setSelected={setSelected}
+            auth={auth}
+          />
         </div>
 
         <div className="column-right">
@@ -307,7 +321,9 @@ function Explore({ challenges, auth, createChallenge }) {
                         <option value={"Hard"}>Hard</option>
                       </select>
                       <button
-                        disabled={!name || !startDate || !endDate || !difficulty}
+                        disabled={
+                          !name || !startDate || !endDate || !difficulty
+                        }
                       >
                         Create Challenge
                       </button>
@@ -326,7 +342,9 @@ function Explore({ challenges, auth, createChallenge }) {
                     <button
                       onClick={() => {
                         setCenter({ lat: selected.lat, lng: selected.lng });
-                        setMarkers(markers.filter((markers) => !markers.search));
+                        setMarkers(
+                          markers.filter((markers) => !markers.search)
+                        );
                         setSelected("");
                       }}
                     >
@@ -365,7 +383,9 @@ function Explore({ challenges, auth, createChallenge }) {
                         <option value={"Hard"}>Hard</option>
                       </select>
                       <button
-                        disabled={!name || !startDate || !endDate || !difficulty}
+                        disabled={
+                          !name || !startDate || !endDate || !difficulty
+                        }
                       >
                         Create Challenge
                       </button>

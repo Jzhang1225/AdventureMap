@@ -1,35 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function Conversation ({ conversation, currentUser }) {
-  console.log("CURRENT USER", currentUser)
-  const [user, setUser] = useState(null)
+export default function Conversation({ conversation, currentUser }) {
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const friendId = conversation.senderId !== currentUser.id
-    ? conversation.senderId
-    : conversation.receiverId;
-    
-    const getUser = async() => {
-      
-      try{
-        const response = await axios(`/api/users/${friendId}`)
-        setUser(response.data)
+    const friendId =
+      conversation.senderId !== currentUser.id
+        ? conversation.senderId
+        : conversation.receiverId;
+
+    const getUser = async () => {
+      try {
+        const response = await axios(`/api/users/${friendId}`);
+        setUser(response.data);
+      } catch (err) {
+        console.log(err);
       }
-      catch(err) {
-        console.log(err)
-      }
-    }
+    };
     getUser();
-  }, [currentUser, conversation])
+  }, [currentUser, conversation]);
 
   return (
-    <div className='conversation'>
-      <img 
-        className='conversationImg' 
-        src={user?.avatar} 
-        alt='' />
-      <span className='conversationName'>{user?.username}</span>
+    <div className="conversation">
+      <img
+        className="conversationImg"
+        src={`/public/profile-pics/${user?.avatar}`}
+        alt=""
+      />
+      <span className="conversationName">{user?.username}</span>
     </div>
-  )
+  );
 }
