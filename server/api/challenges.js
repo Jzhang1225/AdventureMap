@@ -15,7 +15,7 @@ const isLoggedIn = async (req, res, next) => {
   }
 };
 
-router.get("/", isLoggedIn, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     const challenges = await Challenge.findAll();
     res.json(challenges);

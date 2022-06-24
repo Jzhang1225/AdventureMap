@@ -330,7 +330,6 @@ h2 {
 }
 
 /*** Authform ***/
-
 .authform.flex-container {
   align-items: normal;
 }
@@ -404,8 +403,28 @@ label, input {
 }
 
 /*** Challenges ***/
+.challenges h2 {
+  margin-bottom: 1em;
+}
 .row.top {
   text-align: center;
+}
+.challenge-card {
+  box-shadow: 0 4px 12px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.1);
+}
+.challenge-card img {
+  display: block;
+  width: 100%;
+  height: 200px;
+}
+.card-text {
+  padding: 24px;
+}
+.challenges .flex-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  justify-content: space-between;
+  row-gap: 2rem;
 }
 
 /*** Responsive ***/
@@ -432,5 +451,13 @@ label, input {
   }
   .hero-text {
     width: 90%;
+  }
+  .challenges .flex-grid {
+    grid-template-columns: repeat(2, 47.5%);
+  }
+}
+@media (max-width: 768px) {
+  .challenges .flex-grid {
+    grid-template-columns: 100%;
   }
 }

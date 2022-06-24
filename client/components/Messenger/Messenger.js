@@ -5,14 +5,12 @@ import Message from "./Message";
 import ChatOnline from "./ChatOnline";
 import { io } from "socket.io-client";
 import axios from "axios";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const Messenger = (props) => {
   const { users, auth } = props;
   const user = props.auth;
-  const URL = typeof process !== 'undefined' ? process.env.SOCKET_IO_URL : null;
-
-  console.log("USER", user);
+  const URL = process.env.SOCKET_IO_URL;
 
   const [conversations, setConversations] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
@@ -60,18 +58,19 @@ const Messenger = (props) => {
     getConversations();
   }, [user.id]);
 
-  useEffect(()=> {
-    const found = conversations.find(conversation => conversation.id === props.match.params.id * 1);
-    if(found){
+  useEffect(() => {
+    const found = conversations.find(
+      (conversation) => conversation.id === props.match.params.id * 1
+    );
+    if (found) {
       setCurrentChat(found);
     }
-
   },[props.match.params.id, conversations]);
-
+  
   useEffect(() => {
     const getMessages = async () => {
       try {
-        if(!currentChat){
+        if (!currentChat) {
           return;
         }
         const response = await axios.get(`/api/messages/${currentChat.id}`);
@@ -97,7 +96,10 @@ const Messenger = (props) => {
 
     socket.current.emit("sendMessage", {
       senderId: user.id,
-      receiverId: user.id !== currentChat.receiverId ? currentChat.receiverId : currentChat.senderId,
+      receiverId:
+        user.id !== currentChat.receiverId
+          ? currentChat.receiverId
+          : currentChat.senderId,
       text: newMessage,
     });
 
@@ -110,17 +112,15 @@ const Messenger = (props) => {
     }
   };
 
-  console.log("CURRENT CHAT", currentChat);
-
   return (
     <div>
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
             <input placeholder="Search For Friends" className="chatMenuInput" />
-            {conversations.map((c) => {
+            {conversations.map((c, idx) => {
               return (
-                <Link to={`/messenger/${c.id}`}>
+                <Link key={idx} to={`/messenger/${c.id}`}>
                   <Conversation conversation={c} currentUser={user} />
                 </Link>
               );
@@ -132,9 +132,9 @@ const Messenger = (props) => {
             {currentChat ? (
               <>
                 <div className="chatBoxTop">
-                  {messages.map((m) => {
+                  {messages.map((m, idx) => {
                     return (
-                      <div ref={scrollRef}>
+                      <div key={idx} ref={scrollRef}>
                         <Message message={m} own={m.sender === user.id} />
                       </div>
                     );
@@ -158,7 +158,7 @@ const Messenger = (props) => {
             )}
           </div>
         </div>
-        <div className="chatOnline">
+        {/* <div className="chatOnline">
           <div className="chatOnlineWrapper">
             <ChatOnline
               onlineUsers={onlineUsers}
@@ -166,7 +166,7 @@ const Messenger = (props) => {
               setCurrentChat={setCurrentChat}
             />
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

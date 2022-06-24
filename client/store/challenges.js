@@ -3,6 +3,7 @@ import axios from "axios";
 const GET_CHALLENGES = "GET_CHALLENGES";
 const CREATE_CHALLENGE = "CREATE_CHALLENGE";
 const DELETE_CHALLENGE = "DELETE_CHALLENGE";
+const GET_ALL_CHALLENGES = "GET_ALL_CHALLENGES";
 
 export const getChallenges = () => {
   return async (dispatch) => {
@@ -17,6 +18,10 @@ export const getChallenges = () => {
       ).data;
       dispatch({ type: GET_CHALLENGES, challenges });
     }
+    const allChallenges = (
+      await axios.get("/api/challenges/")
+    ).data; 
+    dispatch({ type: GET_ALL_CHALLENGES, allChallenges });
   };
 };
 
@@ -54,6 +59,9 @@ export const deleteChallenge = (challenge, history) => {
 
 export default function (state = [], action) {
   switch (action.type) {
+    case GET_ALL_CHALLENGES:
+      console.log('all', action.allChallenges)
+      return action.allChallenges;
     case GET_CHALLENGES:
       return action.challenges;
     case CREATE_CHALLENGE:
