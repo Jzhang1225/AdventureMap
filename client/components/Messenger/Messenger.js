@@ -8,7 +8,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 const Messenger = (props) => {
-  const { users, auth } = props;
+  const { users, auth, acceptedFriendRequest } = props;
   const user = props.auth;
   const URL = process.env.SOCKET_IO_URL;
 
@@ -86,6 +86,28 @@ const Messenger = (props) => {
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  useEffect(async () => {
+    const conversationArr = [];
+    for (let friendRequest of acceptedFriendRequest) {
+      const friend = users
+        .filter((user) => user.id !== auth.id)
+        .find(
+          (user) =>
+            user.id === friendRequest.userId ||
+            user.id === friendRequest.friendId
+        );
+      try {
+        const newConversation = (
+          await axios.post("/api/conversations", { friend, auth })
+        ).data;
+        conversationArr.push(newConversation);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    setConversations([...conversations, ...conversationArr]);
+  }, [acceptedFriendRequest.length]);
+
   const handleSubmit = async (ev) => {
     ev.preventDefault();
     const message = {
@@ -117,7 +139,7 @@ const Messenger = (props) => {
       <div className="messenger">
         <div className="chatMenu">
           <div className="chatMenuWrapper">
-            <input placeholder="Search For Friends" className="chatMenuInput" />
+            <h2>Friends</h2>
             {conversations.map((c, idx) => {
               return (
                 <Link key={idx} to={`/messenger/${c.id}`}>
@@ -171,11 +193,17 @@ const Messenger = (props) => {
     </div>
   );
 };
-const mapStateToProps = (state) => {
+
+const mapState = ({ friendRequests, users, auth }) => {
+  const acceptedFriendRequest = friendRequests.filter(
+    (request) => request.status === "accepted"
+  );
+
   return {
-    users: state.users,
-    auth: state.auth,
+    acceptedFriendRequest,
+    users,
+    auth,
   };
 };
 
-export default connect(mapStateToProps)(Messenger);
+export default connect(mapState)(Messenger);

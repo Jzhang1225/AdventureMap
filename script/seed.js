@@ -17,7 +17,11 @@ async function seed() {
     username: "Stefan",
     password: "123",
     admin: true,
-    avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
+    streetAddress: "142-30 Barclay Ave",
+    city: "Queens",
+    state: "NY",
+    zip: 11355,
+    avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
   });
   const [cody, murphy, susan, stanley, Jianing, Cathy, Evelyn] =
     await Promise.all([
@@ -25,34 +29,34 @@ async function seed() {
         username: "cody",
         password: "123",
         points: 400,
-        streetAddress: "123 Fake Street",
-        city: "Springfield",
-        state: "Oregon",
-        zip: 94461,
+        streetAddress: "152-03 Northern Blvd",
+        city: "Queens",
+        state: "NY",
+        zip: 11354,
         email: "fake-email@gmail.com",
-        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "murphy",
         password: "123",
         points: 650,
-        streetAddress: "456 Real Drive",
-        city: "Ordinary City",
-        state: "Utah",
-        zip: 65416,
+        streetAddress: "51-35 Northern Blvd",
+        city: "Queens",
+        state: "NY",
+        zip: 11377,
         email: "real-email@gmail.com",
-        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "susan",
         password: "123",
         points: 240,
-        streetAddress: "789 Real Street",
-        city: "Strange City",
-        state: "Ohio",
-        zip: 51655,
+        streetAddress: "33-80 Queens Blvd",
+        city: "Queens",
+        state: "NY",
+        zip: 11101,
         email: "real-email43@gmail.com",
-        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "stanley",
@@ -63,26 +67,20 @@ async function seed() {
         state: "Maine",
         zip: 12346,
         email: "remasdasdail@gmail.com",
-        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "Jianing",
         password: "123",
         admin: true,
-        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "Cathy",
         password: "123",
         admin: true,
-        avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
+        avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
-      // User.create({
-      //   username: "Stefan",
-      //   password: "123",
-      //   admin: true,
-      //   avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
-      // }),
       await User.create({
         username: "Evelyn",
         password: "123",
@@ -129,7 +127,7 @@ async function seed() {
   ]);
 
   const newFriendRequests = await Promise.all(
-    Array(100)
+    Array(200)
       .fill("")
       .map((__) => FriendRequest.createRandom(User))
   );
