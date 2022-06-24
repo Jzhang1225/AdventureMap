@@ -45,7 +45,6 @@ function Explore({ challenges, auth, createChallenge }) {
   const [searchMap, setSearchMap] = useState(null);
   const [search, setSearch] = useState("");
   const [center, setCenter] = useState(mapCenter);
-  console.log("hi");
 
   useEffect(async () => {
     if (searchMap) {
@@ -164,7 +163,17 @@ function Explore({ challenges, auth, createChallenge }) {
     ev.preventDefault();
 
     const { address } = selected;
-    const challengeAddress = address.split(", ");
+    let streetAddress, city, state;
+    if (address) {
+      const challengeAddress = address.split(", ");
+      streetAddress = challengeAddress[0];
+      city = challengeAddress[1];
+      state = challengeAddress[2].slice(0, 2);
+    } else {
+      streetAddress = selected.result.vicinity.split(", ")[0];
+      city = selected.result.vicinity.split(", ")[1];
+      state = selected.result.plus_code.compound_code.split(", ")[1];
+    }
 
     createChallenge({
       name,
@@ -172,9 +181,9 @@ function Explore({ challenges, auth, createChallenge }) {
       endDate,
       difficulty,
       points: difficulty === "easy" ? 10 : difficulty === "medium" ? 20 : 30,
-      streetAddress: challengeAddress[0],
-      city: challengeAddress[1],
-      state: challengeAddress[2].slice(0, 2),
+      streetAddress,
+      city,
+      state,
     });
 
     setSelected("");
