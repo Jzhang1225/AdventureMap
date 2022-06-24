@@ -45,7 +45,6 @@ function Explore({ challenges, auth, createChallenge }) {
   const [searchMap, setSearchMap] = useState(null);
   const [search, setSearch] = useState("");
   const [center, setCenter] = useState(mapCenter);
-  console.log("hi");
 
   useEffect(async () => {
     if (searchMap) {
