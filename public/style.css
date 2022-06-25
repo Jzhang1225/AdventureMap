@@ -220,7 +220,7 @@ h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: rgb(108, 37, 159);
+  background-color: #5e387c;
   color: white;
 }
 .chatOnline{
@@ -497,3 +497,38 @@ label, input {
     grid-template-columns: 100%;
   }
 }
+
+/*** Profile ***/
+.profile-card{
+  display:flex; 
+  justify-content: center; 
+  align-items: center;
+  width: 50%;
+  height: 250px;
+  margin: auto; 
+  padding: 5px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: solid 1px rgb(231, 227, 227);
+}
+.profile-info{
+  font-size: 16;
+  font-weight: normal;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+.update-field{
+  width: 250px
+}
+
+/*** Friends ***/
+.flex-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  justify-content: space-between;
+  row-gap: 2rem;
+}
+.friend-card{
+  border: solid 1px rgb(231, 227, 227);
+}
+
