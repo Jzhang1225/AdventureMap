@@ -94,6 +94,7 @@ const Challenge = ({
         <div className="flex-container">
           <div className="column-left description-text">
             <h2>Description</h2>
+            <div>{challenge?.description}</div>
           </div>
           <div className="column-right">
             <h2>Current Participants</h2>
