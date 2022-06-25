@@ -3,6 +3,11 @@ import React from "react";
 //import {Client} from "@googlemaps/google-maps-services-js";
 import { GlobalMap } from "./Explore";
 
+function sleep(milliSeconds) {
+  var startTime = new Date().getTime();
+  while (new Date().getTime() < startTime + milliSeconds);
+}
+
 class ChallengeImage extends React.Component {
   constructor(props) {
     super(props);
@@ -15,7 +20,8 @@ class ChallengeImage extends React.Component {
     this.getGooglePhoto();
   }
 
-  getGooglePhoto = async () => {
+  getGooglePhoto = () => {
+    const { service, address } = this.props;
     let photoUrl = "test";
     try {
       // const place = await getGeocode({
@@ -27,24 +33,38 @@ class ChallengeImage extends React.Component {
 
       // const map = new google.maps.Map(document.createElement("div"));
 
-      console.log(GlobalMap);
-      const service = new google.maps.places.PlacesService(GlobalMap);
+      // const service = new google.maps.places.PlacesService(map);
 
       const request = {
         //query: "Museum of Contemporary Art Australia " + "40 George St, The Rocks NSW 2000, Australia",
-        query: this.props.address,
-        fields: ["name", "geometry", "icon", "photos", "place_id"],
+        query: address,
+        fields: ["name", "photos", "place_id"],
       };
-
-      service.findPlaceFromQuery(request, (results, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-          for (let i = 0; i < results.length; i++) {
-            photoUrl = results[i].photos[0].getUrl();
-
+      console.log("request", request);
+      
+          service.findPlaceFromQuery(request, (results, status) => {
+          if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+            console.log("results", results);
+            //for (let i = 0; i < results.length; i++) {
+              if (results[0].photos) {
+                photoUrl = results[0].photos[0].getUrl();
+              }
+              else {
+                photoUrl = "/images/placeholder.jpg";
+              }
+              console.log("photoUrl", photoUrl)
+              this.setState({ imageUrl: photoUrl });
+            //}
+          } else {
+            photoUrl = "/images/placeholder.jpg";
             this.setState({ imageUrl: photoUrl });
           }
-        }
-      });
+          if (status == google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT) {
+            console.error("Over Query Limit");
+            sleep(2000);
+          }
+        });
+
       //console.log("done", photoUrl)
 
       // service.getDetails({

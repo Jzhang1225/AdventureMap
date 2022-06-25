@@ -142,7 +142,7 @@ const Messenger = (props) => {
             <h2>Friends</h2>
             {conversations.map((c, idx) => {
               return (
-                <Link key={idx} to={`/messenger/${c.id}`}>
+                <Link key={idx} to={`/messenger/${c.id}`} className="chatMenuName" >
                   <Conversation conversation={c} currentUser={user} />
                 </Link>
               );

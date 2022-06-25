@@ -1,3 +1,4 @@
+const { TEXT } = require("sequelize");
 const Sequelize = require("sequelize");
 const { STRING, INTEGER, DATE, ENUM } = Sequelize;
 const db = require("../db");
@@ -10,11 +11,11 @@ const Challenge = db.define("challenge", {
     type: INTEGER,
   },
   creator: {
-    type: INTEGER,
+    type: STRING,
   },
   locationName: {
     type: STRING,
-    defaultValue: "/public/no-user-image.gif",
+    defaultValue: "/images/placeholder-square.jpg",
   },
   streetAddress: {
     type: STRING,
@@ -37,6 +38,12 @@ const Challenge = db.define("challenge", {
   difficulty: {
     type: ENUM("Easy", "Medium", "Hard"),
   },
+  imageUrl: {
+    type: STRING,
+  },
+  description: {
+    type: TEXT,
+  }
 });
 
 module.exports = Challenge;

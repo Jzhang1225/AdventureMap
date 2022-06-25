@@ -9,15 +9,16 @@ body {
   font-family: "Open Sans", "Tahoma", sans-serif;
 }
 p {
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.6em;
 }
 a {
+  color: #5e387c;
   text-decoration: none;
   transition: 0.4s ease;
 }
 a:hover {
-  color: #e5d4f9;
+  color: #957ac1;
 }
 
 label {
@@ -33,6 +34,32 @@ nav a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+button {
+  padding: 1em 2em;
+  background-color: #5e387c;
+  border: none;
+  border-radius: 4px;
+  color: #ffffff;
+  cursor: pointer;
+  display: block;
+  font-family: 'Gill Sans', 'Gill Sans MT', 'Lato', 'Tahoma', sans-serif;
+  font-size: 1rem;
+  font-weight: 10;
+  justify-content: center;
+  line-height: 1;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: 0.4s ease;
+}
+button:hover {
+  background-color: #9d7fba;
+}
+
+.row.top {
+  text-align: center;
 }
 
 /*** Navbar ***/
@@ -52,7 +79,31 @@ h1 {
   line-height: 1.5;
 }
 h2 {
+  color: #5e387c;
   line-height: 1.25;
+}
+
+/*** Footer ***/
+.footer {
+  background-color: #5e387c;
+  color: #FFFFFF;
+  padding: 3em 0;
+}
+.footer-content {
+  text-align: center;
+  width: 1200px;
+  margin: auto;
+}
+.footer .logo {
+  width: 400px;
+  height: initial;
+  margin: 0 auto 1.5rem;
+}
+.footer img {
+  width: 100%;
+}
+.footer .libraries {
+  margin-top: 60px;
 }
 
 /*** Homepage ***/
@@ -89,16 +140,21 @@ h2 {
 .homepage h3 {
   color: #5e387c;
   font-weight: bold;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+}
+.homepage p {
+  font-size: 0.9rem;
 }
 .button-start {
   font-family: "Open Sans", "Tahoma", sans-serif;
   font-size: 1.5rem;
   font-weight: bold;
   padding: 0.75em 2em;
+  background-color: #f0f0f0;
   border: none;
   border-radius: 6px;
   color: #5e387c;
+  margin: 1rem auto;
   transition: 0.4s ease;
   cursor: pointer;
 }
@@ -113,10 +169,12 @@ h2 {
   background-color: #5e387c;
 }
 .column-3 {
+  text-align: center;
   width: 30%;
 }
 .column-3 img {
-  width: 200px;
+  max-height: 120px;
+  max-width: 200px;
 }
 .column-4 {
   width: 25%;
@@ -143,8 +201,11 @@ h2 {
 .explore h1 {
   margin-bottom: 1rem;
 }
-.explore input {
-  margin: 0;
+.explore h2 {
+  font-size: 1.75em;
+}
+.explore input, .explore select {
+  margin: 0.5em 0;
 }
 .explore .column-left {
   width: 360px;
@@ -153,25 +214,13 @@ h2 {
 .explore .column-right {
   max-width: 75%;
 }
-
-/*** Footer ***/
-.footer {
-  background-color: #5e387c;
-  color: #FFFFFF;
-  padding: 3em 0 10em;
+.explore button {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  margin: 1em 0;
 }
-.footer-content {
-  text-align: center;
-  width: 1200px;
-  margin: auto;
-}
-.footer .logo {
-  width: 400px;
-  height: initial;
-  margin: 0 auto 1.5rem;
-}
-.footer img {
-  width: 100%;
+.explore .fields {
+  margin-top: 1rem;
 }
 
 /*** Messenger ***/
@@ -179,8 +228,12 @@ h2 {
   height: calc(100vh - 70px);
   display: flex;
 }
+
 .chatMenu{
-  flex: 3.5
+  flex: 3.5;
+}
+.chatMenuName{
+  color: black;
 }
 .chatMenuInput{
   width: 90%;
@@ -190,7 +243,7 @@ h2 {
 
 }
 .chatBox{
-  flex: 5.5
+  flex: 5.5;
 }
 .chatBoxWrapper{
   display: flex;
@@ -213,6 +266,7 @@ h2 {
   width: 80%;
   height: 90px;
   padding: 10px;
+  font-size: large;
 }
 .chatSubmitButton{
   width: 70px;
@@ -220,7 +274,7 @@ h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: rgb(108, 37, 159);
+  background-color: #5e387c;
   color: white;
 }
 .chatOnline{
@@ -348,25 +402,7 @@ h2 {
   padding: 25vh 0;
 }
 .login button {
-  padding: 1em 2em;
-  background-color: #5e387c;
-  border: none;
-  border-radius: 4px;
-  color: #ffffff;
-  cursor: pointer;
-  display: block;
-  font-family: 'Gill Sans', 'Gill Sans MT', 'Lato', 'Tahoma', sans-serif;
-  font-size: 1rem;
-  font-weight: 10;
-  justify-content: center;
-  line-height: 1;
-  margin: 1rem auto;
-  outline: none;
-  padding: 1rem 1.2rem;
-  text-align: center;
-  text-decoration: none;
   text-transform: uppercase;
-  transition: 0.4s ease;
   width: 100%;
 }
 .login button:hover {
@@ -403,12 +439,24 @@ label, input {
 }
 
 /*** Leaderboard ***/
+.leaders.flex-container {
+  justify-content: center;
+}
 .leaders img {
   display: block;
   border-radius: 50%;
   width: 200px;
   height: 200px;
   object-fit: cover;
+}
+.leader {
+  margin: 0 2rem;
+}
+.leader span {
+  font-size: 1.5rem;
+}
+.leader img {
+  margin-bottom: 1rem;
 }
 .first {
   order: 2;
@@ -433,16 +481,37 @@ label, input {
 .third img {
   border: 6px solid brown;
 }
-.leaderboard {
-
+.leaderboard h2 {
+  margin: 1em auto;
+}
+.rankings-table {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+.leaderboard .filter {
+  position: absolute;
+  left: 0;
+}
+.leaderboard table {
+  font-size: 1rem;
+}
+.leaderboard table img {
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
 }
 
 /*** Challenges ***/
 .challenges h2 {
   margin-bottom: 1em;
 }
-.row.top {
-  text-align: center;
+.challenges .anchor-links.flex-container {
+  justify-content: center;
+}
+.challenges .anchor-links button {
+  margin: 0 2rem;
 }
 .challenge-card {
   box-shadow: 0 4px 12px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.1);
@@ -451,7 +520,6 @@ label, input {
   display: block;
   width: 100%;
   height: 200px;
-  object-fit: cover;
 }
 .card-text {
   padding: 24px;
@@ -462,6 +530,133 @@ label, input {
   justify-content: space-between;
   row-gap: 2rem;
 }
+.challenges hr {
+  border-top: 2px solid #9d7fba;
+  margin-bottom: 2rem;
+}
+#add-challenge .box {
+  border: 1px solid #999999;
+  width: 560px;
+  margin: 0 auto;
+  padding: 3rem;
+}
+.challenges .box input, .challenges .box select {
+  margin: 0.5em 0;
+}
+.challenges .box button {
+  margin-top: 0.5em;
+}
+
+/*** Single Challenge ***/
+.challenge .row.top {
+  text-align: left;
+}
+.challenge .row:first-child {
+  background-color: #ffffff;
+  border: 1px solid #999999;
+}
+.challenge .row.flex-container, .challenge .row .flex-container {
+  align-items: flex-start;
+}
+.challenge .top h2 {
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+.challenge .top .column-left {
+  width: 32%;
+  padding: 2rem;
+}
+.challenge .top .column-right {
+  width: 65%;
+}
+.challenge .top .image-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  padding-top: 35px;
+  height: 0;
+  overflow: hidden;
+}
+.challenge .top img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.challenge button {
+  font-size: 0.875rem;
+  text-align: left;
+  margin: 1rem 0 0;
+}
+.challenge .creator {
+  margin: 3em 0 0;
+}
+.challenge .difficulty {
+  border: 2px solid #5e387c;
+  border-radius: 2rem;
+  color: #5e387c;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0.5em 1em;
+}
+.challenge .row {
+  margin: 60px auto;
+}
+.challenge .description .column-left {
+  width: 65%;
+}
+.challenge .description .column-right {
+  width: 32%;
+  border: 1px solid #999999;
+  padding: 0 2rem 2rem;
+}
+.challenge h2 {
+  margin-top: 2rem;
+}
+.challenge .description li {
+  list-style-type: none;
+  height: 40px;
+  margin-top: 1em;
+}
+.challenge .description img {
+  border-radius: 50%;
+  width: 40px;
+  margin-right: 1rem;
+  vertical-align: middle;
+}
+
+/*** Users ***/
+.users h2 {
+  text-align: center;
+  margin: 2rem 0;
+}
+.user img {
+  border-radius: 90px;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  margin-right: 1rem;
+  vertical-align: middle;
+}
+.user .user-card {
+  border: 1px solid #999999;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+}
+.user .username {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+/*** Libraries ***/
+.libraries img {
+  border: none;
+  width: 20%;
+}
+
 
 /*** Responsive ***/
 @media (max-width: 1280px) {
@@ -497,3 +692,61 @@ label, input {
     grid-template-columns: 100%;
   }
 }
+
+/*** Profile ***/
+.profile-card{
+  display:flex; 
+  justify-content: center; 
+  align-items: center;
+  width: 50%;
+  height: 250px;
+  margin: auto; 
+  padding: 5px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: solid 1px rgb(231, 227, 227);
+}
+.profile-info{
+  font-size: 16;
+  font-weight: normal;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+.update-field{
+  width: 250px
+}
+
+/*** Friends ***/
+.flex-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  justify-content: space-between;
+  row-gap: 2rem;
+}
+.friend-card{
+  border: solid 1px rgb(231, 227, 227);
+}
+
+/*** Friend Requests ***/
+.request-list{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.friend-request{
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 50px;
+  width: 30%;
+  padding: 2.5rem;
+  border: solid 1px rgb(231, 227, 227)
+}
+.friend-request:hover{
+  background-color: #ece2f7;
+}
+.friend-req-button{
+  margin: 10px 10px 0 10px;
+  padding: .25rem;
+}
+
