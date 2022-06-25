@@ -78,15 +78,21 @@ class Profile extends Component {
                 Email: {auth?.email}
               </Typography>
               <Typography className="profile-info">
-                Address: {auth?.streetAddress}
+                Address: 
+                <div>
+                  {auth?.streetAddress}
+                </div>
+              </Typography>
+              <Typography className="profile-info">
+                {auth?.city}, {auth?.state} {auth?.zip}
               </Typography>
             </div>
           </Card>
           
-          <div style={{display: 'flex', justifyContent:'center'}}>
+          <div style={{display: 'flex', justifyContent:'center' }}>
               <Grid container spacing={3} style={{margin: "8px", width: "75%"}}>
               <h3>Update Profile Details </h3>
-                <form>
+                <form style={{ padding: "5px", margin: "10px" }}>
                   <label htmlFor="username">User Name</label>
                   <input name="username" value={username} onChange={onChange} />
                   <label htmlFor="firstName">First Name</label>
