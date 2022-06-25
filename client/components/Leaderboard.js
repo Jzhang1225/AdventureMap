@@ -39,7 +39,6 @@ class Leaderboard extends React.Component {
     const indexOfLastUser = currentPage * usersPerPage;
     const indexOfFirstUser = indexOfLastUser - usersPerPage;
     const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
-    console.log(users);
 
     return (
       <div className="leaderboard content">
@@ -62,7 +61,7 @@ class Leaderboard extends React.Component {
             {users[2]?.username}
           </div>
         </div>
-        
+
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <div
             style={{
@@ -75,7 +74,7 @@ class Leaderboard extends React.Component {
               <option value="">All Rankings</option>
               <option value="friend">Friend Rankings</option>
             </select>
-            
+
             {!filterValue ? (
               <div>Global Rankings</div>
             ) : (
