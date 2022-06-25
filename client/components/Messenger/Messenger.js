@@ -176,7 +176,7 @@ const Messenger = (props) => {
                 </div>
               </>
             ) : (
-              <span className="noConversationText"> Open A Conversation </span>
+              <span className="noConversationText">Open a Conversation</span>
             )}
           </div>
         </div>
