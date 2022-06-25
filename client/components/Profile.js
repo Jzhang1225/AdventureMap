@@ -80,32 +80,42 @@ class Profile extends Component {
               <Typography className="profile-info">
                 Address: {auth?.streetAddress}
               </Typography>
-              {/* <button style={{marginBottom: '1rem', background: "#5e387c", color: 'white', padding: '0.5rem', marginTop: '1rem', borderRadius: "10px",marginRight:'auto'}}> 
-                Edit Profile Details 
-              </button> */}
             </div>
           </Card>
           
           <div style={{display: 'flex', justifyContent:'center'}}>
               <Grid container spacing={3} style={{margin: "8px", width: "25%"}}>
               <h3>Update Profile Details </h3>
-                <form style={{ padding: "5px", margin: "10px", }} >
+                <form>
+                  <label htmlFor="username">User Name</label>
                   <input name="username" value={username} onChange={onChange} />
+                  <label htmlFor="firstName">First Name</label>
                   <input name="firstName" value={firstName} onChange={onChange} />
+                  <label htmlFor="lastName">Last Name</label>
                   <input name="lastName" value={lastName} onChange={onChange} />
+                  <label htmlFor="streetAddress">Street Address</label>
                   <input
                     name="streetAddress"
                     value={streetAddress}
                     onChange={onChange}
                   />
-                  <input name="email" value={email} onChange={onChange} />
+                  <label htmlFor="city">City</label>
                   <input name="city" value={city} onChange={onChange} />
+                  <label htmlFor="state">State</label>
                   <input name="state" value={state} onChange={onChange} />
-                  <input name="zip" value={zip} onChange={onChange} />
+                  <label htmlFor="zip">Zip</label>
+                  <input name="zip" value={zip} onChange={onChange} placeholder="Zip" />
+                  <label htmlFor="email">Email</label>
+                  <input
+                    name="email"
+                    value={email}
+                    onChange={onChange}
+                    placeholder="Email"
+                  />
                 </form>
                 <button
                   onClick={updateProfile}
-                  style={{ padding: "5px", margin: "10px",}}
+                  style={{ padding: "5px", margin: "10px" }}
                   disabled={
                     username === auth.username &&
                     firstName === (auth.firstName || "") &&
@@ -121,9 +131,7 @@ class Profile extends Component {
                 </button>
               </Grid>
           </div>
-         
         </Container>
-        
       </div>
     );
   }

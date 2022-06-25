@@ -8,4 +8,13 @@ const ChallengeLine = db.define("challengeLine", {
   },
 });
 
+ChallengeLine.createRandom = async (User, Challenge) => {
+  const users = await User.findAll();
+  const challenges = await Challenge.findAll();
+  await ChallengeLine.create({
+    userId: users[Math.floor(Math.random() * users.length)].id,
+    challengeId: challenges[Math.floor(Math.random() * challenges.length)].id,
+  });
+};
+
 module.exports = ChallengeLine;

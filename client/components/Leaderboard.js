@@ -47,6 +47,21 @@ class Leaderboard extends React.Component {
           <p>Top users from around the world!</p>
         </div>
 
+        <div className="row leaders flex-container">
+          <div className="first">
+            <img src={`/profile-pics/${users[0]?.avatar}`} />
+            {users[0]?.username}
+          </div>
+          <div className="second">
+            <img src={`/profile-pics/${users[1]?.avatar}`} />
+            {users[1]?.username}
+          </div>
+          <div className="third">
+            <img src={`/profile-pics/${users[2]?.avatar}`} />
+            {users[2]?.username}
+          </div>
+        </div>
+
         <div style={{ display: "flex", justifyContent: "space-around" }}>
           <div
             style={{
@@ -57,9 +72,9 @@ class Leaderboard extends React.Component {
           >
             <select name="filter" value={filterValue} onChange={FilterChange}>
               <option value="">All Rankings</option>
-              <option value="friend"> Friend Rankings</option>
+              <option value="friend">Friend Rankings</option>
             </select>
-            
+
             {!filterValue ? (
               <div>Global Rankings</div>
             ) : (

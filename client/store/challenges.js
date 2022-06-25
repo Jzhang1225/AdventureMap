@@ -1,4 +1,5 @@
 import axios from "axios";
+import { addChallengeLine } from "../store";
 
 const GET_CHALLENGES = "GET_CHALLENGES";
 const CREATE_CHALLENGE = "CREATE_CHALLENGE";
@@ -18,9 +19,7 @@ export const getChallenges = () => {
       ).data;
       dispatch({ type: GET_CHALLENGES, challenges });
     }
-    const allChallenges = (
-      await axios.get("/api/challenges/")
-    ).data; 
+    const allChallenges = (await axios.get("/api/challenges/")).data;
     dispatch({ type: GET_ALL_CHALLENGES, allChallenges });
   };
 };
@@ -37,12 +36,12 @@ export const createChallenge = (newChallenge) => {
         })
       ).data;
       dispatch({ type: CREATE_CHALLENGE, challenge });
+      dispatch(addChallengeLine(challenge));
     }
   };
 };
 
 export const deleteChallenge = (challenge, history) => {
-  console.log("checker", challenge);
   return async (dispatch) => {
     const token = window.localStorage.getItem("token");
     if (token) {
@@ -60,7 +59,6 @@ export const deleteChallenge = (challenge, history) => {
 export default function (state = [], action) {
   switch (action.type) {
     case GET_ALL_CHALLENGES:
-      console.log('all', action.allChallenges)
       return action.allChallenges;
     case GET_CHALLENGES:
       return action.challenges;

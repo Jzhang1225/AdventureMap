@@ -38,6 +38,8 @@ router.put("/me", async (req, res, next) => {
     const user = await User.findByToken(req.headers.authorization);
     const updatedUser = await user.update({
       username: req.body.username,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       points: req.body.points,
       streetAddress: req.body.streetAddress,
       email: req.body.email,

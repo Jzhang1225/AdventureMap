@@ -210,8 +210,10 @@ function Explore({ challenges, auth, createChallenge }) {
             <option value="park"> Parks</option>
             <option value="museum"> Museums</option>
             <option value="movie_theater"> Movie Theaters</option>
-            <option value="spa"> Spas</option>
+            <option value="tourist_attraction"> Tourist attractions</option>
             <option value="night_club"> Night Clubs</option>
+            <option value="library"> Libraries</option>
+            <option value="restaurant"> Restaurants</option>
           </select>
           <Search
             setMarkers={setMarkers}
@@ -333,6 +335,9 @@ function Explore({ challenges, auth, createChallenge }) {
                   <div>
                     <h2>{selected.challenge.name}</h2>
                     <p>{selected.challenge.difficulty} Difficulty</p>
+                    <p>
+                      Status: {selected.completed ? "Completed" : "Ongoing"}
+                    </p>
                     <p>Start: {selected.challenge.startDate.slice(0, 10)}</p>
                     <p>End: {selected.challenge.endDate.slice(0, 10)}</p>
                   </div>
