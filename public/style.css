@@ -624,8 +624,12 @@ label, input {
 .challenge .description img {
   border-radius: 50%;
   width: 40px;
+  height: 40px;
   margin-right: 1rem;
   vertical-align: middle;
+}
+.challenge .description-text p {
+  margin-top: 24px;
 }
 
 /*** Users ***/
