@@ -90,10 +90,10 @@ const mapDispatch = (dispatch) => {
     loadInitialData() {
       dispatch(me());
       dispatch(setUsers());
+      dispatch(getChallenges());
     },
     loadLoggedInData() {
       dispatch(setFriendRequests());
-      dispatch(getChallenges());
       dispatch(getChallengeLines());
     },
   };
