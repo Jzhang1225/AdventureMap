@@ -6,9 +6,13 @@ const SelectedUser = ({ user, addFriendRequest, pending }) => {
   return (
     <div>
       {user.username}
-      <button disabled={pending} onClick={() => addFriendRequest(user)}>
-        Add friend
-      </button>
+      {!pending ? (
+        <button onClick={() => addFriendRequest(user)}>Add friend</button>
+      ) : (
+        <button disabled={pending} onClick={() => addFriendRequest(user)}>
+          Invitation Sent
+        </button>
+      )}
     </div>
   );
 };

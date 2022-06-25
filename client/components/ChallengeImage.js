@@ -1,6 +1,7 @@
 import React from "react";
 //import { getGeocode, getLatLng } from "use-places-autocomplete";
 //import {Client} from "@googlemaps/google-maps-services-js";
+import { GlobalMap } from "./Explore";
 
 class ChallengeImage extends React.Component {
   constructor(props) {
@@ -24,9 +25,10 @@ class ChallengeImage extends React.Component {
       // console.log("place", place)
       // console.log("place_id", place[0].place_id)
 
-      const map = new google.maps.Map(document.createElement("div"));
+      // const map = new google.maps.Map(document.createElement("div"));
 
-      const service = new google.maps.places.PlacesService(map);
+      console.log(GlobalMap);
+      const service = new google.maps.places.PlacesService(GlobalMap);
 
       const request = {
         //query: "Museum of Contemporary Art Australia " + "40 George St, The Rocks NSW 2000, Australia",
