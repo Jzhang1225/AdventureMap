@@ -16,9 +16,13 @@ const SelectedUser = ({ user, addFriendRequest, pending }) => {
             {user.city}, {user.state}</p>
           </div>
           <div className="column-right">
-            <button disabled={pending} onClick={() => addFriendRequest(user)}>
-              Add friend
-            </button>
+            {!pending ? (
+              <button onClick={() => addFriendRequest(user)}>Add friend</button>
+            ) : (
+              <button disabled={pending} onClick={() => addFriendRequest(user)}>
+                Invitation Sent
+              </button>
+            )}
           </div>
         </div>
       </div>

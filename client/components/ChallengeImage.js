@@ -1,6 +1,7 @@
 import React from "react";
 //import { getGeocode, getLatLng } from "use-places-autocomplete";
 //import {Client} from "@googlemaps/google-maps-services-js";
+import { GlobalMap } from "./Explore";
 
 function sleep(milliSeconds) {
   var startTime = new Date().getTime();
@@ -31,6 +32,7 @@ class ChallengeImage extends React.Component {
       // console.log("place_id", place[0].place_id)
 
       // const map = new google.maps.Map(document.createElement("div"));
+
       // const service = new google.maps.places.PlacesService(map);
 
       const request = {
