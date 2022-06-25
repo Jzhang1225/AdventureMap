@@ -423,6 +423,11 @@ async function seed() {
       challengeId: 9,
     }),
   ]);
+  const challengesLines = await Promise.all(
+    Array(100)
+      .fill("")
+      .map((__) => ChallengeLine.createRandom(User, Challenge))
+  );
 
   console.log(`seeded successfully`);
   return [

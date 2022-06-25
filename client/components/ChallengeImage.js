@@ -25,7 +25,6 @@ class ChallengeImage extends React.Component {
       // console.log("place_id", place[0].place_id)
 
       const map = new google.maps.Map(document.createElement("div"));
-      console.log(map, "HIHIHIHIHIHIH");
 
       const service = new google.maps.places.PlacesService(map);
 
