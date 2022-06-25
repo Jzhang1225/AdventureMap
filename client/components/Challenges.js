@@ -20,7 +20,7 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
           {challenges.map((challenge) => {
             const startDateString = moment(new Date(challenge.startDate)).format('MMMM D Y');
             const endDateString = moment(new Date(challenge.endDate)).format('MMMM D Y');
-
+            console.log(`${challenge.locationName} ${challenge.streetAddress}, ${challenge.city}, ${challenge.state} ${challenge.zip}`)
             return (
               <Link to={`/challenges/${challenge.id}`} key={challenge.id}>
                 <div className="challenge-card">
