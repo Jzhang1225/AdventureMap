@@ -6,9 +6,8 @@ class ChallengeImage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imageUrl: ''
-    }
-
+      imageUrl: "",
+    };
   }
 
   componentDidMount() {
@@ -16,7 +15,7 @@ class ChallengeImage extends React.Component {
   }
 
   getGooglePhoto = async () => {
-    let photoUrl = 'test';
+    let photoUrl = "test";
     try {
       // const place = await getGeocode({
       //   address: this.props.address
@@ -25,7 +24,9 @@ class ChallengeImage extends React.Component {
       // console.log("place", place)
       // console.log("place_id", place[0].place_id)
 
-      const map = new google.maps.Map(document.createElement('div'));
+      const map = new google.maps.Map(document.createElement("div"));
+      console.log(map, "HIHIHIHIHIHIH");
+
       const service = new google.maps.places.PlacesService(map);
 
       const request = {
@@ -33,23 +34,17 @@ class ChallengeImage extends React.Component {
         query: this.props.address,
         fields: ["name", "geometry", "icon", "photos", "place_id"],
       };
-    
-      
-      service.findPlaceFromQuery(
-        request,
-        (results, status) => {
-          if (status === google.maps.places.PlacesServiceStatus.OK && results) {
-            for (let i = 0; i < results.length; i++) {
-              console.log("result", results[i]);
-              photoUrl = results[i].photos[0].getUrl();
-              console.log("photoUrl", photoUrl);
-              this.setState({imageUrl: photoUrl})
-            }
+
+      service.findPlaceFromQuery(request, (results, status) => {
+        if (status === google.maps.places.PlacesServiceStatus.OK && results) {
+          for (let i = 0; i < results.length; i++) {
+            photoUrl = results[i].photos[0].getUrl();
+
+            this.setState({ imageUrl: photoUrl });
           }
         }
-      );
+      });
       //console.log("done", photoUrl)
-      
 
       // service.getDetails({
       //     placeId: place[0].place_id
@@ -64,14 +59,11 @@ class ChallengeImage extends React.Component {
     } catch (err) {
       console.log(err);
     }
-    console.log("state photoUrl: ", photoUrl)
-  }
+  };
 
   render() {
     //console.log("state photoUrl", photoUrl);
-    return (
-      <img src={this.state.imageUrl} alt="image" />
-    )
+    return <img src={this.state.imageUrl} alt="image" />;
   }
 }
 
