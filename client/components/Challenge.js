@@ -24,7 +24,9 @@ const Challenge = ({
   const map = new google.maps.Map(document.createElement("div"));
   const service = new google.maps.places.PlacesService(map);
 
-  const startDateString = moment(new Date(challenge?.startDate)).format("MMMM D Y");
+  const startDateString = moment(new Date(challenge?.startDate)).format(
+    "MMMM D Y"
+  );
   const endDateString = moment(new Date(challenge?.endDate)).format("MMMM D Y");
 
   let existingLine = specificChallenge.find((line) => line.user.id == auth.id);
@@ -32,18 +34,23 @@ const Challenge = ({
     <div className="challenge content">
       <div className="row top flex-container">
         <div className="column-left">
-          <p>{startDateString} - {endDateString}</p>
+          <p>
+            {startDateString} - {endDateString}
+          </p>
           <h2>{challenge?.name}</h2>
-          <p><span className="difficulty">Difficulty:&nbsp;{challenge?.difficulty}</span></p>
+          <p>
+            <span className="difficulty">
+              Difficulty:&nbsp;{challenge?.difficulty}
+            </span>
+          </p>
           <p className="creator">Created by {challenge?.creator}</p>
-          
-          
-          { existingLine ? (
+
+          {existingLine ? (
             <div>
-                <button onClick={() => removeChallengeLine(existingLine)}>
+              <button onClick={() => removeChallengeLine(existingLine)}>
                 Leave Challenge
-                </button>
-                <button
+              </button>
+              <button
                 onClick={() => {
                   updatePoints(challenge);
                   completeChallengeLine(existingLine);
@@ -54,13 +61,13 @@ const Challenge = ({
             </div>
           ) : (
             <button onClick={() => addChallengeLine(challenge)}>
-            Join Challenge!
+              Join Challenge!
             </button>
           )}
         </div>
         <div className="column-right">
           <div className="image-container">
-            <ChallengeImage 
+            <ChallengeImage
               service={service}
               address={`${challenge?.locationName} ${challenge?.streetAddress}, ${challenge?.city}, ${challenge?.state} ${challenge?.zip}`}
             />
@@ -71,7 +78,7 @@ const Challenge = ({
       <div className="row description">
         {auth.admin ? (
           <div>
-            Admin only: 
+            Admin only:
             <button
               onClick={() => {
                 specificChallenge.map((line) => removeChallengeLine(line));
