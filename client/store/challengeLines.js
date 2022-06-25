@@ -64,7 +64,7 @@ export const completeChallengeLine = (line) => {
         })
       ).data;
       dispatch({ type: FINISH_CHALLENGELINE, updatedLine });
-      history.push("/explore/");
+      history.push("/profile/");
     }
   };
 };
