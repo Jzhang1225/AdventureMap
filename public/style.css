@@ -87,7 +87,7 @@ h2 {
 .footer {
   background-color: #5e387c;
   color: #FFFFFF;
-  padding: 3em 0 10em;
+  padding: 3em 0;
 }
 .footer-content {
   text-align: center;
@@ -101,6 +101,9 @@ h2 {
 }
 .footer img {
   width: 100%;
+}
+.footer .libraries {
+  margin-top: 60px;
 }
 
 /*** Homepage ***/
@@ -609,6 +612,12 @@ label, input {
 .user .username {
   font-size: 1.25rem;
   font-weight: 600;
+}
+
+/*** Libraries ***/
+.libraries img {
+  border: none;
+  width: 20%;
 }
 
 

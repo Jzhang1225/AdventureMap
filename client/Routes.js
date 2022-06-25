@@ -20,6 +20,7 @@ import {
 import Challenges from "./components/Challenges";
 import Challenge from "./components/Challenge";
 import PendingFriendRequests from "./components/PendingFriendRequests";
+import ProjectLibraries from "./components/ProjectLibraries";
 
 class Routes extends Component {
   componentDidMount() {
@@ -57,6 +58,7 @@ class Routes extends Component {
               path="/pendingFriendRequests"
               component={PendingFriendRequests}
             />
+            <Route path="/libraries" component={ProjectLibraries} />
             <Redirect to="/home" />
           </Switch>
         ) : (
@@ -69,7 +71,7 @@ class Routes extends Component {
             <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
-            <Route path="/libraries" component={FriendList} />
+            <Route path="/libraries" component={ProjectLibraries} />
           </Switch>
         )}
       </div>
