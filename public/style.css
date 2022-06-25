@@ -201,8 +201,11 @@ h2 {
 .explore h1 {
   margin-bottom: 1rem;
 }
-.explore input {
-  margin: 0;
+.explore h2 {
+  font-size: 1.75em;
+}
+.explore input, .explore select {
+  margin: 0.5em 0;
 }
 .explore .column-left {
   width: 360px;
@@ -210,6 +213,14 @@ h2 {
 }
 .explore .column-right {
   max-width: 75%;
+}
+.explore button {
+  font-size: 0.875rem;
+  padding: 0.5rem 0.75rem;
+  margin: 1em 0;
+}
+.explore .fields {
+  margin-top: 1rem;
 }
 
 /*** Messenger ***/
@@ -491,6 +502,12 @@ label, input {
 .challenges h2 {
   margin-bottom: 1em;
 }
+.challenges .anchor-links.flex-container {
+  justify-content: center;
+}
+.challenges .anchor-links button {
+  margin: 0 2rem;
+}
 .challenge-card {
   box-shadow: 0 4px 12px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.1);
 }
@@ -508,6 +525,22 @@ label, input {
   grid-template-columns: repeat(3, 30%);
   justify-content: space-between;
   row-gap: 2rem;
+}
+.challenges hr {
+  border-top: 2px solid #9d7fba;
+  margin-bottom: 2rem;
+}
+#add-challenge .box {
+  border: 1px solid #999999;
+  width: 560px;
+  margin: 0 auto;
+  padding: 3rem;
+}
+.challenges .box input, .challenges .box select {
+  margin: 0.5em 0;
+}
+.challenges .box button {
+  margin-top: 0.5em;
 }
 
 /*** Single Challenge ***/

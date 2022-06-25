@@ -197,29 +197,32 @@ function Explore({ challenges, auth, createChallenge }) {
       <div className="content flex-container">
         <div className="column-left">
           <h1>Explore Map:</h1>
-          <select
-            name="search"
-            value={search}
-            onChange={(ev) => {
-              setSearch(ev.target.value);
-              setMarkers(markers.filter((markers) => !markers.search));
-              setSelected("");
-            }}
-          >
-            <option value="">Search</option>
-            <option value="park"> Parks</option>
-            <option value="museum"> Museums</option>
-            <option value="movie_theater"> Movie Theaters</option>
-            <option value="tourist_attraction"> Tourist attractions</option>
-            <option value="night_club"> Night Clubs</option>
-            <option value="library"> Libraries</option>
-            <option value="restaurant"> Restaurants</option>
-          </select>
-          <Search
-            setMarkers={setMarkers}
-            setSelected={setSelected}
-            auth={auth}
-          />
+          <p>Find and create challenges near you.</p>
+          <div className="fields">
+            <select
+              name="search"
+              value={search}
+              onChange={(ev) => {
+                setSearch(ev.target.value);
+                setMarkers(markers.filter((markers) => !markers.search));
+                setSelected("");
+              }}
+            >
+              <option value="">Show Locations by Type</option>
+              <option value="park"> Parks</option>
+              <option value="museum"> Museums</option>
+              <option value="movie_theater"> Movie Theaters</option>
+              <option value="tourist_attraction"> Tourist attractions</option>
+              <option value="night_club"> Night Clubs</option>
+              <option value="library"> Libraries</option>
+              <option value="restaurant"> Restaurants</option>
+            </select>
+            <Search
+              setMarkers={setMarkers}
+              setSelected={setSelected}
+              auth={auth}
+            />
+          </div>
         </div>
 
         <div className="column-right">
@@ -342,7 +345,8 @@ function Explore({ challenges, auth, createChallenge }) {
                     <p>End: {selected.challenge.endDate.slice(0, 10)}</p>
                   </div>
                 ) : (
-                  <>
+                  <div className="create-box">
+                    <h2>Create a Challenge</h2>
                     <h3>{selected.address}</h3>
                     <button
                       onClick={() => {
@@ -353,7 +357,7 @@ function Explore({ challenges, auth, createChallenge }) {
                         setSelected("");
                       }}
                     >
-                      Set as Center
+                      Set as Map Center
                     </button>
                     <form
                       style={{ display: "flex", flexDirection: "column" }}
@@ -395,7 +399,7 @@ function Explore({ challenges, auth, createChallenge }) {
                         Create Challenge
                       </button>
                     </form>
-                  </>
+                  </div>
                 )}
               </InfoWindow>
             ) : null}

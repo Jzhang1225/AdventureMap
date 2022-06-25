@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import CreateChallenge from "./CreateChallenge";
 import moment from "moment";
 import ChallengeImage from "./ChallengeImage";
-import { GoogleMap } from "@react-google-maps/api";
+import { HashLink } from "react-router-hash-link";
 
 const Challenges = ({ challenges, auth, challengeLines }) => {
   const map = new google.maps.Map(document.createElement("div"));
@@ -15,6 +15,10 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
       <div className="row top">
         <h1>Challenges</h1>
         <p>Checkout these challenges!</p>
+      </div>
+      <div className="row anchor-links flex-container">
+        <HashLink to="/challenges#your-challenges"><button>Your Challenges</button></HashLink>
+        <HashLink to="/challenges#add-challenge"><button>Add a Challenge</button></HashLink>
       </div>
       <div className="row">
         <h2>Explore these challenges:</h2>
@@ -50,8 +54,9 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
           })}
         </div>
       </div>
-      <div className="user-challenges">
+      <div className="user-challenges" id="your-challenges">
         <div className="row">
+          <hr />
           <h2>Your challenges:</h2>
           <div className="flex-grid">
             {challengeLines
@@ -88,9 +93,12 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
           </div>
         </div>
 
-        <div className="row">
-          Don't like what you see? Create your own challenge below!
-          <CreateChallenge />
+        <div className="row" id="add-challenge">
+          <div class="box">
+            <h2>Add a Challenge</h2>
+            <p>Don't like what you see? Create your own challenge below!</p>
+            <CreateChallenge />
+          </div>
         </div>
       </div>
     </div>
