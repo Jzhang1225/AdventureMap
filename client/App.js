@@ -14,6 +14,11 @@ const theme = createTheme({
       fontSize: '1rem',
       //padding: '1rem 2rem'
     }
+  },
+  palette: {
+    primary: {
+      main: "#957ac1",
+    }
   }
 });
 

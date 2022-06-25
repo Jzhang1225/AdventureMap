@@ -16,10 +16,8 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 
-const pages = ["Explore", "Leaderboard", "Challenges"];
-const loggedInPages = ["Explore", "Leaderboard", "Challenges", "Users"];
-const settings = ["Profile", "Friends", "Logout"];
-const settingsUrls = [];
+const pages = ["Explore", "Challenges", "Leaderboard"];
+const loggedInPages = ["Explore", "Challenges", "Leaderboard", "Users"];
 
 const NavbarResponsive = ({ handleClick, isLoggedIn, auth }) => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -190,7 +188,7 @@ const NavbarResponsive = ({ handleClick, isLoggedIn, auth }) => {
                 >
                   <MenuItem key="Profile" onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">
-                      <Link href="/Profile">Profile</Link>
+                      <Link href="/Profile" color="primary">Profile</Link>
                     </Typography>
                   </MenuItem>
                   <MenuItem key="Friends" onClick={handleCloseUserMenu}>
