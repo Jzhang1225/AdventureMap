@@ -169,38 +169,6 @@ async function seed() {
     }),
   ]);
   const challenges = await Promise.all([
-    // Challenge.create({
-    //   name: "Take a hike",
-    //   points: 10,
-    //   streetAddress: "fake street NW",
-    //   startDate: "2022/06/05",
-    //   endDate: "2022/06/10",
-    //   difficulty: "Hard",
-    // }),
-    // Challenge.create({
-    //   name: "Take a hike again",
-    //   points: 10,
-    //   streetAddress: "fake street NW",
-    //   startDate: "2022/06/05",
-    //   endDate: "2022/06/10",
-    //   difficulty: "Hard",
-    // }),
-    // Challenge.create({
-    //   name: "Look at art",
-    //   points: 10,
-    //   streetAddress: "fake street NW",
-    //   startDate: "2022/06/05",
-    //   endDate: "2022/06/10",
-    //   difficulty: "Easy",
-    // }),
-    // Challenge.create({
-    //   name: "Go ride a bike",
-    //   points: 10,
-    //   streetAddress: "fake street NW",
-    //   startDate: "2022/06/05",
-    //   endDate: "2022/06/10",
-    //   difficulty: "Medium",
-    // }),
     Challenge.create({
       name: "Go to the Museum of Modern Art",
       points: 20,
@@ -228,7 +196,8 @@ async function seed() {
     Challenge.create({
       name: "Go to Kissena Park",
       points: 20,
-      sreetAddress: "Booth Memorial Ave",
+      locationName: "Kissena Park",
+      streetAddress: "Booth Memorial Ave",
       city: "Fresh Meadows",
       state: "New York",
       zip: 11365,
@@ -239,7 +208,8 @@ async function seed() {
     Challenge.create({
       name: "Go to Columbus Park",
       points: 30,
-      sreetAddress: "St. Baxter St",
+      locationName: "Columbus Park",
+      streetAddress: "Baxter St",
       city: "New York City",
       state: "New York",
       zip: 10013,
@@ -250,7 +220,8 @@ async function seed() {
     Challenge.create({
       name: "Visit the NYC Hall",
       points: 20,
-      sreetAddress: "City Hall Park",
+      locationName: "New York City Hall",
+      streetAddress: "City Hall Park",
       city: "New York City",
       state: "New York",
       zip: 10007,
@@ -259,9 +230,10 @@ async function seed() {
       difficulty: "Easy",
     }),
     Challenge.create({
-      name: "Ride the Sea Glass Carousel",
+      name: "Ride the SeaGlass Carousel",
       points: 20,
-      sreetAddress: "Pearl Street",
+      locationName: "SeaGlass Carousel",
+      streetAddress: "Pearl Street",
       city: "Battery Park",
       state: "New York",
       zip: 10004,
@@ -272,7 +244,8 @@ async function seed() {
     Challenge.create({
       name: "Visit the East River State Park",
       points: 30,
-      sreetAddress: "90 Kent Ave",
+      locationName: "Marsha P. Johnson State Park",
+      streetAddress: "90 Kent Ave",
       city: "Brooklyn",
       state: "New York",
       zip: 11249,
@@ -283,7 +256,8 @@ async function seed() {
     Challenge.create({
       name: "Climb to the Top of the Rock",
       points: 50,
-      sreetAddress: "West 50th Street",
+      locationName: "Top of The Rock",
+      streetAddress: "West 50th Street",
       city: "New York City",
       state: "New York",
       zip: 10111,
@@ -294,7 +268,8 @@ async function seed() {
     Challenge.create({
       name: "Win a match at the World's largest Chessboard",
       points: 50,
-      sreetAddress: "767 Third Ave",
+      locationName: "World's Largest Chess Board",
+      streetAddress: "767 Third Ave",
       city: "New York",
       state: "New York",
       zip: 10017,
@@ -305,7 +280,8 @@ async function seed() {
     Challenge.create({
       name: "Grab food at the Grand Central Terminal",
       points: 30,
-      sreetAddress: "89 E 42nd St",
+      locationName: "Grand Central Terminal",
+      streetAddress: "89 E 42nd St",
       city: "New York",
       state: "New York",
       zip: 10017,
@@ -316,7 +292,8 @@ async function seed() {
     Challenge.create({
       name: "Climb at Adventure Untamed",
       points: 50,
-      sreetAddress: "447 Broadway",
+      locationName: "Adventure Untamed",
+      streetAddress: "447 Broadway",
       city: "New York",
       state: "New York",
       zip: 10017,
@@ -327,7 +304,8 @@ async function seed() {
     Challenge.create({
       name: "Work out at Grassroots Fitness Project",
       points: 30,
-      sreetAddress: "371 Amsterdam Ave",
+      locationName: "Grassroots Fitness Project",
+      streetAddress: "371 Amsterdam Ave",
       city: "New York",
       state: "New York",
       zip: 10024,
@@ -338,7 +316,8 @@ async function seed() {
     Challenge.create({
       name: "Watch the new Elvis film",
       points: 20,
-      sreetAddress: "570 2nd Ave",
+      locationName: "AMC Kips Bay 15",
+      streetAddress: "570 2nd Ave",
       city: "New York",
       state: "New York",
       zip: 10016,
@@ -349,7 +328,8 @@ async function seed() {
     Challenge.create({
       name: "Watch Hamilton",
       points: 50,
-      sreetAddress: "226 W 46th St",
+      locationName: "Richard Rodgers Theatre",
+      streetAddress: "226 W 46th St",
       city: "New York",
       state: "New York",
       zip: 10036,
@@ -360,7 +340,8 @@ async function seed() {
     Challenge.create({
       name: "Eat Pizza",
       points: 20,
-      sreetAddress: "413 8th Ave",
+      locationName: "NY Pizza Suprema",
+      streetAddress: "413 8th Ave",
       city: "New York",
       state: "New York",
       zip: 10001,

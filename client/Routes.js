@@ -49,7 +49,7 @@ class Routes extends Component {
             <Route path="/profile" component={Profile} />
             <Route path="/friends" component={FriendList} />
             <Route
-              path="/FriendsInventation"
+              path="/FriendsInvitation"
               component={PendingFriendRequests}
             />
             <Route path="/messenger/:id?" component={Messenger} />
