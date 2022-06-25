@@ -48,13 +48,13 @@ class ChallengeImage extends React.Component {
                 photoUrl = results[0].photos[0].getUrl();
               }
               else {
-                photoUrl = "/images/placeholder-square.jpg";
+                photoUrl = "/images/placeholder.jpg";
               }
               console.log("photoUrl", photoUrl)
               this.setState({ imageUrl: photoUrl });
             //}
           } else {
-            photoUrl = "/images/placeholder-square.jpg";
+            photoUrl = "/images/placeholder.jpg";
             this.setState({ imageUrl: photoUrl });
           }
           if (status == google.maps.places.PlacesServiceStatus.OVER_QUERY_LIMIT) {

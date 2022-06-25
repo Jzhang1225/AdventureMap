@@ -48,37 +48,45 @@ class Leaderboard extends React.Component {
         </div>
 
         <div className="row leaders flex-container">
-          <div className="first">
+          <div className="leader first">
             <img src={`/profile-pics/${users[0]?.avatar}`} />
-            {users[0]?.username}
+            <p>1st</p>
+            <span>{users[0]?.username}</span>
           </div>
-          <div className="second">
+          <div className="leader second">
             <img src={`/profile-pics/${users[1]?.avatar}`} />
-            {users[1]?.username}
+            <p>2nd</p>
+            <span>{users[1]?.username}</span>
           </div>
-          <div className="third">
+          <div className="leader third">
             <img src={`/profile-pics/${users[2]?.avatar}`} />
-            {users[2]?.username}
+            <p>3rd</p>
+            <span>{users[2]?.username}</span>
           </div>
         </div>
 
-        <div style={{ display: "flex", justifyContent: "space-around" }}>
+        <div className="row rankings-table">
           <div
             style={{
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
+              position: "relative",
             }}
           >
-            <select name="filter" value={filterValue} onChange={FilterChange}>
-              <option value="">All Rankings</option>
-              <option value="friend">Friend Rankings</option>
-            </select>
+            <div className="filter">
+              <p>Filter by:</p>
+                <select name="filter" value={filterValue} onChange={FilterChange}>
+                  <option value="">All Rankings</option>
+                  <option value="friend">Friend Rankings</option>
+                </select>
+            </div>
+            
 
             {!filterValue ? (
-              <div>Global Rankings</div>
+              <h2>Global Rankings</h2>
             ) : (
-              <div>Friend Rankings</div>
+              <h2>Friend Rankings</h2>
             )}
             <TableContainer component={Paper}>
               <Table sx={{ width: 1000 }}>
@@ -106,6 +114,7 @@ class Leaderboard extends React.Component {
               color="primary"
               page={currentPage}
               onChange={(ev, page) => this.setState({ currentPage: page })}
+              sx={{marginTop: "1rem",}}
             />
           </div>
         </div>

@@ -4,11 +4,24 @@ import { addFriendRequest } from "../store";
 
 const SelectedUser = ({ user, addFriendRequest, pending }) => {
   return (
-    <div>
-      {user.username}
-      <button disabled={pending} onClick={() => addFriendRequest(user)}>
-        Add friend
-      </button>
+    <div className="user content">
+      <div className="row top">
+        <h1>Add a Friend</h1>
+      </div>
+      <div className="row">
+        <div className="flex-container user-card">
+          <div className="column-left flex-container">
+            <img src={`/public/profile-pics/${user.avatar}`} />
+            <p><span className="username">{user.username}</span><br/>
+            {user.city}, {user.state}</p>
+          </div>
+          <div className="column-right">
+            <button disabled={pending} onClick={() => addFriendRequest(user)}>
+              Add friend
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

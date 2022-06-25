@@ -41,7 +41,7 @@ const Challenge = ({
           { existingLine ? (
             <div>
                 <button onClick={() => removeChallengeLine(existingLine)}>
-                Unfollow Challenge!
+                Leave Challenge
                 </button>
                 <button
                 onClick={() => {
@@ -49,7 +49,7 @@ const Challenge = ({
                   completeChallengeLine(existingLine);
                 }}
               >
-                Mark Challenge as Complete!
+                Mark as Complete
               </button>
             </div>
           ) : (
@@ -94,7 +94,7 @@ const Challenge = ({
               return (
                 <li key={line.id}>
                   <Link to={`/users/${line.user.id}`}>
-                    <img src="/public/no-user-image.gif" />
+                    <img src={`/public/profile-pics/${line.user.avatar}`} />
                     {line.user.username} ({line.user.points} points)
                   </Link>
                 </li>

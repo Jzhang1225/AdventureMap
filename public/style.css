@@ -9,7 +9,7 @@ body {
   font-family: "Open Sans", "Tahoma", sans-serif;
 }
 p {
-  font-size: 0.875rem;
+  font-size: 1rem;
   line-height: 1.6em;
 }
 a {
@@ -138,6 +138,9 @@ h2 {
   color: #5e387c;
   font-weight: bold;
   margin: 1rem 0;
+}
+.homepage p {
+  font-size: 0.9rem;
 }
 .button-start {
   font-family: "Open Sans", "Tahoma", sans-serif;
@@ -417,12 +420,24 @@ label, input {
 }
 
 /*** Leaderboard ***/
+.leaders.flex-container {
+  justify-content: center;
+}
 .leaders img {
   display: block;
   border-radius: 50%;
   width: 200px;
   height: 200px;
   object-fit: cover;
+}
+.leader {
+  margin: 0 2rem;
+}
+.leader span {
+  font-size: 1.5rem;
+}
+.leader img {
+  margin-bottom: 1rem;
 }
 .first {
   order: 2;
@@ -447,8 +462,26 @@ label, input {
 .third img {
   border: 6px solid brown;
 }
-.leaderboard {
-
+.leaderboard h2 {
+  margin: 1em auto;
+}
+.rankings-table {
+  display: flex;
+  justify-content: space-around;
+  position: relative;
+}
+.leaderboard .filter {
+  position: absolute;
+  left: 0;
+}
+.leaderboard table {
+  font-size: 1rem;
+}
+.leaderboard table img {
+  border-radius: 60px;
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
 }
 
 /*** Challenges ***/
@@ -552,6 +585,32 @@ label, input {
   margin-right: 1rem;
   vertical-align: middle;
 }
+
+/*** Users ***/
+.users h2 {
+  text-align: center;
+  margin: 2rem 0;
+}
+.user img {
+  border-radius: 90px;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  margin-right: 1rem;
+  vertical-align: middle;
+}
+.user .user-card {
+  border: 1px solid #999999;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+}
+.user .username {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
 
 /*** Responsive ***/
 @media (max-width: 1280px) {
