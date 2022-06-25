@@ -201,7 +201,7 @@ const NavbarResponsive = ({ handleClick, isLoggedIn, auth }) => {
                     onClick={handleCloseUserMenu}
                   >
                     <Typography textAlign="center">
-                      <Link href="/FriendsInvitation">Friend invitation</Link>
+                      <Link href="/FriendsInvitation">Friend Invites</Link>
                     </Typography>
                   </MenuItem>
                   <MenuItem key="Messenger" onClick={handleCloseUserMenu}>

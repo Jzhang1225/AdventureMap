@@ -14,45 +14,39 @@ const PendingFriendRequests = ({
   declineRequest,
 }) => {
   return (
-    <div>
-      <Container style={{ paddingBottom: "4rem"}} >
-        <div className="row top">
+    <div className="user friend-requests content">
+      <div className="row top">
         <h1>Pending Friend Requests</h1>
-        </div>
-
-        <Stack
-          direction="column"
-          justifyContent="center"
-          alignItems="center"
-          spacing={1}
-          className="request-list"
-        >
-          {pendingFriendRequest.length
-                      ? pendingFriendRequest
-                          .filter((request) => request.userId !== auth.id)
-                          .map((friendRequest) => {
-                            const friend = users.find(
-                              (user) => user.id === friendRequest.userId
-                            );
-                            return (
-                              <Paper elevation={0} key={friend.id} className="friend-request">
-                                <Link to={`/users/${friend.id}`} style={{ fontWeight: "bold", color: "black"}}>
-                                  {friend.username}
-                                </Link>
-                                <div>
-                                  <button className="friend-req-button" onClick={() => acceptRequest(friendRequest)}>
-                                    Accept
-                                  </button>
-                                  <button className="friend-req-button" onClick={() => declineRequest(friendRequest)}>
-                                    Decline
-                                  </button>
-                                </div>
-                              </Paper>                          
-                            );
-                          })
-                      : "No pending requests"}
-        </Stack>
-      </Container>
+      </div>
+      <div className="row flex-container">
+        {
+          pendingFriendRequest.length
+          ? pendingFriendRequest
+              .filter((request) => request.userId !== auth.id)
+              .map((friendRequest) => {
+                const friend = users.find(
+                  (user) => user.id === friendRequest.userId
+                );
+                return(
+                      <div className="flex-container user-card">
+                        <div className="column-left flex-container">
+                        <Link to={`/users/${friend.id}`}><img src={`/public/profile-pics/${friend.avatar}`} /></Link>
+                          <p><span className="username">{friend.username}</span><br/>
+                          {friend.city}, {friend.state}</p>
+                        </div>
+                        <div className="column-right">
+                        <button className="accept" onClick={() => acceptRequest(friendRequest)}>
+                            Accept
+                          </button>
+                          <button className="decline" onClick={() => declineRequest(friendRequest)}> 
+                            Decline
+                          </button>
+                        </div>
+                      </div>
+                  );
+              }) : "No pending requests"
+        }
+      </div>
     </div>
   );
 };

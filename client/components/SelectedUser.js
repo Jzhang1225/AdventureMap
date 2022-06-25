@@ -6,7 +6,7 @@ const SelectedUser = ({ user, addFriendRequest, pending }) => {
   return (
     <div className="user content">
       <div className="row top">
-        <h1>Add a Friend</h1>
+        <h1>User Profile</h1>
       </div>
       <div className="row">
         <div className="flex-container user-card">
