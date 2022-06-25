@@ -230,7 +230,8 @@ h2 {
 }
 
 .chatMenu{
-  flex: 3.5;
+  flex: 2;
+  border-right: 1px solid #999999;
 }
 .chatMenuName{
   color: black;
@@ -340,6 +341,7 @@ h2 {
   color: gray;
   text-align: center;
   cursor: default;
+  margin-left: 3rem;
 }
 .message{
   display: flex;
@@ -694,6 +696,9 @@ label, input {
 }
 
 /*** Profile ***/
+.profile .row.top {
+  margin-bottom: 40px;
+}
 .profile-card{
   display:flex; 
   justify-content: center; 
@@ -712,8 +717,18 @@ label, input {
   line-height: 1;
   margin-bottom: 1em;
 }
+.update-form {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
 .update-field{
   width: 250px
+}
+.update-form button {
+  text-align: center;
+  padding: 1rem 2rem;
+  margin: auto;
 }
 
 /*** Friends ***/
@@ -754,10 +769,14 @@ label, input {
   margin-top: 1em;
 }
 
+.user.friend-requests .flex-container {
+  flex-flow: row wrap;
+}
 .user.friend-requests .user-card {
   border: 1px solid #999999;
   width: 48%;
   margin-left: initial;
   margin-right: initial;
+  margin-bottom: 2rem;
   padding: 2rem;
 }
