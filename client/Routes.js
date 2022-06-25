@@ -69,6 +69,7 @@ class Routes extends Component {
             <Route path="/leaderboard" component={Leaderboard} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />
+            <Route path="/libraries" component={FriendList} />
           </Switch>
         )}
       </div>
