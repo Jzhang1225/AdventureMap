@@ -1,4 +1,5 @@
 import axios from "axios";
+import { addChallengeLine } from "../store";
 
 const GET_CHALLENGES = "GET_CHALLENGES";
 const CREATE_CHALLENGE = "CREATE_CHALLENGE";
@@ -35,12 +36,12 @@ export const createChallenge = (newChallenge) => {
         })
       ).data;
       dispatch({ type: CREATE_CHALLENGE, challenge });
+      dispatch(addChallengeLine(challenge));
     }
   };
 };
 
 export const deleteChallenge = (challenge, history) => {
-  console.log("checker", challenge);
   return async (dispatch) => {
     const token = window.localStorage.getItem("token");
     if (token) {
