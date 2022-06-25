@@ -8,6 +8,7 @@ class CreateChallenge extends React.Component {
     this.state = {
       name: "",
       points: "",
+      locationName: "",
       streetAddress: "",
       city: "",
       state: "",
@@ -25,6 +26,7 @@ class CreateChallenge extends React.Component {
     this.setState({
       name: "",
       points: "",
+      locationName: "",
       streetAddress: "",
       city: "",
       state: "",
@@ -41,6 +43,7 @@ class CreateChallenge extends React.Component {
     const {
       name,
       points,
+      locationName,
       streetAddress,
       city,
       state,
@@ -68,6 +71,12 @@ class CreateChallenge extends React.Component {
             onChange={(ev) =>
               this.setState({ points: ev.target.valueAsNumber })
             }
+          ></input>
+          <input
+            name="locationName"
+            value={locationName}
+            placeholder="Location Name"
+            onChange={handleChange}
           ></input>
           <input
             name="streetAddress"
@@ -121,6 +130,7 @@ class CreateChallenge extends React.Component {
             disabled={
               !name ||
               !points ||
+              !locationName ||
               !streetAddress ||
               !city ||
               !state ||
