@@ -11,7 +11,7 @@ const PendingFriendRequests = ({
 }) => {
   return (
     <div>
-      <h2>Pending received requests</h2>
+      <h2>Pending Friendrequest Invitations</h2>
       <ul>
         {pendingFriendRequest.length
           ? pendingFriendRequest
