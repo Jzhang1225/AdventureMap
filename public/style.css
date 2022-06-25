@@ -522,12 +522,6 @@ label, input {
 }
 
 /*** Friends ***/
-.flex-grid{
-  display: grid;
-  grid-template-columns: repeat(3, 30%);
-  justify-content: space-between;
-  row-gap: 2rem;
-}
 .friend-card{
   border: solid 1px rgb(231, 227, 227);
 }

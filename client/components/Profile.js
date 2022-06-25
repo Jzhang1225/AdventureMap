@@ -84,7 +84,7 @@ class Profile extends Component {
           </Card>
           
           <div style={{display: 'flex', justifyContent:'center'}}>
-              <Grid container spacing={3} style={{margin: "8px", width: "25%"}}>
+              <Grid container spacing={3} style={{margin: "8px", width: "75%"}}>
               <h3>Update Profile Details </h3>
                 <form>
                   <label htmlFor="username">User Name</label>
