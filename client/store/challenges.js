@@ -18,9 +18,7 @@ export const getChallenges = () => {
       ).data;
       dispatch({ type: GET_CHALLENGES, challenges });
     }
-    const allChallenges = (
-      await axios.get("/api/challenges/")
-    ).data; 
+    const allChallenges = (await axios.get("/api/challenges/")).data;
     dispatch({ type: GET_ALL_CHALLENGES, allChallenges });
   };
 };
@@ -60,7 +58,6 @@ export const deleteChallenge = (challenge, history) => {
 export default function (state = [], action) {
   switch (action.type) {
     case GET_ALL_CHALLENGES:
-      console.log('all', action.allChallenges)
       return action.allChallenges;
     case GET_CHALLENGES:
       return action.challenges;
