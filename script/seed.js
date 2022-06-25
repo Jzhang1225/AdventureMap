@@ -204,8 +204,9 @@ async function seed() {
     //   difficulty: "Medium",
     // }),
     Challenge.create({
-      name: "Go to a Museum",
+      name: "Go to the Museum of Modern Art",
       points: 20,
+      locationName: "The Museum of Modern Art",
       streetAddress: "11 W 53rd St",
       city: "New York",
       state: "New York",
@@ -215,8 +216,9 @@ async function seed() {
       difficulty: "Medium",
     }),
     Challenge.create({
-      name: "Go to a Museum",
+      name: "Read at a Library for an hour",
       points: 20,
+      locationName: "Queens Public Library",
       streetAddress: "41-17 Main St",
       city: "Flushing",
       state: "New York",
@@ -228,6 +230,7 @@ async function seed() {
     Challenge.create({
       name: "Go to a Park",
       points: 10,
+      locationName: "Queens Botanical Garden",
       streetAddress: "43-50 Main Street",
       city: "Flushing",
       state: "New York",
@@ -239,6 +242,7 @@ async function seed() {
     Challenge.create({
       name: "Eat 10 Buns",
       points: 20,
+      locationName: "New Flushing Bakery",
       streetAddress: "135-45 Roosevelt Ave",
       city: "Queens",
       state: "New York",

@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import CreateChallenge from "./CreateChallenge";
 import moment from "moment";
+import ChallengeImage from "./ChallengeImage";
 
 const Challenges = ({ challenges, auth, challengeLines }) => {
   //console.log("user specific challenges:", challengeLines);
-
+  
   return (
     <div className="challenges content">
       <div className="row top">
@@ -23,7 +24,7 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
             return (
               <Link to={`/challenges/${challenge.id}`} key={challenge.id}>
                 <div className="challenge-card">
-                  <img src="/images/placeholder-square.jpg" />
+                  <ChallengeImage address={`${challenge.locationName} ${challenge.streetAddress}, ${challenge.city}, ${challenge.state} ${challenge.zip}`}/>
                   {/* <img src={query} alt="" /> */}
                   <div className="card-text">
                     {challenge.name}
@@ -49,7 +50,7 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
                 return (
                   <Link to={`/challenges/${line.challenge.id}`} key={line.id}>
                     <div className="challenge-card">
-                      <img src="/images/placeholder-square.jpg" />
+                      <ChallengeImage address={`${line.challenge.locationName} ${line.challenge.streetAddress}, ${line.challenge.city}, ${line.challenge.state} ${line.challenge.zip}`}/>
                       <div className="card-text">
                         {line.challenge.name}
                         <p>{startDateString} - {endDateString}</p>

@@ -12,6 +12,10 @@ const Challenge = db.define("challenge", {
   creator: {
     type: INTEGER,
   },
+  locationName: {
+    type: STRING,
+    defaultValue: "/public/no-user-image.gif",
+  },
   streetAddress: {
     type: STRING,
   },
