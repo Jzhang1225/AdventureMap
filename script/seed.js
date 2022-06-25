@@ -213,6 +213,8 @@ async function seed() {
       startDate: "2022/06/05",
       endDate: "2022/06/10",
       difficulty: "Medium",
+      description:
+        "Learn to be a modern day Picasso by absorbing some of the worlds finest art",
     }),
     Challenge.create({
       name: "Read at a Library for an hour",
@@ -225,6 +227,9 @@ async function seed() {
       startDate: "2022/06/05",
       endDate: "2022/06/10",
       difficulty: "Medium",
+      creator: await Challenge.createRandomCreator(User),
+      description:
+        "Read a bit and increase your brain size. You can show off big words like Acrimonious to your friends.",
     }),
     Challenge.create({
       name: "Go to Kissena Park",
@@ -237,6 +242,9 @@ async function seed() {
       startDate: "2022/06/20",
       endDate: "2022/07/15",
       difficulty: "Easy",
+      creator: await Challenge.createRandomCreator(User),
+      description:
+        "Go and enjoy some fresh air at the Park. Maybe ride a bike or jog a bit while your there.",
     }),
     Challenge.create({
       name: "Go to Columbus Park",
@@ -249,6 +257,9 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/05",
       difficulty: "Medium",
+      creator: await Challenge.createRandomCreator(User),
+      description:
+        "Go and enjoy some fresh air at the Park. Maybe ride a bike or jog a bit while your there.",
     }),
     Challenge.create({
       name: "Visit the NYC Hall",
@@ -261,6 +272,8 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/08",
       difficulty: "Easy",
+      creator: await Challenge.createRandomCreator(User),
+      description: "Visit the City Hall and absorb some of the history.",
     }),
     Challenge.create({
       name: "Ride the SeaGlass Carousel",
@@ -273,6 +286,8 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/08",
       difficulty: "Easy",
+      creator: await Challenge.createRandomCreator(User),
+      description: "Ride the SeaGlass Carousel and enjoy being a kid again.",
     }),
     Challenge.create({
       name: "Visit the East River State Park",
@@ -285,6 +300,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/08",
       difficulty: "Medium",
+      creator: await Challenge.createRandomCreator(User),
     }),
     Challenge.create({
       name: "Climb to the Top of the Rock",
@@ -297,6 +313,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/20",
       difficulty: "Hard",
+      creator: await Challenge.createRandomCreator(User),
     }),
     Challenge.create({
       name: "Win a match at the World's largest Chessboard",
@@ -309,6 +326,9 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/20",
       difficulty: "Hard",
+      creator: await Challenge.createRandomCreator(User),
+      description:
+        "Play a large game of chess and maybe you can challenge Magnus for the world championship.",
     }),
     Challenge.create({
       name: "Grab food at the Grand Central Terminal",
@@ -321,6 +341,8 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/01",
       difficulty: "Medium",
+      creator: await Challenge.createRandomCreator(User),
+      description: "Explore Grand Central and the foods available.",
     }),
     Challenge.create({
       name: "Climb at Adventure Untamed",
@@ -333,6 +355,8 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/01",
       difficulty: "Hard",
+      creator: await Challenge.createRandomCreator(User),
+      description: "Enjoy some climbing and unleash your inner monkey.",
     }),
     Challenge.create({
       name: "Work out at Grassroots Fitness Project",
@@ -345,6 +369,8 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/10",
       difficulty: "Medium",
+      creator: await Challenge.createRandomCreator(User),
+      description: "Train your body and workout at Grassroots.",
     }),
     Challenge.create({
       name: "Watch the new Elvis film",
@@ -357,6 +383,8 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/19",
       difficulty: "Easy",
+      creator: await Challenge.createRandomCreator(User),
+      description: "Chill and checkout the Elvis film at AMC.",
     }),
     Challenge.create({
       name: "Watch Hamilton",
@@ -369,6 +397,8 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/20",
       difficulty: "Hard",
+      creator: await Challenge.createRandomCreator(User),
+      description: "Turn back time and Watch Hamilton.",
     }),
     Challenge.create({
       name: "Eat Pizza",
@@ -381,6 +411,8 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/06/31",
       difficulty: "Easy",
+      creator: await Challenge.createRandomCreator(User),
+      description: "Eat pizza, not Chicago `pizza`, real pizza.",
     }),
     Challenge.create({
       name: "Go to a Park",
@@ -393,6 +425,9 @@ async function seed() {
       startDate: "2022/06/05",
       endDate: "2022/06/10",
       difficulty: "Easy",
+      creator: await Challenge.createRandomCreator(User),
+      description:
+        "Go and enjoy some fresh air at the Park. Maybe ride a bike or jog a bit while your there.",
     }),
     Challenge.create({
       name: "Eat 10 Buns",
@@ -405,6 +440,8 @@ async function seed() {
       startDate: "2022/06/05",
       endDate: "2022/06/10",
       difficulty: "Medium",
+      creator: await Challenge.createRandomCreator(User),
+      description: "Eat buns, get fat and enjoy.",
     }),
   ]);
 

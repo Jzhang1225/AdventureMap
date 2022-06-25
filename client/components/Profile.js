@@ -89,7 +89,7 @@ class Profile extends Component {
         </Card>
         
         <div className="row update-form">
-          <h3>Update Profile Details </h3>
+          <h3>Update Profile Details</h3>
           <form style={{ padding: "5px", margin: "10px" }}>
             <label htmlFor="username">User Name</label>
             <input name="username" value={username} onChange={onChange} />

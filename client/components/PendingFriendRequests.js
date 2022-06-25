@@ -28,21 +28,21 @@ const PendingFriendRequests = ({
                   (user) => user.id === friendRequest.userId
                 );
                 return(
-                      <div className="flex-container user-card">
-                        <div className="column-left flex-container">
-                        <Link to={`/users/${friend.id}`}><img src={`/public/profile-pics/${friend.avatar}`} /></Link>
-                          <p><span className="username">{friend.username}</span><br/>
-                          {friend.city}, {friend.state}</p>
-                        </div>
-                        <div className="column-right">
-                        <button className="accept" onClick={() => acceptRequest(friendRequest)}>
-                            Accept
-                          </button>
-                          <button className="decline" onClick={() => declineRequest(friendRequest)}> 
-                            Decline
-                          </button>
-                        </div>
-                      </div>
+                  <div className="flex-container user-card">
+                    <div className="column-left flex-container">
+                    <Link to={`/users/${friend.id}`}><img src={`/public/profile-pics/${friend.avatar}`} /></Link>
+                      <p><span className="username">{friend.username}</span><br/>
+                      {friend.city}, {friend.state}</p>
+                    </div>
+                    <div className="column-right">
+                    <button className="accept" onClick={() => acceptRequest(friendRequest)}>
+                        Accept
+                      </button>
+                      <button className="decline" onClick={() => declineRequest(friendRequest)}> 
+                        Decline
+                      </button>
+                    </div>
+                  </div>
                   );
               }) : "No pending requests"
         }
