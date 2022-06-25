@@ -4,11 +4,11 @@ import { addFriendRequest } from "../store";
 
 const SelectedUser = ({ user, addFriendRequest, pending }) => {
   return (
-    <div className="user content">
+    <div className="user user-profile content">
       <div className="row top">
         <h1>User Profile</h1>
       </div>
-      <div className="row">
+      <div className="row box-container">
         <div className="flex-container user-card">
           <div className="column-left flex-container">
             <img src={`/public/profile-pics/${user.avatar}`} />
@@ -24,6 +24,29 @@ const SelectedUser = ({ user, addFriendRequest, pending }) => {
               </button>
             )}
           </div>
+        </div>
+
+        <div className="info flex-container">
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  Name:
+                </td>
+                <td>
+                  {user.firstName} {user.lastName}
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Points:
+                </td>
+                <td>
+                  {user.points}
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
