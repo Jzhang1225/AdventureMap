@@ -65,8 +65,8 @@ const Messenger = (props) => {
     if (found) {
       setCurrentChat(found);
     }
-  },[props.match.params.id, conversations]);
-  
+  }, [props.match.params.id, conversations]);
+
   useEffect(() => {
     const getMessages = async () => {
       try {
@@ -142,7 +142,11 @@ const Messenger = (props) => {
             <h2>Friends</h2>
             {conversations.map((c, idx) => {
               return (
-                <Link key={idx} to={`/messenger/${c.id}`} className="chatMenuName" >
+                <Link
+                  key={idx}
+                  to={`/messenger/${c.id}`}
+                  className="chatMenuName"
+                >
                   <Conversation conversation={c} currentUser={user} />
                 </Link>
               );
