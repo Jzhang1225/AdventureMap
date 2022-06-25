@@ -37,6 +37,9 @@ const Challenge = db.define("challenge", {
   difficulty: {
     type: ENUM("Easy", "Medium", "Hard"),
   },
+  imageUrl: {
+    type: STRING,
+  }
 });
 
 module.exports = Challenge;
