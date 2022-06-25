@@ -176,6 +176,7 @@ async function seed() {
     Challenge.create({
       name: "Go to the Museum of Modern Art",
       points: 20,
+      creator: stanley.username,
       locationName: "The Museum of Modern Art",
       streetAddress: "11 W 53rd St",
       city: "New York",
