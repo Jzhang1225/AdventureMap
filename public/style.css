@@ -652,6 +652,30 @@ label, input {
   font-size: 1.25rem;
   font-weight: 600;
 }
+.user.user-profile .user-card {
+  width: 100%;
+  border: none;
+  padding: 0;
+}
+.user.user-profile img {
+  border-radius: 200px;
+  width: 200px;
+  height: 200px;
+}
+.user .box-container {
+  border: 1px solid #999999;
+  padding: 2rem;
+}
+.user table {
+  margin-top: 1rem;
+}
+.user table td {
+  padding: 1em;
+}
+.user table tr td:nth-child(2) {
+  font-weight: bold;
+  font-size: 1.25rem;
+}
 
 /*** Libraries ***/
 .libraries img {
