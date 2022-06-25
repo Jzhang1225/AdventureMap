@@ -179,8 +179,12 @@ h2 {
   height: calc(100vh - 70px);
   display: flex;
 }
+
 .chatMenu{
-  flex: 3.5
+  flex: 3.5;
+}
+.chatMenuName{
+  color: black;
 }
 .chatMenuInput{
   width: 90%;
@@ -190,7 +194,7 @@ h2 {
 
 }
 .chatBox{
-  flex: 5.5
+  flex: 5.5;
 }
 .chatBoxWrapper{
   display: flex;
@@ -213,6 +217,7 @@ h2 {
   width: 80%;
   height: 90px;
   padding: 10px;
+  font-size: large;
 }
 .chatSubmitButton{
   width: 70px;
@@ -402,41 +407,6 @@ label, input {
   margin: 1em 0;
 }
 
-/*** Leaderboard ***/
-.leaders img {
-  display: block;
-  border-radius: 50%;
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-}
-.first {
-  order: 2;
-  text-align: center;
-}
-.first img {
-  border: 6px solid gold;
-  width: 300px;
-  height: 300px;
-}
-.second {
-  order: 1;
-  text-align: center;
-}
-.second img {
-  border: 6px solid silver;
-}
-.third {
-  order: 3;
-  text-align: center;
-}
-.third img {
-  border: 6px solid brown;
-}
-.leaderboard {
-
-}
-
 /*** Challenges ***/
 .challenges h2 {
   margin-bottom: 1em;
@@ -451,7 +421,6 @@ label, input {
   display: block;
   width: 100%;
   height: 200px;
-  object-fit: cover;
 }
 .card-text {
   padding: 24px;
@@ -530,5 +499,28 @@ label, input {
 }
 .friend-card{
   border: solid 1px rgb(231, 227, 227);
+}
+
+/*** Friend Requests ***/
+.request-list{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.friend-request{
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 50px;
+  width: 30%;
+  padding: 2.5rem;
+  border: solid 1px rgb(231, 227, 227)
+}
+.friend-request:hover{
+  background-color: #ece2f7;
+}
+.friend-req-button{
+  margin: 10px 10px 0 10px;
+  padding: .25rem;
 }
 
