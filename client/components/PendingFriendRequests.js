@@ -1,6 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { acceptRequest, declineRequest } from "../store";
+import Stack from '@mui/material/Stack';
+import Container from "@mui/material/Container";
+import Paper from '@mui/material/Paper';
 
 const PendingFriendRequests = ({
   pendingFriendRequest,
@@ -11,29 +15,44 @@ const PendingFriendRequests = ({
 }) => {
   return (
     <div>
-      <h2>Pending Friendrequest Invitations</h2>
-      <ul>
-        {pendingFriendRequest.length
-          ? pendingFriendRequest
-              .filter((request) => request.userId !== auth.id)
-              .map((friendRequest) => {
-                const friend = users.find(
-                  (user) => user.id === friendRequest.userId
-                );
-                return (
-                  <li key={friend.id}>
-                    {friend.username}
-                    <button onClick={() => acceptRequest(friendRequest)}>
-                      Accept
-                    </button>
-                    <button onClick={() => declineRequest(friendRequest)}>
-                      Decline
-                    </button>
-                  </li>
-                );
-              })
-          : "No pending requests"}
-      </ul>
+      <Container style={{ paddingBottom: "4rem"}} >
+        <div className="row top">
+        <h1>Pending Friend Requests</h1>
+        </div>
+
+        <Stack
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          spacing={1}
+          className="request-list"
+        >
+          {pendingFriendRequest.length
+                      ? pendingFriendRequest
+                          .filter((request) => request.userId !== auth.id)
+                          .map((friendRequest) => {
+                            const friend = users.find(
+                              (user) => user.id === friendRequest.userId
+                            );
+                            return (
+                              <Paper elevation={0} key={friend.id} className="friend-request">
+                                <Link to={`/users/${friend.id}`} style={{ fontWeight: "bold", color: "black"}}>
+                                  {friend.username}
+                                </Link>
+                                <div>
+                                  <button className="friend-req-button" onClick={() => acceptRequest(friendRequest)}>
+                                    Accept
+                                  </button>
+                                  <button className="friend-req-button" onClick={() => declineRequest(friendRequest)}>
+                                    Decline
+                                  </button>
+                                </div>
+                              </Paper>                          
+                            );
+                          })
+                      : "No pending requests"}
+        </Stack>
+      </Container>
     </div>
   );
 };

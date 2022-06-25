@@ -16,6 +16,13 @@ async function seed() {
   const Stefan = await User.create({
     username: "Stefan",
     password: "123",
+    firstName: "Stefan",
+    lastName: "Mitrovic",
+    email: "stefan@fullstack.com",
+    streetAddress: "101 Main Street",
+    city: "Richmond",
+    state: "Virginia",
+    zip: "23220",
     admin: true,
     points: 500,
     streetAddress: "142-30 Barclay Ave",
@@ -73,6 +80,13 @@ async function seed() {
       await User.create({
         username: "Jianing",
         password: "123",
+        firstName: "Jianing",
+        lastName: "Zhang",
+        email: "jianing@fullstack.com",
+        streetAddress: "101 Main Street",
+        city: "Queens",
+        state: "New York",
+        zip: "11354",
         points: 80,
         admin: true,
         avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
@@ -80,13 +94,27 @@ async function seed() {
       await User.create({
         username: "Cathy",
         password: "123",
+        firstName: "Cathy",
+        lastName: "Lu",
+        email: "cathy@fullstack.com",
+        streetAddress: "101 Main Street",
+        city: "Boston",
+        state: "Massachusetts",
+        zip: "02115",
         points: 470,
         admin: true,
         avatar: `avatar-${Math.ceil(Math.random() * 62)}.jpeg`,
       }),
       await User.create({
         username: "Evelyn",
+        firstName: "Evelyn",
         password: "123",
+        lastName: "Rodriguez",
+        email: "evelyn@fullstack.com",
+        streetAddress: "101 Main Street",
+        city: "Brooklyn",
+        state: "New York",
+        zip: "11224",
         points: 250,
         admin: true,
         avatar: `avatar-${Math.ceil(Math.random() * 61)}.jpeg`,
@@ -424,6 +452,11 @@ async function seed() {
       challengeId: 9,
     }),
   ]);
+  const challengesLines = await Promise.all(
+    Array(100)
+      .fill("")
+      .map((__) => ChallengeLine.createRandom(User, Challenge))
+  );
 
   console.log(`seeded successfully`);
   return [

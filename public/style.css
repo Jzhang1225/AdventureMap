@@ -228,8 +228,12 @@ h2 {
   height: calc(100vh - 70px);
   display: flex;
 }
+
 .chatMenu{
-  flex: 3.5
+  flex: 3.5;
+}
+.chatMenuName{
+  color: black;
 }
 .chatMenuInput{
   width: 90%;
@@ -239,7 +243,7 @@ h2 {
 
 }
 .chatBox{
-  flex: 5.5
+  flex: 5.5;
 }
 .chatBoxWrapper{
   display: flex;
@@ -262,6 +266,7 @@ h2 {
   width: 80%;
   height: 90px;
   padding: 10px;
+  font-size: large;
 }
 .chatSubmitButton{
   width: 70px;
@@ -269,7 +274,7 @@ h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  background-color: rgb(108, 37, 159);
+  background-color: #5e387c;
   color: white;
 }
 .chatOnline{
@@ -515,7 +520,6 @@ label, input {
   display: block;
   width: 100%;
   height: 200px;
-  object-fit: cover;
 }
 .card-text {
   padding: 24px;
@@ -688,3 +692,61 @@ label, input {
     grid-template-columns: 100%;
   }
 }
+
+/*** Profile ***/
+.profile-card{
+  display:flex; 
+  justify-content: center; 
+  align-items: center;
+  width: 50%;
+  height: 250px;
+  margin: auto; 
+  padding: 5px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: solid 1px rgb(231, 227, 227);
+}
+.profile-info{
+  font-size: 16;
+  font-weight: normal;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+.update-field{
+  width: 250px
+}
+
+/*** Friends ***/
+.flex-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  justify-content: space-between;
+  row-gap: 2rem;
+}
+.friend-card{
+  border: solid 1px rgb(231, 227, 227);
+}
+
+/*** Friend Requests ***/
+.request-list{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.friend-request{
+  display:flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  height: 50px;
+  width: 30%;
+  padding: 2.5rem;
+  border: solid 1px rgb(231, 227, 227)
+}
+.friend-request:hover{
+  background-color: #ece2f7;
+}
+.friend-req-button{
+  margin: 10px 10px 0 10px;
+  padding: .25rem;
+}
+

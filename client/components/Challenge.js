@@ -19,7 +19,7 @@ const Challenge = ({
   removeChallengeLine,
   deleteChallenge,
   completeChallengeLine,
-  updatePoints
+  updatePoints,
 }) => {
   const map = new google.maps.Map(document.createElement("div"));
   const service = new google.maps.places.PlacesService(map);
@@ -135,7 +135,7 @@ const mapDispatch = (dispatch, { history }) => {
     completeChallengeLine: (challengeLine) => {
       dispatch(completeChallengeLine(challengeLine, history));
     },
-    updatePoints:(points) => dispatch(updatePoints(points))
+    updatePoints: (points) => dispatch(updatePoints(points)),
   };
 };
 
