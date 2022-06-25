@@ -43,7 +43,12 @@ const Challenge = db.define("challenge", {
   },
   description: {
     type: TEXT,
-  }
+  },
 });
+
+Challenge.createRandomCreator = async (User) => {
+  const users = await User.findAll();
+  return users[Math.floor(Math.random() * users.length)].username;
+};
 
 module.exports = Challenge;

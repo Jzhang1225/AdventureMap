@@ -227,7 +227,7 @@ async function seed() {
       startDate: "2022/06/05",
       endDate: "2022/06/10",
       difficulty: "Medium",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description:
         "Read a bit and increase your brain size. You can show off big words like Acrimonious to your friends.",
     }),
@@ -242,7 +242,7 @@ async function seed() {
       startDate: "2022/06/20",
       endDate: "2022/07/15",
       difficulty: "Easy",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description:
         "Go and enjoy some fresh air at the Park. Maybe ride a bike or jog a bit while your there.",
     }),
@@ -257,7 +257,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/05",
       difficulty: "Medium",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description:
         "Go and enjoy some fresh air at the Park. Maybe ride a bike or jog a bit while your there.",
     }),
@@ -272,7 +272,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/08",
       difficulty: "Easy",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description: "Visit the City Hall and absorb some of the history.",
     }),
     Challenge.create({
@@ -286,7 +286,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/08",
       difficulty: "Easy",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description: "Ride the SeaGlass Carousel and enjoy being a kid again.",
     }),
     Challenge.create({
@@ -300,7 +300,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/08",
       difficulty: "Medium",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
     }),
     Challenge.create({
       name: "Climb to the Top of the Rock",
@@ -313,7 +313,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/20",
       difficulty: "Hard",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
     }),
     Challenge.create({
       name: "Win a match at the World's largest Chessboard",
@@ -326,7 +326,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/20",
       difficulty: "Hard",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description:
         "Play a large game of chess and maybe you can challenge Magnus for the world championship.",
     }),
@@ -341,7 +341,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/01",
       difficulty: "Medium",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description: "Explore Grand Central and the foods available.",
     }),
     Challenge.create({
@@ -355,7 +355,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/01",
       difficulty: "Hard",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description: "Enjoy some climbing and unleash your inner monkey.",
     }),
     Challenge.create({
@@ -369,7 +369,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/10",
       difficulty: "Medium",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description: "Train your body and workout at Grassroots.",
     }),
     Challenge.create({
@@ -383,7 +383,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/19",
       difficulty: "Easy",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description: "Chill and checkout the Elvis film at AMC.",
     }),
     Challenge.create({
@@ -397,7 +397,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/07/20",
       difficulty: "Hard",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description: "Turn back time and Watch Hamilton.",
     }),
     Challenge.create({
@@ -411,7 +411,7 @@ async function seed() {
       startDate: "2022/06/24",
       endDate: "2022/06/31",
       difficulty: "Easy",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description: "Eat pizza, not Chicago `pizza`, real pizza.",
     }),
     Challenge.create({
@@ -425,7 +425,7 @@ async function seed() {
       startDate: "2022/06/05",
       endDate: "2022/06/10",
       difficulty: "Easy",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description:
         "Go and enjoy some fresh air at the Park. Maybe ride a bike or jog a bit while your there.",
     }),
@@ -440,7 +440,7 @@ async function seed() {
       startDate: "2022/06/05",
       endDate: "2022/06/10",
       difficulty: "Medium",
-      creator: newUsers(Math.floor(Math.random() * newUsers.length)).username,
+      creator: await Challenge.createRandomCreator(User),
       description: "Eat buns, get fat and enjoy.",
     }),
   ]);
