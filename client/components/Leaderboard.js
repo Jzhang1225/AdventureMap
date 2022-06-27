@@ -30,7 +30,7 @@ class Leaderboard extends React.Component {
   render() {
     const { currentPage, usersPerPage, filterValue } = this.state;
     const { FilterChange } = this;
-    let { users, friends } = this.props;
+    let { users, friends, auth } = this.props;
 
     if (filterValue) {
       users = friends;
@@ -74,20 +74,21 @@ class Leaderboard extends React.Component {
               position: "relative",
             }}
           >
-            <div className="filter">
-              <p>Filter by:</p>
-                <select name="filter" value={filterValue} onChange={FilterChange}>
+            {auth.id && (
+              <div className="filter">
+                <p>Filter by:</p>
+                <select
+                  name="filter"
+                  value={filterValue}
+                  onChange={FilterChange}
+                >
                   <option value="">All Rankings</option>
                   <option value="friend">Friend Rankings</option>
                 </select>
-            </div>
-            
-
-            {!filterValue ? (
-              <h2>Global Rankings</h2>
-            ) : (
-              <h2>Friend Rankings</h2>
+              </div>
             )}
+
+            {!filterValue ? <h2>Global Rankings</h2> : <h2>Friend Rankings</h2>}
             <TableContainer component={Paper}>
               <Table sx={{ width: 1000 }}>
                 <TableHead>
@@ -114,7 +115,7 @@ class Leaderboard extends React.Component {
               color="primary"
               page={currentPage}
               onChange={(ev, page) => this.setState({ currentPage: page })}
-              sx={{marginTop: "1rem",}}
+              sx={{ marginTop: "1rem" }}
             />
           </div>
         </div>
@@ -142,6 +143,7 @@ const mapState = ({ users, friendRequests, auth }) => {
   return {
     users,
     friends,
+    auth,
   };
 };
 
