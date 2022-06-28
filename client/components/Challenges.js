@@ -17,8 +17,12 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
         <p>Checkout these challenges!</p>
       </div>
       <div className="row anchor-links flex-container">
-        <HashLink to="/challenges#your-challenges"><button>Your Challenges</button></HashLink>
-        <HashLink to="/challenges#add-challenge"><button>Add a Challenge</button></HashLink>
+        <HashLink to="/challenges#your-challenges">
+          <button>Your Challenges</button>
+        </HashLink>
+        <HashLink to="/challenges#add-challenge">
+          <button>Add a Challenge</button>
+        </HashLink>
       </div>
       <div className="row">
         <h2>Explore these challenges:</h2>
@@ -30,7 +34,6 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
             const endDateString = moment(new Date(challenge.endDate)).format(
               "MMMM D Y"
             );
-
             return (
               <Link to={`/challenges/${challenge.id}`} key={challenge.id}>
                 <div className="challenge-card">
@@ -38,7 +41,6 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
                     service={service}
                     address={`${challenge.locationName} ${challenge.streetAddress}, ${challenge.city}, ${challenge.state} ${challenge.zip}`}
                   />
-                  {/* <img src={query} alt="" /> */}
                   <div className="card-text">
                     {challenge.name}
                     <p>
@@ -92,9 +94,8 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
               })}
           </div>
         </div>
-
         <div className="row" id="add-challenge">
-          <div class="box">
+          <div className="box">
             <h2>Add a Challenge</h2>
             <p>Don't like what you see? Create your own challenge below!</p>
             <CreateChallenge />
