@@ -163,7 +163,7 @@ const NavbarResponsive = ({ handleClick, isLoggedIn, auth }) => {
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                     <Avatar
-                      alt="Remy Sharp"
+                      alt={`${auth.username}`}
                       src={`/public/profile-pics/${auth.avatar}`}
                     />
                   </IconButton>
