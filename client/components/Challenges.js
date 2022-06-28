@@ -34,7 +34,6 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
             const endDateString = moment(new Date(challenge.endDate)).format(
               "MMMM D Y"
             );
-
             return (
               <Link to={`/challenges/${challenge.id}`} key={challenge.id}>
                 <div className="challenge-card">
@@ -95,7 +94,6 @@ const Challenges = ({ challenges, auth, challengeLines }) => {
               })}
           </div>
         </div>
-
         <div className="row" id="add-challenge">
           <div className="box">
             <h2>Add a Challenge</h2>
