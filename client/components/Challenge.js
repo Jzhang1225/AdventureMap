@@ -16,6 +16,7 @@ const Challenge = ({
   challenge,
   addChallengeLine,
   auth,
+  isLoggedIn,
   removeChallengeLine,
   deleteChallenge,
   completeChallengeLine,
@@ -60,9 +61,17 @@ const Challenge = ({
               </button>
             </div>
           ) : (
-            <button onClick={() => addChallengeLine(challenge)}>
-              Join Challenge!
-            </button>
+            isLoggedIn ? (
+              <button onClick={() => addChallengeLine(challenge)}>
+                Join Challenge!
+              </button>
+            ) : (
+              <Link to="/signup">
+                <button>
+                  Join Challenge!
+                </button>
+              </Link>
+            )
           )}
         </div>
         <div className="column-right">
@@ -129,6 +138,7 @@ const mapState = ({ challengeLines, challenges, auth }, { match }) => {
     challenge,
     match,
     auth,
+    isLoggedIn: !!auth.id,
   };
 };
 
